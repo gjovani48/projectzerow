@@ -11,8 +11,8 @@ export class CategoryService {
 
 	constructor(private http: HttpClient) { }
 
-	private url:string = "http://localhost:80"
-  	private headers = new HttpHeaders().set('Content-Type', 'application/json')
+	private url:string = "https://protected-escarpment-77600.herokuapp.com"
+  private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
 	// Get All Categories
 	getCategories(): Observable<Category[]> {

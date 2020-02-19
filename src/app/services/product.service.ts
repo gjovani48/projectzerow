@@ -12,7 +12,7 @@ export class ProductService {
 	constructor(private http: HttpClient) { }
 	// private url = this.httpconfig.getURL()
   // 	private headers = this.httpconfig.getHeaders()
-  private url:string = "http://localhost:80"
+  private url:string = "https://protected-escarpment-77600.herokuapp.com"
   private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
 	// Get All Products
