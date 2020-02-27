@@ -30,14 +30,24 @@ router.get('/:id', (req,res) => {
 // Add New Cart
 router.post('/', urlEncoded,(req,res) => {
   var cart = new Cart({
-    product_id: req.body.product_id,
     user_id: req.body.user_id
   })
 
-  cart.save( (err) => {
-      if(err) res.json({msg:"Invalid Request"})
-      res.json({msg:"Product Added"})
+  Cart.findOne({
+    user_id: req.body.user_id
+  }).then((user)=>{
+    if(!user){
+        cart.save( (err) => {
+          if(err) res.json({msg:"Invalid Request"})
+          res.json({msg:"Cart created"})
+      })
+    }
+    else{
+      res.json({error:"Cart already exists"})
+    }
+
   })
+
 })
 
 //addtocart
