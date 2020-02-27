@@ -34,7 +34,7 @@ router.post('/', urlEncoded,(req,res) => {
         category_id: req.body.category_id,
         name: req.body.name,
         description: req.body.description,
-        price: req.body.lapricestname,
+        price: req.body.price,
         image:  req.body.image,
     })
 
