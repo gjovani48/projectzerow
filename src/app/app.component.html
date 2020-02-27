@@ -1,17 +1,104 @@
-<ul class="navbar-nav mr-auto">
-  <li class="nav-item py-1">
-    <a routerLink="/home" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive">Home</a>
-  </li>
-  <li class="nav-item py-1">
-    <a routerLink="/login" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive">Login</a>
-  </li>
-  <li class="nav-item py-1">
-    <a routerLink="/products" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive">Products</a>
-  </li>
-  <li class="nav-item py-1">
-    <a routerLink="/category" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive">Category</a>
-  </li>
-</ul>
+<section id="cover">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-sm-3">
+                        <p class="lead wall-sticker">
+                            help <br>
+                            reduce <br>
+                            plastic <br>
+                            <a href="#features"><button type="button" class="btn btn-primary btn-lg">Learn more</button></a>
+                        </p>
+                     </div>
+                     <div class="col-sm-9">
+                         <h1 class="moto">Earth cannot be<span class="bold-green">reproduced </span>let's start single-use! <br><br> Want to become a <span class="green-underline">part</span> of it?</h1>
+                         <a href="#section-cards"><i class="fa fa-arrow-down"></i></a>
+                     </div>
+                 </div>
+             </div>
+		</section>
 
-<router-outlet>
-</router-outlet>
+<div class="container-fluid">
+	<div class="row">
+		<!--Navbar-->
+		<mdb-navbar  SideClass="navbar navbar-expand-sm navbar-dark" class="fixed-top bg-lime" [containerInside]="false">
+
+			<!-- Navbar brand -->
+			<mdb-navbar-brand><a class="navbar-brand" routerLink="/home"><img src="assets/images/logo.png"></a></mdb-navbar-brand>
+
+			<!-- Collapsible content -->
+			<links>
+
+				<!-- Links -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item py-2">
+						<a routerLink="/home" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive"><strong>HOME</strong></a>
+					</li>
+					<li class="nav-item py-2">
+						<a routerLink="/category" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive"><strong>CATEGORIES</strong></a>
+					</li>
+					<li class="nav-item py-2">
+						<a routerLink="/products" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive"><strong>PRODUCTS</strong></a>
+					</li>
+					<li class="nav-item py-2">
+						<a routerLink="/redeem" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive"><strong>REDEEM</strong></a>
+          </li>
+          <li class="nav-item py-2">
+						<a routerLink="/memberships" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive"><strong>MEMBERSHIPS</strong></a>
+					</li>
+					<li class="nav-item py-2">
+						<a routerLink="/about" class="text-decoration-none pr-4 linkHover" routerLinkActive="linkActive"><strong>ABOUT</strong></a>
+					</li>
+				</ul>
+				<!-- Links -->
+
+				<ul class="navbar-nav ml-auto nav-flex-icons">
+					<li class="nav-item">
+						<form class="form-inline waves-light active-cyan active-cyan-2" mdbWavesEffect>
+							<mdb-icon fas icon="search" aria-hidden="true"></mdb-icon>
+							<div class="md-form my-0">
+
+								<input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search" mdbInput>
+							</div>
+						</form>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">
+						<img src="assets/images/cart.png">
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">
+							<div class="btn-group" mdbDropdown>
+								<mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+								<div class="dropdown-menu dropdown-menu-right dropdown-primary">
+									<a class="dropdown-item" href="#">Action</a>
+									<a class="dropdown-item" href="#">Another action</a>
+									<a class="dropdown-item" href="#">Something else here</a>
+									<div class="divider dropdown-divider"></div>
+									<a class="dropdown-item" href="#">Separated link</a>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</links>
+			<!-- Collapsible content -->
+
+		</mdb-navbar>
+		<!--/.Navbar-->
+	</div>
+
+	<router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small mt-5 bg-brown">
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">© 2020 Copyright:
+		<a href="https://mdbootstrap.com/education/angular/"> Project:ZeroW</a>
+	</div>
+	<!-- Copyright -->
+
+</footer>
+<!-- Footer -->

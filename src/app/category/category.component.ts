@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoryService} from '../services/category.service';
+import { UserService, UserDetails} from '../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -8,15 +10,35 @@ import {CategoryService} from '../services/category.service';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor(private categoryService: CategoryService,) { }
+  constructor(private categoryService: CategoryService,private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.getCategories();
+    this.getProfile();
   }
 
   getCategories(){
     this.categoryService.getCategories().subscribe((response) => {
       console.log(response)
     })
+  }
+
+  details: UserDetails;
+
+
+  getProfile(){
+      this.userService.profile().subscribe(
+        user=>{
+          this.details = user;
+
+          console.log(this.details);
+        },
+        err=>{
+          console.log(err);
+          this.router.navigateByUrl('/login');
+        }
+      )
+
+
   }
 }

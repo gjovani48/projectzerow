@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService, TokenPayload, UserDetails} from '../authentication.service';
+import {UserService, TokenPayload} from '../services/user.service';
 import {Router} from '@angular/router';
 
 
@@ -22,16 +22,17 @@ export class LoginComponent implements OnInit {
   public email;
   public password;
 
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
 
   }
 
   login(){
-    this.auth.login(this.credentials).subscribe(
+    this.userService.login(this.credentials).subscribe(
       (res)=>{
         console.log(res);
+        this.router.navigateByUrl('/home');
       },
       err =>{
         console.error(err)

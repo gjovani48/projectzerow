@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 
-
+process.env.SECRET_KEY = 'secret'
 
 // Get All Users
 router.get('/', (req,res) => {
@@ -17,6 +17,28 @@ router.get('/', (req,res) => {
         res.json(data)
     })
 })
+
+
+router.get('/profile', (req, res)=>{
+
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+
+    User.findOne({
+        _id: decoded._id
+    }).then(user=>{
+        if(user){
+            res.json(user)
+        }
+        else{
+            res.send("User does not exists")
+        }
+    })
+    .catch(err =>{
+        res.send('error : '+ err)
+    })
+    
+})
+
 
 // Get User by ID
 router.get('/:id', (req,res) => {
@@ -89,12 +111,13 @@ router.post('/login', urlEncoded, (req,res)=>{
                     firstname: user.firstname,
                     lastname: user.lastname,
                     middlename: user.middlename,
+                    email: user.email
                 }
                 let token = jwt.sign(payload, process.env.SECRET_KEY,{
                     expiresIn: 1440
                 })
 
-                res.json({token: token, user: user})
+                res.json({token: token})
             }
             else{
                 res.json({error:'user does not exists'})
@@ -106,26 +129,11 @@ router.post('/login', urlEncoded, (req,res)=>{
   .catch(err => {
       res.send('error: ' + err)
   })
+
 })
 
-router.get('/profile', (req, res)=>{
-    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
-    User.findOne({
-        _id: decoded._id
-    })
-    .then(user=>{
-        if(user){
-            res.json(user)
-        }
-        else{
-            res.send("User does not exists")
-        }
-    })
-    .catch(err =>{
-        res.send('error : '+ err)
-    })
-})
+
 
 // Add Fingerprint ID
 router.put('/:id/fingerprintid', urlEncoded, (req,res) => {

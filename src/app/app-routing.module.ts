@@ -4,7 +4,7 @@ import {HomeComponent} from './home/home.component';
 import {ProductComponent} from './product/product.component';
 import {CategoryComponent} from './category/category.component';
 import {LoginComponent} from './login/login.component';
-// import {AuthGuardService} from './auth-guard.service';
+import {AuthGuardService} from './services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -20,11 +20,12 @@ const routes: Routes = [
   {
 		path: 'products',
     component: ProductComponent,
-    // canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService]
   },
   {
 		path: 'category',
     component: CategoryComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',

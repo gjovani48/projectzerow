@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../services/product.service'
+import { UserService, UserDetails} from '../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -8,16 +10,36 @@ import {ProductService} from '../services/product.service'
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.getProducts();
+    this.getProfile();
   }
 
   getProducts(){
     this.productService.getProducts().subscribe((response) => {
       console.log(response)
     })
+  }
+
+  details: UserDetails;
+
+
+  getProfile(){
+      this.userService.profile().subscribe(
+        user=>{
+          this.details = user;
+
+          console.log(this.details);
+        },
+        err=>{
+          console.log(err);
+          this.router.navigateByUrl('/login');
+        }
+      )
+
+
   }
 
 }
