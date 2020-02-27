@@ -19,6 +19,11 @@ const Cart = mongoose.model('cart', {
         require: true
     },
 
+	items_count: {
+        type: Number,
+        require: true
+    }
+	
     created_date:{
         type: Date,
         default: Date.now
