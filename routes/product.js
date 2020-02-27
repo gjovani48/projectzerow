@@ -30,19 +30,22 @@ router.get('/:id', (req,res) => {
 
 // Add New Product
 router.post('/', urlEncoded,(req,res) => {
-    var product = new Product({
-        category_id: req.body.category_id,
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        image:  req.body.image,
-    })
+  var product = new Product({
+      category_id: req.body.category_id,
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      image:  req.body.image,
+  })
 
-    product.save( (err) => {
-        if(err) res.json({msg:"Invalid Request"})
-        res.json({msg:"Product Added"})
-    })
+  product.save( (err) => {
+      if(err) res.json({msg:"Invalid Request"})
+      res.json({msg:"Category Added"})
+  })
 })
+
+
+
 
 // Update Product by ID
 router.put('/:id', urlEncoded, (req,res) => {

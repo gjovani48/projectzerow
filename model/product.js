@@ -12,29 +12,24 @@ const Product = mongoose.model('product', {
         ref:'category',
         require: true
     },
-
     name: {
         type: String,
         max: 50,
         require: true
     },
-
     description: {
         type: String,
         max: 100,
         require: true
     },
-
     price: {
         type: Number,
         require: true
     },
-
     image: {
         type: String,
         require: true
     },
-
     created_at: {
         type: Date,
         default: Date.now
