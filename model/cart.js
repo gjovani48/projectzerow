@@ -5,22 +5,31 @@ const Schema = mongoose.Schema;
 mongoose.connect('mongodb+srv://projectzerow:projectzerow@cluster0-hux7n.mongodb.net/projectzerow?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology: true})
 
 
-const Cart = mongoose.model('cart', {
-
+var product_schema = new Schema({
     product_id:{
         type: Schema.Types.ObjectId,
         ref:'product',
-        require: true
+        require: false
     },
+    quantity: {
+      type: Number,
+      require: false
+    }
+});
 
+const Cart = mongoose.model('cart', {
+
+    product:[
+      product_schema
+    ],
     user_id:{
         type: Schema.Types.ObjectId,
         ref:'user',
         require: true
     },
-	items_count: {
-        type: Number,
-        require: true
+	items_count:{
+      type:Number,
+      require: false,
     },
     created_date:{
         type: Date,
@@ -30,3 +39,4 @@ const Cart = mongoose.model('cart', {
 })
 
 module.exports = Cart
+
