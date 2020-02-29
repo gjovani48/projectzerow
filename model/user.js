@@ -54,7 +54,13 @@ const User = mongoose.model('user', {
 
     registration_code: {
         type: String,
-        require: false
+        require: true
+    },
+
+    is_verified: {
+      type: Boolean,
+      default: false,
+      require: false
     },
 
     created_at: {

@@ -1,4 +1,5 @@
 const express = require('express')
+const randstr = require('randomstring')
 const router = new express.Router()
 
 const User = require('../model/user')
@@ -36,7 +37,7 @@ router.get('/profile', (req, res)=>{
     .catch(err =>{
         res.send('error : '+ err)
     })
-    
+
 })
 
 
@@ -67,7 +68,8 @@ router.post('/', urlEncoded,(req,res) => {
         lastname: req.body.lastname,
         phone:  req.body.phone,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        registration_code: randstr.generate({length:10,charset:'numeric'})
     })
 
     User.findOne({
@@ -99,6 +101,33 @@ router.post('/', urlEncoded,(req,res) => {
     //     if(err) res.json({msg:"Invalid Request"})
     //     res.json({msg:"User Added"})
     // })
+})
+
+router.post('/verify', urlEncoded, (req, res) => {
+
+  User.findOne({fingerprint_id: req.body.fingerprint_id,registration_code:req.body.registration_code})
+  .then(user=>{
+
+    if(user){
+
+            User.updateOne({_id: user._id}, {$set:{
+              "is_verified": true
+            }},(err) => {
+                if(err) res.json({msg:"Invalid Request"})
+                res.json([{msg:"User Updated"},{user: user}])
+            })
+
+    }
+    else{
+      res.send('error: '+ "verification failed")
+    }
+
+  })
+  .catch(err => {
+    res.send('error: '+ err)
+  })
+
+
 })
 
 router.post('/login', urlEncoded, (req,res)=>{
