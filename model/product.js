@@ -2,8 +2,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 //mongoose.connect('mongodb://127.0.0.1:27017/projectzerow',{useNewUrlParser:true, useUnifiedTopology: true})
 
-mongoose.connect('mongodb+srv://projectzerow:projectzerow@cluster0-hux7n.mongodb.net/projectzerow?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology: true})
-
+try{
+  mongoose.connect('mongodb+srv://projectzerow:projectzerow@cluster0-hux7n.mongodb.net/projectzerow?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology: true})
+}
+catch (err) {
+ handleError(err);
+}
 
 const Product = mongoose.model('product', {
 
