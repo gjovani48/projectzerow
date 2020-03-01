@@ -182,7 +182,7 @@ router.put('/:id/fingerprintid', urlEncoded, (req,res) => {
 // Add PZW Points
 router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
     User.updateOne({_id: req.params.id}, {
-        pzwpoints: req.body.pzwpoints
+      $inc:{pzwpoints: req.body.pzwpoints}
     },(err) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json([{msg:"PZW Points Added"}])
