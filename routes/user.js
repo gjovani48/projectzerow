@@ -114,7 +114,12 @@ router.post('/verify', urlEncoded, (req, res) => {
               "is_verified": true
             }},(err) => {
                 if(err) res.json({msg:"Invalid Request"})
-                res.json([{msg:"User Updated"},{user: user}])
+
+                User.findOne({_id: user._id},(err,data)=>{
+                  if(err) throw err
+                  res.json(data)
+                })
+
             })
 
     }
