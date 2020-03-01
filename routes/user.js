@@ -43,7 +43,7 @@ router.get('/profile', (req, res)=>{
 
 // Get User by ID
 router.get('/:id', (req,res) => {
-    User.findOne({_id:req.params.id}).exec((err,data)=>{
+    User.findOne({_id:req.params.id},{firstname:1,middlename:1,lastname:1,is_verified:1}).exec((err,data)=>{
         if(err) throw err
         res.json(data)
     })
@@ -51,7 +51,7 @@ router.get('/:id', (req,res) => {
 
 // Get User by Fingerprint
 router.get('/fingerprint/:id', (req,res) => {
-    User.findOne({fingerprint_id:req.params.id}).exec((err,data)=>{
+    User.findOne({fingerprint_id:req.params.id},{firstname:1,middlename:1,lastname:1,is_verified:1,fingerprint_id:1}).exec((err,data)=>{
         if(err) throw err
         res.json(data)
     })
@@ -118,7 +118,7 @@ router.get('/verify/:registration_code', urlEncoded, (req, res) => {
             }},(err) => {
                 if(err) res.json({msg:"Invalid Request"})
 
-                User.findOne({_id: user._id},(err,data)=>{
+                User.findOne({_id: user._id},{firstname:1,middlename:1,lastname:1,is_verified:1},(err,data)=>{
                   if(err) throw err
                   res.json(data)
                 })
