@@ -146,9 +146,10 @@ router.post('/addtocart', urlEncoded, (req,res) => {
 router.put('/:id', urlEncoded, (req,res) => {
     try {
 
-      Cart.updateOne({_id: req.params.id}, {
+      Cart.updateOne({user_id: req.params.id}, {
         product_id: req.body.product_id,
-        user_id: req.body.user_id
+        user_id: req.body.user_id,
+        quantity:  req.body.quantity
       },(err) => {
           if(err) res.json({msg:"Invalid Request"})
           res.json([{msg:"Cart Updated"}])

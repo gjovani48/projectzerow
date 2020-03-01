@@ -62,7 +62,9 @@ router.post('/', urlEncoded,(req,res) => {
 
     console.log(req.body)
 
+
     var userData = new User({
+
         firstname: req.body.firstname,
         middlename: req.body.middlename,
         lastname: req.body.lastname,
@@ -70,6 +72,7 @@ router.post('/', urlEncoded,(req,res) => {
         email: req.body.email,
         password: req.body.password,
         registration_code: randstr.generate({length:10,charset:'numeric'})
+
     })
 
     User.findOne({
@@ -103,9 +106,9 @@ router.post('/', urlEncoded,(req,res) => {
     // })
 })
 
-router.post('/verify', urlEncoded, (req, res) => {
+router.get('/verify/:registration_code', urlEncoded, (req, res) => {
 
-  User.findOne({fingerprint_id: req.body.fingerprint_id,registration_code:req.body.registration_code})
+  User.findOne({registration_code:req.params.registration_code})
   .then(user=>{
 
     if(user){
