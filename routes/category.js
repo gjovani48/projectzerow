@@ -14,7 +14,7 @@ router.get('/', (req,res) => {
 })
 
 router.get('/productlist/:id', (req,res) => {
-  Product.findOne({category_id:req.params.id},(err,data)=>{
+  Product.findg({category_id:req.params.id},(err,data)=>{
     if(err) throw err
     res.json(data)
   })
