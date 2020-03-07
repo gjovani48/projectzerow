@@ -145,30 +145,35 @@ router.post('/', urlEncoded,(req,res) => {
 
 router.post('/addtocart',urlEncoded, (req,res)=>{
 
-  var cart = new Cart({
-    user_id: req.body.user_id,
-    status:"paid"
-  })
-
-  cart.save((err,data) => {
-    if(err) res.json({msg:"Invalid Request"})
-
-      Cart.updateOne({ _id:data._id},
-        {
-          $push: { product: {product_id:req.body.product_id, quantity: req.body.quantity} }
-        }
-        ,(err) => {
-          if(err) res.json({msg:err})
-
-          Cart.updateOne({ _id: data._id},{$inc:{items_count:1}},(err,result)=>{
-
-            if(err) res.json({msg:err})
-            res.json([{msg:result}])
-
-          })
+  try{
+      var cart = new Cart({
+        user_id: req.body.user_id,
+        status:"paid"
       })
 
-  })
+      cart.save((err,data) => {
+        if(err) res.json({msg:"Invalid Request"})
+
+          Cart.updateOne({ _id:data._id},
+            {
+              $push: { product: {product_id:req.body.product_id, quantity: req.body.quantity} }
+            }
+            ,(err) => {
+              if(err) res.json({msg:err})
+
+              Cart.updateOne({ _id: data._id},{$inc:{items_count:1}},(err,result)=>{
+
+                if(err) res.json({msg:err})
+                res.json([{msg:result}])
+
+              })
+          })
+
+      })
+    }
+    catch(err) {
+      res.json(err);
+    }
 
 
 
