@@ -1,24 +1,40 @@
 const express = require('express')
 const router = new express.Router()
 const Category = require('../model/category')
+const Product = require('../model/product')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 
 // Get All Categorys
 router.get('/', (req,res) => {
     Category.find({},(err,data)=>{
-        if(err) throw err 
+        if(err) throw err
         res.json(data)
     })
+})
+
+router.get('/productlist/:id', (req,res) => {
+  Product.findOne({category_id:req.params.id},(err,data)=>{
+    if(err) throw err
+    res.json(data)
+  })
 })
 
 // Get Category by ID
 router.get('/:id', (req,res) => {
     Category.findOne({_id:req.params.id}).exec((err,data)=>{
         if(err) throw err
-        res.json(data)
+
+          Product.findOne({category_id:data._id}).exec((err,products)=>{
+            if(err) throw err
+            res.json({category:data, products: products})
+          })
+
     })
 })
+
+
+
 
 // Add New Category
 router.post('/', urlEncoded,(req,res) => {
@@ -27,7 +43,7 @@ router.post('/', urlEncoded,(req,res) => {
         description: req.body.description,
         image:  req.body.image,
     })
-    
+
     category.save( (err) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json({msg:"Category Added"})

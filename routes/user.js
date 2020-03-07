@@ -182,6 +182,7 @@ router.put('/:id/fingerprintid', urlEncoded, (req,res) => {
     })
 })
 
+
 // Add PZW Points
 router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
     User.updateOne({_id: req.params.id}, {

@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import {AuthGuardService} from './auth-guard.service'
 
 import {HttpClientModule} from '@angular/common/http';
+import { ProductlistComponent } from './productlist/productlist.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
     LoginComponent,
     ProductComponent,
     CategoryComponent,
+    ProductlistComponent,
   ],
   imports: [
     HttpClientModule,

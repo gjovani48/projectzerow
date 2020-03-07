@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient,HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Category } from '../models/category'
+import { Product } from '../models/product'
 
 @Injectable({
 	providedIn: 'root'
@@ -25,7 +26,13 @@ export class CategoryService {
 		return this.http.get<any>(
 			this.url + "/category/" + id
 		)
-	}
+  }
+
+  getProductList(id): Observable<any> {
+		return this.http.get<any>(
+			this.url + "/category/productlist/" + id
+		)
+  }
 
 	// Add New Category
 	addCategory(category): Observable<any> {

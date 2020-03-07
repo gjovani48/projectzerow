@@ -1,88 +1,3 @@
-
-// // #cover {
-// //     height: 100%;
-// //     background: url('../assets/img/bottle.jpg') center;
-// //     background-size: cover;
-// //     color: white;
-// // }
-
-// // .wall-sticker {
-// //     background: rgba(0, 0, 0, 0.4);
-// //     padding: 14rem 20rem 16rem 3rem;
-// //     font-family: 'Cubano-Regular';
-// //     font-size: 5rem;
-// //     color: white;
-// // }
-
-// // .moto {
-// //     font-family: 'Cubano-Regular';
-// //     font-size: 3rem;
-// //     margin-top: 245px;
-// //     margin-left: 350px;
-// //     text-align: center;
-// // }
-
-// // /* NAVBAR */
-// // .navbar-brand {
-// //   font-family: 'Cubano-Regular';
-// //   padding-right: 15px;
-// // }
-
-// // #exCollapsingNavbar2 {
-// //   font-family: 'Nunito-Regular';
-// // }
-
-// // .nav-item a {
-// //   border-bottom: 1px solid transparent;
-// //   transition: 0.5s;
-// // }
-
-// // .nav-item a:hover {
-// //   border-bottom: 1px solid green;
-// //   transition: 0.5s;
-// // }
-
-// // .navbar-toggler {
-// //   color: white;
-// // }
-
-
-// /* SECTION COVER */
-// #cover {
-//     height: 100%;
-//     background: url(../assets/img/bottle.jpg) center;
-//     background-size: cover;
-//     color: white;
-// }
-
-// .wall-sticker {
-//     background: rgba(0, 0, 0, 0.4);
-//     padding: 14rem 20rem 16rem 3rem;
-//     font-family: 'Cubano-Regular';
-//     font-size: 5rem;
-//     color: white;
-// }
-
-// .moto {
-//     font-family: 'Cubano-Regular';
-//     font-size: 3rem;
-//     margin-top: 245px;
-//     margin-left: 350px;
-//     text-align: center;
-// }
-
-// .view {
-//   background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg")no-repeat center center;
-//   background-size: cover;
-// }
-// html,
-// body,
-// header,
-// .view {
-// height: 100%;
-// }
-
-
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 *
 {
@@ -99,7 +14,7 @@
 /* Swiper Timeline*/
 
 .swipertimeline{
-
+ 
   padding: 20px;
 }
 .container1 {
@@ -129,7 +44,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-
+    
 }
 .timeline .swiper-slide::after {
   content: "";
@@ -155,7 +70,7 @@
   z-index: 2;
 }
 .timeline .swiper-slide .timeline-year {
-  display: block;
+  display: block;  
   font-size: 22px !important;
   margin-bottom: 50px;
   transform: translate3d(20px, 0, 0);
@@ -184,7 +99,7 @@
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition: 0.4s ease 1.6s;
-
+     
 }
 .timeline .swiper-slide-active .timeline-title {
   opacity: 1;
@@ -406,7 +321,7 @@ header.sticky ul li a
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background: url(../assets/img/bg.jpg);
+  background: url(img/bg.jpg);
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -593,7 +508,7 @@ p
   grid-gap: 30px;
   max-width: 100%;
   margin-top: 40px;
-
+ 
 }
 .teamBx .member
 {
@@ -614,7 +529,7 @@ p
   left: 0;
   width: 100%;
   height: 100%;
-
+ 
 }
 .teamBx .member .imgBx img
 {
@@ -1006,5 +921,3 @@ p
 	position: relative;
 	z-index: 3;
 }
-
-

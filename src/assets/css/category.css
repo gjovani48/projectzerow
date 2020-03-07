@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.container
+{
+    position: relative;
+    padding: 0 100px;
+}
+.container:before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background: #333;
+    z-index: -2;
+}
+.container:after
+{
+    
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #000;
+    font-size: 18vw;
+    z-index: -2;
+    font-weight: 700;
+    line-height: 1.4em;
+    opacity: 0.04;
+}
+.container header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+}
+.container header .logo
+{
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #333;
+    text-decoration: none;
+    font-size: 30px;
+}
+.container header .logo span
+{
+    color: #78ff00;
+}
+.container header ul
+{
+    position: relative;
+    display: flex;
+}
+.container header ul li
+{
+    list-style: none;
+    margin: 0 20px;
+}
+.container header ul li a
+{
+    position: relative;
+    list-style: none;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 4px 10px;
+    color: #333;
+    text-decoration: none;
+}
+.container header ul li:nth-child(3) a,
+.container header ul li:nth-child(4) a
+{
+    color: #fff;
+}
+.container header ul li a:before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #78ff00;
+    z-index: -1;
+    transition: 0.5s ease-in-out
+}
+.container header ul li a:hover:before,
+.container header ul li a.active:before
+{
+    width: 40px;
+}
+.container .content
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+.container .content .bannerText
+{
+    position: relative;
+    max-width: 500px;
+    padding-right: 50px;
+}
+.container .content .bannerText div
+{
+    display: none;
+    transition: 0.5s ease-in-out;
+}
+.container .content .bannerText  div.active
+{
+    transition: 0.5s ease-in-out;
+    display: initial;
+    transform: translateX(20px);
+}
+.container .content .bannerText h2
+{
+    font-size: 54px;
+    text-transform: uppercase;
+    font-weight: 800;
+    line-height: 1.2em;
+    color: #333;
+}
+.container .content .bannerText p
+{
+    font-size: 18px;
+    color: #333;
+    line-height: 1.8em;
+    margin: 20px 0;
+}
+.container .content .bannerText a
+{
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 1px;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 15px;
+}
+.container .content .bannerText a:before
+{   
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background: #78ff00;
+    z-index: -1;
+    transition: 0.5s ease-in-out;
+}
+.container .content .bannerText a:hover:before
+{
+    width: 100%;
+}
+.container .content .bannerImg
+{
+    position: relative;
+    width: 440px;
+    height: 440px;
+    background: #000;
+}
+.container .content .bannerImg img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+    opacity: 0;
+}
+.container .content .bannerImg img.active
+{
+    opacity: 1;
+}
+.container .icons
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+}
+.container .icons ul.sci,
+.container .icons ul.controls
+{
+    position: relative;
+    display: flex;
+}
+.container .icons ul.sci li
+{
+    list-style: none;
+    margin-right: 30px;
+}
+.container .icons ul.sci li img
+{
+    display: inline-block;
+    max-height: 24px;
+    transition: 0.5s ease-in-out
+}
+.container .icons ul.sci li:hover img
+{
+    transform: translateY(-10px);
+}
+.container .icons ul.controls li
+{
+    list-style: none;
+    margin-left: 20px;
+    filter: invert(1);
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+.container .icons ul.controls li:hover
+{
+    opacity: 0.5;
+}
+.menuIcon
+{
+    display: none;
+}
+
+@media (max-width: 992px)
+{
+    .container
+    {
+        padding: 20px 50px;
+    }
+    .container:before
+    {
+        display: none;
+    }
+    .container header
+    {
+        padding: 0;
+    }
+    .container .icons ul.controls li
+    {
+        filter: invert(0);
+    }
+    .container .content .bannerText h2
+    {
+        font-size: 30px;
+    }
+    .container .content
+    {
+        margin-top: 0px;
+        flex-direction: column-reverse;
+    }
+    .container .content .bannerImg {
+        width: 100%;
+        height: 40vh;
+        margin: 20px 0;
+    }
+    .container .content .bannerText
+    {
+        padding-right: 0;
+        max-width: 100%; 
+    }
+    header ul
+    {
+        display: none !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        z-index: 10000;
+        align-items: center;
+        padding: 100px 0;
+    }
+    header.active ul
+    {
+        display: initial !important;
+    }
+    header ul li
+    {
+        padding: 20px;
+        text-align: center;
+    }
+    header ul li a
+    {
+        color: #333 !important;
+        font-size: 36px !important;
+    }
+    .container header ul li a:hover:before,
+    .container header ul li a.active:before
+    {
+        width: 100%;
+    }
+    .container header .menuIcon
+    {
+        position: fixed;
+        right: 50px;
+        display: initial;
+        cursor: pointer;
+        z-index: 100000;
+        background: #fff;
+        padding: 8px;
+        height: 30px;
+        width: 34px;
+        background: #fff url(menu.png);
+        background-repeat: no-repeat;
+        background-position: 6px;
+    }
+    .container header.active .menuIcon
+    {
+        background: #fff url(close.png);
+        background-repeat: no-repeat;
+        background-position: 6px;
+    }
+}
+
+@media (max-width: 767px)
+{
+    .container
+    {
+        padding: 20px 30px;
+    }
+    .container header .menuIcon
+    {
+        right: 30px;
+    }
+    .container .content .bannerText p,
+    .container .content .bannerText a
+    {
+        font-size: 16px; 
+    }
+    .container .icons ul.controls li img
+    {
+        max-width: 40px;
+    }
+}
