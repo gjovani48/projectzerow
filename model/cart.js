@@ -31,8 +31,12 @@ const Cart = mongoose.model('cart', {
         ref:'user',
         require: true
     },
-	items_count:{
+	  items_count:{
       type:Number,
+      require: false,
+    },
+    status:{
+      type:String,
       require: false,
     },
     created_date:{
