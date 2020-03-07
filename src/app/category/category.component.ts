@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 })
 export class CategoryComponent implements OnInit {
 
+  categories = [];
+
   constructor(private categoryService: CategoryService,private userService: UserService, private router: Router) { }
 
   ngOnInit() {
@@ -19,7 +21,7 @@ export class CategoryComponent implements OnInit {
 
   getCategories(){
     this.categoryService.getCategories().subscribe((response) => {
-      console.log(response)
+      this.categories = response;
     })
   }
 
