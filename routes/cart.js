@@ -148,10 +148,23 @@ router.post('/', urlEncoded,(req,res) => {
 router.post('/addtocart',urlEncoded, (req,res)=>{
 
   try{
-      var cart = new Cart({
-        user_id: req.body.user_id,
-        status:"paid"
-      })
+      var cart;
+
+      if(req.body.user_id==undefined){
+
+        cart = new Cart({
+          user_id: "5e637de1f897de1475f14999",
+          status:"paid"
+        })
+
+      }
+      else{
+        cart = new Cart({
+          user_id: req.body.user_id,
+          status:"paid"
+        })
+      }
+
 
       cart.save((err,data) => {
         if(err) res.json({msg:"Invalid Request"})
@@ -175,10 +188,15 @@ router.post('/addtocart',urlEncoded, (req,res)=>{
 
                     let added_pzwpoints = total_price*.05;
 
-                    User.updateOne({_id:req.body.user_id},{$inc:{pzwpoints:added_pzwpoints}},(err)=>{
-                      if(err) res.json({msg:err})
-                          res.json([{msg:result}])
-                    })
+                    if(req.body.user_id==undefined){
+                      res.json([{msg:"transaction success"}])
+                    }
+                    else{
+                      User.updateOne({_id:req.body.user_id},{$inc:{pzwpoints:added_pzwpoints}},(err)=>{
+                        if(err) res.json({msg:err})
+                            res.json([{msg:result}])
+                      })
+                    }
 
 
                 })
