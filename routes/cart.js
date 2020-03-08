@@ -35,7 +35,7 @@ router.get('/:id', (req,res) => {
     })
   }
   catch(error){
-    handleError(error);
+    handleError(error)
   }
 
 })
