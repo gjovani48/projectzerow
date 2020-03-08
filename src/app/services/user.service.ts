@@ -31,7 +31,6 @@ export interface TokenPayload{
   lastname: string
   email: string
   password: string
-
 }
 
 

@@ -15,7 +15,7 @@ export class AppComponent{
   constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit() {
-    this.getProfile();
+    this.getProfile()
   }
 
   getProfile(){
