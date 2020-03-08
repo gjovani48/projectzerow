@@ -51,7 +51,7 @@ router.get('/:id', (req,res) => {
 
 // Get User by Fingerprint
 router.get('/fingerprint/:id', (req,res) => {
-    User.findOne({fingerprint_id:req.params.id},{firstname:1,middlename:1,lastname:1,is_verified:1,fingerprint_id:1}).exec((err,data)=>{
+    User.findOne({fingerprint_id:req.params.id},{firstname:1,middlename:1,lastname:1,pzwpoints:1,is_verified:1,fingerprint_id:1}).exec((err,data)=>{
         if(err) throw err
         res.json(data)
     })
