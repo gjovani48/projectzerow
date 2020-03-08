@@ -29,7 +29,7 @@ const Cart = mongoose.model('cart', {
     user_id:{
         type: Schema.Types.ObjectId,
         ref:'user',
-        require: true
+        require: false
     },
 	  items_count:{
       type:Number,
