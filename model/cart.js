@@ -39,6 +39,10 @@ const Cart = mongoose.model('cart', {
       type:String,
       require: false,
     },
+    total:{
+      type:Number,
+      require: false,
+    },
     created_date:{
         type: Date,
         default: Date.now

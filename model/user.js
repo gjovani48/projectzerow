@@ -52,7 +52,6 @@ const User = mongoose.model('user', {
 
     pzwpoints: {
         type: Number,
-        default: 0,
         require: false
     },
 

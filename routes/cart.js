@@ -1,6 +1,8 @@
 const express = require('express')
 const router = new express.Router()
 const Cart = require('../model/cart')
+const Product = require('../model/product')
+const User = require('../model/user')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 
@@ -161,12 +163,28 @@ router.post('/addtocart',urlEncoded, (req,res)=>{
             ,(err) => {
               if(err) res.json({msg:err})
 
-              Cart.updateOne({ _id: data._id},{$inc:{items_count:1}},(err,result)=>{
-
+              Product.findOne({_id:req.body.product_id},(err,product_data)=>{
                 if(err) res.json({msg:err})
-                res.json([{msg:result}])
+
+                let total_price = parseInt(product_data.price)*parseInt(req.body.quantity);
+
+                Cart.updateOne({ _id: data._id},{total:total_price,$inc:{items_count:1}},(err,result)=>{
+
+                  if(err) res.json({msg:err})
+
+
+                    let added_pzwpoints = total_price*.05;
+
+                    User.updateOne({_id:req.body.user_id},{$inc:{pzwpoints:added_pzwpoints}},(err)=>{
+                      if(err) res.json({msg:err})
+                          res.json([{msg:result}])
+                    })
+
+
+                })
 
               })
+
           })
 
       })
