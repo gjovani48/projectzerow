@@ -46,7 +46,7 @@ export class ProductlistComponent implements OnInit {
       },
       err=>{
         console.log(err);
-        this.router.navigateByUrl('/login');
+        // this.router.navigateByUrl('/login');
       }
     )
 

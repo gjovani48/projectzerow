@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService,private categoryService: CategoryService,private router: Router) { }
 
   ngOnInit() {
+    //user profile
     this.getProfile();
     this.getCategories();
   }
@@ -47,7 +48,6 @@ export class HomeComponent implements OnInit {
         },
         err=>{
           console.log(err);
-          this.router.navigateByUrl('/login');
         }
       )
 

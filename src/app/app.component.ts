@@ -27,7 +27,7 @@ export class AppComponent{
       },
       err=>{
         console.log(err);
-        this.router.navigateByUrl('/login');
+        // this.router.navigateByUrl('/login');
       }
     )
 
