@@ -15,6 +15,7 @@ import {AuthGuardService} from './auth-guard.service'
 
 import {HttpClientModule} from '@angular/common/http';
 import { ProductlistComponent } from './productlist/productlist.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ProductlistComponent } from './productlist/productlist.component';
     ProductComponent,
     CategoryComponent,
     ProductlistComponent,
+    ProfileComponent,
   ],
   imports: [
     HttpClientModule,

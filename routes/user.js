@@ -1,5 +1,6 @@
 const express = require('express')
 const randstr = require('randomstring')
+const nodemailer = require('nodemailer')
 const router = new express.Router()
 
 const User = require('../model/user')
@@ -10,6 +11,14 @@ const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 
 process.env.SECRET_KEY = 'secret'
+
+var transporter  = nodemailer.createTransport({
+  service: 'gmail',
+  auth:{
+    user:'projectzerowdevs@gmail.com',
+    pass: '!1Projectzerow',
+  }
+});
 
 // Get All Users
 router.get('/', (req,res) => {
@@ -85,7 +94,21 @@ router.post('/', urlEncoded,(req,res) => {
           userData.password = hash
 
           User.create(userData).then((user) =>{
-            res.json({status: user.email + ' created successfully'})
+
+            var mailOptions = {
+              from: 'Project:ZeroW',
+              to: user.email,
+              subject: 'Account Verification',
+              text: 'Your account verification code is '+user.registration_code
+            }
+
+            transporter.sendMail(mailOptions,(err,data)=>{
+              if (err) throw err
+              res.json({status: user.email + ' created successfully'})
+            })
+
+
+            //res.json({status: user.email + ' created successfully'})
           })
           .catch(err => {
             res.send('error: '+ err)

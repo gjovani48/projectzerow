@@ -11,7 +11,7 @@
     <li><a href="#products" onclick="toggle()">Products</a></li>
     <li><a href="#team" onclick="toggle()">Team</a></li>
     <li *ngIf="!userService.isLoggedIn()"><a routerLink="/login">Login</a></li>
-    <li *ngIf="userService.isLoggedIn()"><a href="#contact" onclick="toggle()">{{details.firstname}}</a></li>
+    <li *ngIf="userService.isLoggedIn()"><a routerLink="/profile">{{details.firstname}}</a></li>
     <li *ngIf="userService.isLoggedIn()"><a routerLink="" (click)="userService.logout()">Logout</a></li>
 
   </ul>
