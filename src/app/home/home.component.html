@@ -1,46 +1,80 @@
 
 <section class="banner" id="home">
-  <!-- <h2>help <br>
-    reduce <br>
-    plastic <br></h2> -->
+  <div class="floater">
+    <h1 class="display-4 animated wow slideInLeft" data-wow-delay="1s"><strong><span style="color: green;">H</span>elp</strong></h1>
+    <h1 class="display-4 animated wow fadeInUp" data-wow-delay="1.5s"><strong><span style="color: green;">R</span>educe </strong></h1>
+    <h1 class="display-4 animated wow fadeInLeft" data-wow-delay="2s"><strong><span style="color: green;">P</span>lastic </strong></h1>
+    <a href="#about" onclick="toggle()" class="exploreBtn animated wow fadeInRight" data-wow-delay="2.5s">Learn More  <i class="fas fa-angle-double-down animated rubberBand infinite slow"></i> </a>
+    
+</div>
+
 </section>
+
+
 <!-- About -->
 <section class="sec" id="about">
   <div class="content">
     <div class="mxw800p">
-      <h3>Who We Are</h3>
-      <p class="intro1"> The problem with plastics is getting worse each day. There may be around 5.25 
-        trillion macro and microplastic pieces floating in the open ocean. Plastics, consistently 
-        make up 60% to 90% of all marine debris according to studies. Plastics are everywhere. It 
-        is very powerful, light, cheap and versatile. Some plastic wastes are not reused or recycled, 
-        and experts believe that 50% of plastics are single-use, which means it is used once before 
-        discarding. Single-use plastics include plastic bottles, plastic packaging, and plastic 
-        grocery bags.<br><br>
-        <p class="intro2">
-        Most plastic forms are technically recyclable, but most municipal governments do 
-        not have the infrastructure in place for this fuel-intensive operation to be carried out. 
-        Recycling plastic does not only require large amount of energy but also uses large 
-        quantities of water. With these mentioned studies, the researchers came up with an idea 
-        that aims to contribute to the elimination or at least to help minimize the number of plastic 
-        wastes. <br><br></p>
-        <p class="intro3">
-        Most single-used plastic wastes are coming from people’s basic needs like water 
-        and food that people buy in stores or shops like coffee shop, milk tea shop, convenience 
-        stores, groceries and malls. Project: ZeroW aims to target these kinds of businesses to make 
-        a great impact in minimizing the number of plastic wastes. But it is not the only solution 
-        to the plastic wastes problem, it still depends on the discipline and participation of the 
-        people. <br><br></p>
-        <p class="intro4">
-        Project: ZeroW is a system that maybe used by stores like coffee shops, milk tea 
-        shops, fast food, restaurants, convenience store, and even groceries. It will integrate 
-        biometric system to access the user account. For every use of reusable plastic container for 
-        their shopping or purchase, they will be provided reward points that they may use to redeem 
-        items from any of the partner stores. They may also use their points to purchase from these 
-        stores.</p>
-      <a href="" class="btn">Read Our Story</a>
+      <h3 class="about animated zoomInUp">Who <span class="aboutUs" style="color: green;  font-weight: 500;">We</span> Are</h3>
+
+      <div>
+        <input type="checkbox" class="read-more-state" id="post-1" />
+      
+        <p class="read-more-wrap" style="text-align: justify; transition-duration: 2s;"> 
+          Project: ZeroW is a system that maybe used by stores like coffee shops, milk tea 
+          shops, fast food, restaurants, convenience store, and even groceries. It will integrate 
+          biometric system to access the user account. For every use of reusable plastic container for 
+          their shopping or purchase, they will be provided reward points that they may use to redeem 
+          items from any of the partner stores. They may also use their points to purchase from these 
+          stores. <span class="read-more-target" style="transition-duration: 1.5s;">
+            <br>
+           <span class="intro1" style="margin-left: 5%;"> 
+          Most plastic forms are technically recyclable, but most municipal governments do 
+          not have the infrastructure in place for this fuel-intensive operation to be carried out. 
+          Recycling plastic does not only require large amount of energy but also uses large 
+          quantities of water. With these mentioned studies, the researchers came up with an idea 
+          that aims to contribute to the elimination or at least to help minimize the number of plastic 
+          wastes.</span>
+          <br>
+          <span class="intro1" style="margin-left: 5%;">
+          Most single-used plastic wastes are coming from people’s basic needs like water 
+          and food that people buy in stores or shops like coffee shop, milk tea shop, convenience 
+          stores, groceries and malls. Project: ZeroW aims to target these kinds of businesses to make 
+          a great impact in minimizing the number of plastic wastes. But it is not the only solution 
+          to the plastic wastes problem, it still depends on the discipline and participation of the 
+          people.</span>
+          <br>
+          <span class="intro1" style="margin-left: 5%;">
+             The problem with plastics is getting worse each day. There may be around <span class="aboutUs" style="color: green; font-style: italic; font-weight: 400;"> 5.25 
+            trillion </span> macro and microplastic pieces floating in the open ocean. Plastics, consistently 
+            make up <span class="aboutUs" style="color: green; font-style: italic; font-weight: 400;"> 60% to 90% </span>of all marine debris according to studies. Plastics are everywhere. It 
+            is very powerful, light, cheap and versatile. Some plastic wastes are not reused or recycled, 
+            and experts believe that <span class="aboutUs" style="color: green; font-style: italic; font-weight: 400;"> 50% of plastics are single-use </span>, which means it is used once before 
+            discarding. Single-use plastics include plastic bottles, plastic packaging, and plastic 
+            grocery bags.
+            </span>
+            
+          </span>
+        </p>
+          <br>
+        
+        <label for="post-1" class="read-more-trigger" style="margin-top: -100%;"></label>
+        
+      </div>
+      
+      
     </div>
   </div>
+  
 </section>
+
+<!-- <section>
+  <div style="width: 50%; height: 50vh; border: 1px solid black;">
+    
+    
+
+  </div>
+</section> -->
 
 
 <section class="sec" id="services">
@@ -54,10 +88,10 @@
 
                 <div class="services">
 
-                        <div class="box">
+                        <div class="box wow animated zoomInUp" data-wow-delay="0.2s" >
 
                           <div class="iconBx">
-                            <img src="../assets/img/icon1.png">
+                            <img src="../assets/img/services/bin.png" >
                           </div>
 
                           <div class="content">
@@ -67,10 +101,10 @@
 
                         </div>
 
-                        <div class="box">
+                        <div class="box wow animated zoomInUp" data-wow-delay="0.4s">
 
                           <div class="iconBx">
-                            <img src="../assets/img/icon1.png">
+                            <img class="animated" src="../assets/img/services/analytics.png">
                           </div>
 
                           <div class="content">
@@ -80,10 +114,10 @@
 
                         </div>
 
-                        <div class="box">
+                        <div class="box wow animated zoomInUp" data-wow-delay="0.6s">
 
                           <div class="iconBx">
-                            <img src="../assets/img/icon1.png">
+                            <img class="animated" src="../assets/img/services/redeem.png">
                           </div>
 
                           <div class="content">
@@ -93,10 +127,10 @@
 
                         </div>
 
-                        <div class="box">
+                        <div class="box wow animated zoomInUp" data-wow-delay="0.8s">
 
                           <div class="iconBx">
-                            <img src="../assets/img/icon1.png">
+                            <img class="animated" src="../assets/img/services/box.png">
                           </div>
 
                           <div class="content">
@@ -106,10 +140,10 @@
 
                         </div>
 
-                        <div class="box">
+                        <div class="box wow animated zoomInUp" data-wow-delay="1s">
 
                           <div class="iconBx">
-                            <img src="../assets/img/icon2.png">
+                            <img class="animated" src="../assets/img/services/pos.png">
                           </div>
 
                           <div class="content">
@@ -119,10 +153,10 @@
 
                         </div>
 
-                        <div class="box">
+                        <div class="box wow animated zoomInUp"data-wow-delay="1.2s">
 
                           <div class="iconBx">
-                              <img src="../assets/img/icon3.png">
+                              <img class="animated" src="../assets/img/services/biometrics.png">
                           </div>
 
                           <div class="content">
@@ -143,27 +177,143 @@
         <p>CHECK OUT WHAT NUMBERS TELL ABOUT <span class="numberspan"> SINGLE-USE PLASTICS</span> </p>
       </div>
       <div class="statsBox">
-        <div class="box">
-          <h2>100,000 <span class="numberspan">+</span></h2>
+        <div class="box wow animated fadeInLeft" data-wow-delay="0.2s" >
+          <h2 class="num">100,000 <i class="fas fa-plus wow rotate" style="color: green;" data-wow-delay="0.5"></i></h2>
           <h4>Marine <br> Mammals <span class="numberspan">Killed</span> </h4>
         </div>
-        <div class="box">
-          <h2>1,000,000 <span class="numberspan">+</span></h2>
-          <h4>Sea Birds <br><span class="numberspan">Killed</span></h4>
+        <div class="box wow animated fadeInUp" data-wow-delay="0.4s">
+          <h2 class="num">1,000,000 <i class="fas fa-plus wow rotate" style="color: green;" data-wow-delay="0.5"></i></h2>
+          <h4 >Sea Birds <br><span class="numberspan">Killed</span></h4>
         </div>
-        <div class="box">
-          <h2>500 <span class="numberspan">+</span></h2>
+        <div class="box wow animated fadeInUp" data-wow-delay="0.4s">
+          <h2 class="num">500 <i class="fas fa-plus wow rotate" style="color: green;" data-wow-delay="0.5"></i></h2>
           <h4>Years to <br> <span class="numberspan">Degrade</span> </h4>
         </div>
-        <div class="box">
-          <h2>267 <span class="numberspan">+</span></h2>
+        <div class="box wow animated fadeInRight" data-wow-delay="0.2s">
+          <h2 class="num">267 <i class="fas fa-plus wow rotate" style="color: green;" data-wow-delay="0.5"></i></h2>
           <h4><span class="numberspan">Affected</span> <br>Species</h4>
         </div>
       </div>
     </div>
   </section>
 
- 
+
+  <section class="sec timeline" id="timeline">
+  <div id="content-slider">
+    <div class="wrap-slider">	
+  
+      <h1 class="main-title">Our <span style="color:green">Timeline</span> </h1>
+      <h2 style="text-align: center;">Effects of <span style="color: green;"> Single-Use </span>  Plastics</h2>
+      <br>
+  
+      <!-- ===== Thumbnail ControlNav ======= -->			
+      <input type="radio" id="a-1" name="a" >			
+      <input type="radio" id="a-2" name="a" >			
+      <input type="radio" id="a-3" name="a" >
+      <input type="radio" id="a-4" name="a" >
+  
+      <nav id="main">
+        <label for="a-1" class="first"></label>
+        <label for="a-2" class="first"></label>
+        <label for="a-3" class="first"></label>
+        <label for="a-4" class="first"></label>
+        
+      </nav>
+  
+      <!-- =================================== -->	
+      <nav id="control">
+        <label for="a-1"></label>
+        <label for="a-2"></label>
+        <label for="a-3"></label>
+        <label for="a-4"></label>
+      </nav>
+      <!-- =================================== -->
+  
+      <!-- 	IMAGE NAVIGATION pic -->
+      <span id="b-1" class="th" tabindex="10">
+        <img src="assets/img/slider/slider8.jpg" alt="" id="p-1">
+        <div class="title-1">
+          <h1>OCEAN</h1>
+          <p>About Ocean</p>
+         
+        </div>
+      </span>
+  
+      <span id="b-2" class="th" tabindex="12">
+        <img src="assets/img/slider/slider10.jpg" alt="" id="p-2">
+        <div class="title-2">
+          <h1>Nature</h1>
+          <p>About Nature</p>
+          
+        </div>
+      </span>			
+  
+      <span id="b-3" class="th" tabindex="12">
+        <img src="assets/img/slider/slider7.jpg" alt="" id="p-3">
+        <div class="title-3">
+          <h1>Health</h1> 
+          <p>About Health</p> 
+         
+        </div>
+      </span>
+  
+      <span id="b-4" class="th" tabindex="13">
+        <img src="assets/img/slider/slider9.jpg" alt="" id="p-4">
+        <div class="title-4">
+          <h1>Climate Change</h1>
+          <p>About Climate change</p>
+         
+        </div>
+      </span>
+  
+      <!-- ===== IMages ======= -->							
+  
+      <div class="slider">
+        <div class="inset">
+  
+          <figure>
+            <figcaption class="title-1">
+              <h1>Ocean</h1>
+              <p>About Ocean</p>
+           
+            </figcaption>
+            <img src="assets/img/slider/slider8.jpg" alt="" id="i-1" class="f">						
+          </figure>
+  
+          <figure>
+            <figcaption class="title-2">
+              <h1>Nature</h1>
+              <p>About Nature</p>
+              
+            </figcaption>
+            <img src="assets/img/slider/slider10.jpg" alt="" id="i-2" class="f">						
+          </figure>
+  
+          <figure>
+            <figcaption class="title-3">
+              <h1>Health</h1> 
+              <p>About Health</p> 
+              
+            </figcaption>
+            <img src="assets/img/slider/slider7.jpg" alt="" id="i-3" class="f">						
+          </figure>
+  
+          <figure>
+            <figcaption class="title-4">
+              <h1>Climate Change</h1>
+              <p> About Climate Change</p>
+              
+            </figcaption>
+            <img src="assets/img/slider/slider9.jpg" alt="" id="i-4" class="f">						
+          </figure>
+  
+  		
+        </div>
+      </div>					
+  
+    </div>		
+  </div>
+  </section>
 
 
   <section class="sec work" id="products">
@@ -172,16 +322,18 @@
         <h3>OUR <span class="numberspan">PRODUCTS</span></h3>
         <p class="productsection">See what were capable of doing</p>
       </div>
-      <div class="workBx">
+      <div class="workBx" mdbTooltip="" placement="bottom">
         <div class="brand" *ngFor="let category of categories | slice:0:7" (click)="getProductList(category)">
           <a> <img src="assets/img/category/{{category.image}}" style="width: 220px; height: 220px;"> <h2></h2></a>
         </div>
-        <div class="brand">
-          <a href="allcategory.html"><h2>See More</h2></a>
+        <div class="brand ">
+          <a routerLink="/category" routerLinkActive="linkActive"><h2>See More</h2></a>
         </div>
       </div>
     </div>
   </section>
+
+  
 
   <section class="sec" id="team">
     <div class="content">
@@ -193,7 +345,7 @@
         <div class="inner-width">
           <h1>Meet Our Team</h1>
           <div class="pers">
-    
+            
     
             <div class="pe">
               <img src="assets/img/steve.jpg" alt="">
@@ -231,3 +383,5 @@
       </div>
     </div>
   </section>
+  
+  

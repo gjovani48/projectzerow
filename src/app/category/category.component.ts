@@ -37,10 +37,14 @@ export class CategoryComponent implements OnInit {
         },
         err=>{
           console.log(err);
-          // this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('/login');
         }
       )
 
 
+  }
+
+  getProductList(category){
+    this.router.navigate(['/products/',category._id]);
   }
 }

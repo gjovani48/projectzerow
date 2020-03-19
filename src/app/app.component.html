@@ -1,19 +1,19 @@
 
 <header id="header">
 
-  <a href="#home" class="logo">Project: <span class="headerlogo">Zero</span></a>
+  <a href="#home" class="logo" style="font-size: 20px; font-weight: bold;">Project <i class="fas fa-recycle animated rotateOut slower infinite"></i> <span class="headerlogo" style="font-size: 20px; font-weight: bold;"> Zero</span></a>
   <ul>
-    <li><a routerLink="/home" routerLinkActive="linkActive">Home</a></li>
-    <li><a routerLink="/category" routerLinkActive="linkActive">Category</a></li>
-    <li><a routerLink="/products" routerLinkActive="linkActive">Products</a></li>
-    <li><a href="#numbers" onclick="toggle()">Numbers</a></li>
-    <li><a href="#timeline" onclick="toggle()">Timeline</a></li>
-    <li><a href="#products" onclick="toggle()">Products</a></li>
-    <li><a href="#team" onclick="toggle()">Team</a></li>
-    <li *ngIf="!userService.isLoggedIn()"><a routerLink="/login">Login</a></li>
-    <li *ngIf="userService.isLoggedIn()"><a routerLink="/profile">{{details.firstname}}</a></li>
-    <li *ngIf="userService.isLoggedIn()"><a routerLink="" (click)="userService.logout()">Logout</a></li>
-
+	<li class="animated wow zoomInDown" data-wow-delay="0.2s"><a routerLink="/home" routerLinkActive="linkActive">Home</a></li>
+    <li class="animated wow zoomInDown" data-wow-delay="0.4s"><a href="#about" onclick="toggle()">About</a></li>
+    <li class="animated wow zoomInDown" data-wow-delay="0.6s"><a href="#services" onclick="toggle()">Features</a></li>
+    <li class="animated wow zoomInDown" data-wow-delay="0.8s"><a href="#numbers" onclick="toggle()">Numbers</a></li>
+    <li class="animated wow zoomInDown" data-wow-delay="1s"><a href="#timeline" onclick="toggle()">Timeline</a></li>
+    <li class="animated wow zoomInDown" data-wow-delay="1.2s"><a  a routerLink="/category" routerLinkActive="linkActive">Category</a></li>
+    <li class="animated wow zoomInDown" data-wow-delay="1.4s"><a href="#team" onclick="toggle()">Team</a></li>
+    <!-- <li><a href="#contact" onclick="toggle()"> {{details.firstname}}</a></li>  -->
+    <li class="animated wow zoomInDown" data-wow-delay="1.6s" >
+      <a class="text-decoration-none" (click)="loginModal.show()"><span class="loginBtn">Login</span></a>
+    </li>
   </ul>
   <div class="toggle" onclick="toggle()"></div>
 </header>
@@ -22,6 +22,117 @@
 <router-outlet>
 
 </router-outlet>
+
+<!-- Log in Modal -->
+<div mdbModal style="overflow-y: auto" #loginModal="mdbModal" class="modal fade top bg-unique" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg cascading-modal modal-avatar" role="document">
+		<div class="modal-content bg-unique-dark">
+			<div class="modal-header">
+				<img src="assets/img/mark.jpg" class="rounded-circle img-responsive animated zoomIn">
+				<h3 class="text-light">Login</h3>
+			</div>
+
+			<div class="modal-body p-5 bg-unique-dark text-light">
+
+				<div class="row">
+					<div class="col-xl-6 border-right mt-3">
+						<p>You can also sign in with:</p>
+						<button id="fbLoginBtn" type="button" mdbBtn color="primary" class="waves-light btn-sm btn-block" mdbWavesEffect><i class="fab fa-facebook-f left"></i>Facebook</button>
+						<button id="googleLoginBtn" type="button" mdbBtn gradient="peach" class="waves-light btn-sm btn-block mt-3" mdbWavesEffect><i class="fab fa-google left"></i>Google</button>
+					</div>
+
+					<div class="col-xl-6">
+						<form #loginForm="ngForm">
+							<div class="md-form">
+								<mdb-icon far icon="envelope animated zoomIn" ></mdb-icon>
+								<input mdbInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]*" #email="ngModel" [(ngModel)]="userEmail"  name="userEmail" class="form-control text-light" [class.invalid]="email.invalid && email.touched" maxlength="30" required>
+								<span *ngIf="email.invalid && email.touched" class="text-danger">Invalid Email</span><label for="userEmail">Email</label>
+							</div>
+							<div class="md-form">
+									<mdb-icon fas icon="key animated zoomIn"></mdb-icon>
+									<input mdbInput type="password" #password="ngModel" [(ngModel)]="userPassword" name="userPassword" class="form-control text-light" [class.invalid]="password.invalid && password.touched" maxlength="20" required>
+									<span *ngIf="password.invalid && password.touched" class="text-danger">Invalid Password</span><label for="userPassword">Password</label>
+							</div>
+
+							<button id="loginBtn" class="btn btn-block btn-sm bg-amber text-light" type="submit" [disabled]="loginForm.invalid">Login</button>
+							<div class="row mt-2">
+								<div class="col-xl-6"><a type="button" class="text-primary">Forgot Password?</a></div>
+								<div class="col-xl-6"><a type="button" (click)="loginModal.hide(); registerModal.show()" class="float-right text-primary">Create Account</a></div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<!-- Register Modal -->
+<div style="overflow-y: auto" mdbModal #registerModal="mdbModal" class="modal fade bottom bg-unique" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg cascading-modal modal-avatar" role="document">
+		<div class="modal-content bg-unique-dark">
+			<div class="modal-header">
+				<img src="assets/img/mark.jpg" class="rounded-circle img-responsive animated zoomIn">
+				<h3 class="text-light">Register</h3>
+			</div>
+
+			<div class="modal-body px-5 bg-unique-dark text-light">
+				<div class="row">
+					<form (submit)="addUser()" #registrationForm="ngForm" class="col-xl-12 text-light">
+						<div class="row">
+							<div class="col-xl-12 mx-auto">
+								<div class="md-form">
+									<mdb-icon fas icon="user animated zoomIn"></mdb-icon>
+									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newuserfirstname="ngModel" [(ngModel)]="registerFirstname"  name="registerFirstname" class="form-control text-light" [class.invalid]="newuserfirstname.invalid && newuserfirstname.touched" maxlength="50" required>
+									<span *ngIf="newuserfirstname.invalid && newuserfirstname.touched" class="text-danger">Invalid format</span><label for="newuserfirstname">Firstname</label>
+								</div>
+								<div class="md-form">
+									<mdb-icon fas icon="user  animated zoomIn"></mdb-icon>
+									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newusermiddlename="ngModel" [(ngModel)]="registerMiddlename"  name="registerMiddlename" class="form-control text-light" [class.invalid]="newusermiddlename.invalid && newusermiddlename.touched" maxlength="50" required>
+									<span *ngIf="newusermiddlename.invalid && newusermiddlename.touched" class="text-danger">Invalid format</span><label for="newusermiddlename">Middlename</label>
+								</div>
+								<div class="md-form">
+									<mdb-icon fas icon="user  animated zoomIn"></mdb-icon>
+									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newuserlastname="ngModel" [(ngModel)]="registerLastname"  name="registerLastname" class="form-control text-light" [class.invalid]="newuserlastname.invalid && newuserlastname.touched" maxlength="50" required>
+									<span *ngIf="newuserlastname.invalid && newuserlastname.touched" class="text-danger">Invalid format</span><label for="newuserlastname">Lastname</label>
+								</div>
+
+								<div class="md-form">
+									<mdb-icon fas icon="mobile-alt animated zoomIn"></mdb-icon>
+									<input mdbInput type="text" pattern="[0-9]*" #newuserphone="ngModel" [(ngModel)]="registerPhone"  name="registerPhone" class="form-control text-light" [class.invalid]="newuserphone.invalid && newuserphone.touched" maxlength="11" required>
+									<span *ngIf="newuserphone.invalid && newuserphone.touched" class="text-danger">Invalid phone format</span><label for="newuserphone">Phone</label>
+								</div>
+								<div class="md-form">
+									<mdb-icon far icon="envelope animated zoomIn"></mdb-icon>
+									<input mdbInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]*" #newuseremail="ngModel" [(ngModel)]="registerEmail"  name="registerEmail" class="form-control text-light" [class.invalid]="newuseremail.invalid && newuseremail.touched" maxlength="30" required>
+									<span *ngIf="newuseremail.invalid && newuseremail.touched" class="text-danger">Invalid email format</span><label for="newuseremail">Email</label>
+								</div>
+								<div class="md-form">
+									<mdb-icon fas icon="key animated zoomIn"></mdb-icon>
+									<input mdbInput pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" #newuserpassword="ngModel" [(ngModel)]="registerPassword"  name="registerPassword" class="form-control text-light" [class.invalid]="newuserpassword.invalid && newuserpassword.touched" maxlength="20" required>
+									<span *ngIf="newuserpassword.invalid && newuserpassword.touched" class="text-danger">Must contain at least one number and one uppercase and lowercase letter, and at least 8 to 20 characters</span><label for="newuserpassword">Password</label>
+								</div>
+								<div class="md-form">
+										<mdb-icon fas icon="check-circle animated zoomIn"></mdb-icon>
+										<input mdbInput type="password" #verifypassword="ngModel" [(ngModel)]="verifyregpassword"  name="verifyregpassword" class="form-control text-light" [class.invalid]="verifypassword.invalid && verifypassword.touched" maxlength="20" required>
+										<span *ngIf="registerPassword != verifyregpassword && verifypassword.touched" class="text-danger">Passwords do not match</span>
+										<label for="verifyregpassword">Confirm Password</label>
+									</div>
+								<div class="md-form">
+									<button id="registerBtn" class="btn btn-block btn-sm py-3 bg-amber text-light" type="submit" [disabled]="registrationForm.invalid" (click)="registerNotify.show()">Register</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 <section class="sec contact" id="contact">
@@ -54,24 +165,49 @@
     </div>
 
     <!-- Footer -->
+    <p class="copyright">Design & Developed By <a href="https://www.facebook.com/Project-ZeroW-107476950871394/">Poject Zero Devs</a></p>
 
-    <p class="copyright">Design & Developed By <a href="#">Poject Zero Devs</a></p>
     <div class="center1">
       <ul>
 
-        <li><a href="https://www.facebook.com/Project-ZeroW-107476950871394/"  class="fab fa-facebook-f" style="color: white;"></a></li>
+        <li><a href="https://www.facebook.com/Project-ZeroW-107476950871394/"   class="fab fa-facebook-f" style="color: white;" ></a></li>
         <li><a href="https://twitter.com/PZerow"  class="fab fa-twitter" style="color: white;"></a></li>
-        <li><a href="https://www.facebook.com/Project-ZeroW-107476950871394/"  class="fab fa-instagram" style="color: white;"></a></li>
+        <li><a href="https://www.instagram.com/projectzerow/"  class="fab fa-instagram" style="color: white;"></a></li>
         <li><a href="https://discord.gg/f5nA4JH"  class="fab fa-discord" style="color: white;"></a></li>
         <li><a href="https://www.youtube.com/channel/UCZ9hPblbiwjg1W4PRql830w?view_as=subscriber"  class="fab fa-youtube" style="color: white;"></a></li>
         <div class="text">Follow</div>
+
       </ul>
     </div>
   </div>
+
+
   <script type="text/javascript">
-    window.FontAwesomeKitConfig = {"asyncLoading":{"enabled":true},"autoA11y":{"enabled":true},"baseUrl":"https://kit-free.fontawesome.com","license":"free","method":"css","minify":{"enabled":true},"v4shim":{"enabled":false},"version":"latest"};
-!function(){!function(){if(!(void 0===window.Element||"classList"in document.documentElement)){var e,t,n,i=Array.prototype,o=i.push,a=i.splice,s=i.join;r.prototype={add:function(e){this.contains(e)||(o.call(this,e),this.el.className=this.toString())},contains:function(e){return-1!=this.el.className.indexOf(e)},item:function(e){return this[e]||null},remove:function(e){if(this.contains(e)){for(var t=0;t<this.length&&this[t]!=e;t++);a.call(this,t,1),this.el.className=this.toString()}},toString:function(){return s.call(this," ")},toggle:function(e){return this.contains(e)?this.remove(e):this.add(e),this.contains(e)}},window.DOMTokenList=r,e=Element.prototype,t="classList",n=function(){return new r(this)},Object.defineProperty?Object.defineProperty(e,t,{get:n}):e.__defineGetter__(t,n)}function r(e){for(var t=(this.el=e).className.replace(/^\s+|\s+$/g,"").split(/\s+/),n=0;n<t.length;n++)o.call(this,t[n])}}();function f(e){var t,n,i,o;prefixesArray=e||["fa"],prefixesSelectorString="."+Array.prototype.join.call(e,",."),t=document.querySelectorAll(prefixesSelectorString),Array.prototype.forEach.call(t,function(e){n=e.getAttribute("title"),e.setAttribute("aria-hidden","true"),i=!e.nextElementSibling||!e.nextElementSibling.classList.contains("sr-only"),n&&i&&((o=document.createElement("span")).innerHTML=n,o.classList.add("sr-only"),e.parentNode.insertBefore(o,e.nextSibling))})}var e,t,u=function(e){var t=document.createElement("link");t.href=e,t.media="all",t.rel="stylesheet",document.getElementsByTagName("head")[0].appendChild(t)},m=function(e){!function(e,t,n){var i,o=window.document,a=o.createElement("link");if(t)i=t;else{var s=(o.body||o.getElementsByTagName("head")[0]).childNodes;i=s[s.length-1]}var r=o.styleSheets;a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(o.body)return t();setTimeout(function(){e(t)})}(function(){i.parentNode.insertBefore(a,t?i:i.nextSibling)});var l=function(e){for(var t=a.href,n=r.length;n--;)if(r[n].href===t)return e();setTimeout(function(){l(e)})};function c(){a.addEventListener&&a.removeEventListener("load",c),a.media=n||"all"}a.addEventListener&&a.addEventListener("load",c),(a.onloadcssdefined=l)(c)}(e)},n=function(e,t){var n=t&&void 0!==t.autoFetchSvg?t.autoFetchSvg:void 0,i=t&&void 0!==t.async?t.async:void 0,o=t&&void 0!==t.autoA11y?t.autoA11y:void 0,a=document.createElement("script"),s=document.scripts[0];a.src=e,void 0!==o&&a.setAttribute("data-auto-a11y",o?"true":"false"),n&&(a.setAttributeNode(document.createAttribute("data-auto-fetch-svg")),a.setAttribute("data-fetch-svg-from",t.fetchSvgFrom)),i&&a.setAttributeNode(document.createAttribute("defer")),s.parentNode.appendChild(a)};function h(e,t){var n=t&&t.shim?e.license+"-v4-shims":e.license,i=t&&t.minify?".min":"";return e.baseUrl+"/releases/"+("latest"===e.version?"latest":"v".concat(e.version))+"/"+e.method+"/"+n+i+"."+e.method}try{if(window.FontAwesomeKitConfig){var i=window.FontAwesomeKitConfig;"js"===i.method&&(t={async:(e=i).asyncLoading.enabled,autoA11y:e.autoA11y.enabled},"pro"===e.license&&(t.autoFetchSvg=!0,t.fetchSvgFrom=e.baseUrl+"/releases/"+("latest"===e.version?"latest":"v".concat(e.version))+"/svgs"),e.v4shim.enabled&&n(h(e,{shim:!0,minify:e.minify.enabled})),n(h(e,{minify:e.minify.enabled}),t)),"css"===i.method&&function(e){var t,n,i,o,a,s,r,l,c=f.bind(f,["fa","fab","fas","far","fal"]);e.autoA11y.enabled&&(n=c,o=[],a=document,s=a.documentElement.doScroll,r="DOMContentLoaded",(l=(s?/^loaded|^c/:/^loaded|^i|^c/).test(a.readyState))||a.addEventListener(r,i=function(){for(a.removeEventListener(r,i),l=1;i=o.shift();)i()}),l?setTimeout(n,0):o.push(n),t=c,"undefined"!=typeof MutationObserver&&new MutationObserver(t).observe(document,{childList:!0,subtree:!0})),e.v4shim.enabled&&(e.asyncLoading.enabled?m(h(e,{shim:!0,minify:e.minify.enabled})):u(h(e,{shim:!0,minify:e.minify.enabled})));var d=h(e,{minify:e.minify.enabled});e.asyncLoading.enabled?m(d):u(d)}(i)}}catch(e){}}();
+    window.FontAwesomeKitConfig = {
+      "asyncLoading":{
+        "enabled":true},
+        "autoA11y":{"enabled":true},
+        "baseUrl":"https://kit-free.fontawesome.com","license":"free","method":"css","minify":{"enabled":true},
+        "v4shim":{"enabled":false},"version":"latest"};
+    !function()
+    {!function()
+  {if(!(void 0===window.Element||"classList"in document.documentElement))
+  {var e,t,n,i=Array.prototype,o=i.push,a=i.splice,s=i.join;r.prototype={add:function(e)
+    {this.contains(e)||(o.call(this,e),this.el.className=this.toString())},contains:function(e)
+    {return-1!=this.el.className.indexOf(e)},item:function(e){return this[e]||null},remove:function(e)
+    {if(this.contains(e)){for(var t=0;t<this.length&&this[t]!=e;t++);a.call(this,t,1),this.el.className=this.toString()}},toString:function()
+    {return s.call(this," ")},toggle:function(e)
+    {return this.contains(e)?this.remove(e):this.add(e),this.contains(e)}},window.DOMTokenList=r,e=Element.prototype,t="classList",n=function()
+    {return new r(this)},Object.defineProperty?Object.defineProperty(e,t,{get:n}):e.__defineGetter__(t,n)}function r(e){for(var t=(this.el=e).className.replace(/^\s+|\s+$/g,"").split(/\s+/),n=0;n<t.length;n++)o.call(this,t[n])}}();function f(e){var t,n,i,o;prefixesArray=e||["fa"],prefixesSelectorString="."+Array.prototype.join.call(e,",."),t=document.querySelectorAll(prefixesSelectorString),Array.prototype.forEach.call(t,function(e){n=e.getAttribute("title"),e.setAttribute("aria-hidden","true"),i=!e.nextElementSibling||!e.nextElementSibling.classList.contains("sr-only"),n&&i&&((o=document.createElement("span")).innerHTML=n,o.classList.add("sr-only"),e.parentNode.insertBefore(o,e.nextSibling))})}var e,t,u=function(e){var t=document.createElement("link");t.href=e,t.media="all",t.rel="stylesheet",document.getElementsByTagName("head")[0].appendChild(t)},m=function(e){!function(e,t,n){var i,o=window.document,a=o.createElement("link");if(t)i=t;else{var s=(o.body||o.getElementsByTagName("head")[0]).childNodes;i=s[s.length-1]}var r=o.styleSheets;a.rel="stylesheet",a.href=e,a.media="only x",function e(t){if(o.body)return t();setTimeout(function(){e(t)})}(function(){i.parentNode.insertBefore(a,t?i:i.nextSibling)});var l=function(e){for(var t=a.href,n=r.length;n--;)if(r[n].href===t)return e();setTimeout(function(){l(e)})};function c(){a.addEventListener&&a.removeEventListener("load",c),a.media=n||"all"}a.addEventListener&&a.addEventListener("load",c),(a.onloadcssdefined=l)(c)}(e)},n=function(e,t){var n=t&&void 0!==t.autoFetchSvg?t.autoFetchSvg:void 0,i=t&&void 0!==t.async?t.async:void 0,o=t&&void 0!==t.autoA11y?t.autoA11y:void 0,a=document.createElement("script"),s=document.scripts[0];a.src=e,void 0!==o&&a.setAttribute("data-auto-a11y",o?"true":"false"),n&&(a.setAttributeNode(document.createAttribute("data-auto-fetch-svg")),a.setAttribute("data-fetch-svg-from",t.fetchSvgFrom)),i&&a.setAttributeNode(document.createAttribute("defer")),s.parentNode.appendChild(a)};function h(e,t){var n=t&&t.shim?e.license+"-v4-shims":e.license,i=t&&t.minify?".min":"";return e.baseUrl+"/releases/"+("latest"===e.version?"latest":"v".concat(e.version))+"/"+e.method+"/"+n+i+"."+e.method}try{if(window.FontAwesomeKitConfig){var i=window.FontAwesomeKitConfig;"js"===i.method&&(t={async:(e=i).asyncLoading.enabled,autoA11y:e.autoA11y.enabled},"pro"===e.license&&(t.autoFetchSvg=!0,t.fetchSvgFrom=e.baseUrl+"/releases/"+("latest"===e.version?"latest":"v".concat(e.version))+"/svgs"),e.v4shim.enabled&&n(h(e,{shim:!0,minify:e.minify.enabled})),n(h(e,{minify:e.minify.enabled}),t)),"css"===i.method&&function(e){var t,n,i,o,a,s,r,l,c=f.bind(f,["fa","fab","fas","far","fal"]);e.autoA11y.enabled&&(n=c,o=[],a=document,s=a.documentElement.doScroll,r="DOMContentLoaded",(l=(s?/^loaded|^c/:/^loaded|^i|^c/).test(a.readyState))||a.addEventListener(r,i=function(){for(a.removeEventListener(r,i),l=1;i=o.shift();)i()}),l?setTimeout(n,0):o.push(n),t=c,"undefined"!=typeof MutationObserver&&new MutationObserver(t).observe(document,{childList:!0,subtree:!0})),e.v4shim.enabled&&(e.asyncLoading.enabled?m(h(e,{shim:!0,minify:e.minify.enabled})):u(h(e,{shim:!0,minify:e.minify.enabled})));var d=h(e,{minify:e.minify.enabled});e.asyncLoading.enabled?m(d):u(d)}(i)}}catch(e){}}();
   </script>
 
 
+<script>
+	$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
 </section>
+
+

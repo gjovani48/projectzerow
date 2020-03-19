@@ -4,42 +4,22 @@
     plastic <br></h2> -->
 </section>
 
-<p>productlist works!</p>
-
 <!-- <li class="card" *ngFor="let product of products">{{product.name}}</li> -->
 
 
 
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-3">
-    <div class="col mb-4" *ngFor="let product of products">
-      <!-- Card -->
+<div class="main">
+  <h1 style = "margin-top: 5% ;">Baby & <span style="color: green; font-weight: 500; ;">Kids</span></h1>
+  <ul class="cards">
+    <li class="cards_item" *ngFor="let row of products">
       <div class="card">
-
-        <!--Card image-->
-        <div class="view overlay">
-          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-            alt="Card image cap">
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
+        <div class="card_image"><img src="assets/img/baby/{{row.image}}"></div>
+        <div class="card_content">
+          <h2 class="card_title">{{row.name}}</h2>
+          <p class="card_text">{{row.description}}</p>
+          <h5 style="text-align: right; color: #394a6d; font-weight: 500;">{{row.price}}</h5>
         </div>
-
-        <!--Card content-->
-        <div class="card-body">
-
-          <!--Title-->
-          <h4 class="card-title">{{product.name}}</h4>
-          <!--Text-->
-          <p class="card-text">{{product.description}}</p>
-          <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-          <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-
-        </div>
-
       </div>
-      <!-- Card -->
-    </div>
-  </div>
-
+    </li>
+  </ul>
 </div>

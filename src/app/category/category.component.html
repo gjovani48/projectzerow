@@ -1,4 +1,26 @@
-<p>category works!</p>
+<!-- <p>category works!</p>
 
 
-<li *ngFor="let category of categories">{{category.name}}</li>
+<li *ngFor="let category of categories">{{category.name}}</li> -->
+<section class="banner" id="home">
+    <!-- <h2>help <br>
+      reduce <br>
+      plastic <br></h2> -->
+  </section>
+  <section class="sec work" id="products">
+    <div class="content">
+      <div class="mxw800p">
+        <h3>OUR <span class="numberspan">PRODUCTS</span></h3>
+        <p class="productsection">See what were capable of doing</p>
+      </div>
+      <div class="workBx" mdbTooltip="" placement="bottom">
+        <div class="brand" *ngFor="let category of categories" (click)="getProductList(category)">
+          <a> <img src="../assets/img/category/{{category.image}}" style="width: 220px; height: 220px;"> <h2></h2></a>
+        </div>
+        <div class="brand ">
+          <a routerLink="/category" routerLinkActive="linkActive"><h2>See More</h2></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
