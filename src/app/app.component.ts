@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService, UserDetails} from './services/user.service';
+import { UserService, UserDetails, TokenPayload, user_info} from './services/user.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -12,6 +12,24 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class AppComponent{
   title = 'projectzerow';
   details: UserDetails;
+
+  credentials: TokenPayload = {
+    _id: '',
+    firstname: '',
+    lastname: '',
+    middlename: '',
+    email: '',
+    password: ''
+  }
+
+  register_info: user_info = {
+    firstname: '',
+    lastname: '',
+    middlename: '',
+    phone: '',
+    email: '',
+    password: ''
+  }
 
   constructor(private userService: UserService,private router: Router) { }
 
@@ -34,6 +52,33 @@ export class AppComponent{
 
 
 }
+
+login(){
+    this.userService.login(this.credentials).subscribe(
+      (res)=>{
+        console.log(res);
+        // this.router.navigateByUrl('/home');
+        location.href ="/home";
+      },
+      err =>{
+        console.error(err)
+      }
+    )
+  }
+
+  register(){
+
+    this.userService.addUser(this.register_info).subscribe(
+      (res)=>{
+        console.log(res);
+        // this.router.navigateByUrl('/home');
+      },
+      err =>{
+        console.error(err)
+      }
+    )
+
+  }
 
 }
 

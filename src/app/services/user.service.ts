@@ -33,6 +33,15 @@ export interface TokenPayload{
   password: string
 }
 
+export interface user_info{
+  firstname: string
+  middlename: string
+  lastname: string
+  phone: string
+  email: string
+  password: string
+}
+
 
 @Injectable({
 	providedIn: 'root'

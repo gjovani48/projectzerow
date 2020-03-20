@@ -20,6 +20,11 @@
     <li *ngIf="userService.isLoggedIn()" class="animated wow zoomInDown" data-wow-delay="1.6s" >
       <a class="text-decoration-none" (click)="userService.logout()"><span class="loginBtn">Logout</span></a>
     </li>
+
+    <li (click)="loginModal.show()">
+    	login
+    </li>
+
   </ul>
   <div class="toggle" onclick="toggle()"></div>
 </header>
@@ -32,7 +37,7 @@
 <!-- Log in Modal -->
 <div mdbModal style="overflow-y: auto" #loginModal="mdbModal" class="modal fade top bg-unique" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg cascading-modal modal-avatar" role="document">
-		<div class="modal-content bg-unique-dark">
+		<div class="modal-content bg-unique-dark ml-12">
 			<div class="modal-header">
 				<img src="assets/img/mark.jpg" class="rounded-circle img-responsive animated zoomIn">
 				<h3 class="text-light">Login</h3>
@@ -48,19 +53,22 @@
 					</div>
 
 					<div class="col-xl-6">
-						<form #loginForm="ngForm">
+						<form #loginForm="ngForm" (submit)="login()">
 							<div class="md-form">
 								<mdb-icon far icon="envelope animated zoomIn" ></mdb-icon>
-								<input mdbInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]*" #email="ngModel" [(ngModel)]="userEmail"  name="userEmail" class="form-control text-light" [class.invalid]="email.invalid && email.touched" maxlength="30" required>
+
+								<input mdbInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]*" #email="ngModel" [(ngModel)]="credentials.email"  name="userEmail" class="form-control text-light" [class.invalid]="email.invalid && email.touched" maxlength="30" required>
+
 								<span *ngIf="email.invalid && email.touched" class="text-danger">Invalid Email</span><label for="userEmail">Email</label>
+
 							</div>
 							<div class="md-form">
 									<mdb-icon fas icon="key animated zoomIn"></mdb-icon>
-									<input mdbInput type="password" #password="ngModel" [(ngModel)]="userPassword" name="userPassword" class="form-control text-light" [class.invalid]="password.invalid && password.touched" maxlength="20" required>
+									<input mdbInput type="password" #password="ngModel" [(ngModel)]="credentials.password" name="userPassword" class="form-control text-light" [class.invalid]="password.invalid && password.touched" maxlength="20" required>
 									<span *ngIf="password.invalid && password.touched" class="text-danger">Invalid Password</span><label for="userPassword">Password</label>
 							</div>
 
-							<button id="loginBtn" class="btn btn-block btn-sm bg-amber text-light" type="submit" [disabled]="loginForm.invalid">Login</button>
+							<button id="loginBtn" class="btn btn-block btn-sm btn-success text-light" type="submit" [disabled]="loginForm.invalid">Login</button>
 							<div class="row mt-2">
 								<div class="col-xl-6"><a type="button" class="text-primary">Forgot Password?</a></div>
 								<div class="col-xl-6"><a type="button" (click)="loginModal.hide(); registerModal.show()" class="float-right text-primary">Create Account</a></div>
@@ -88,44 +96,44 @@
 
 			<div class="modal-body px-5 bg-unique-dark text-light">
 				<div class="row">
-					<form (submit)="addUser()" #registrationForm="ngForm" class="col-xl-12 text-light">
+					<form (submit)="register()" #registrationForm="ngForm" class="col-xl-12 text-light">
 						<div class="row">
 							<div class="col-xl-12 mx-auto">
 								<div class="md-form">
 									<mdb-icon fas icon="user animated zoomIn"></mdb-icon>
-									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newuserfirstname="ngModel" [(ngModel)]="registerFirstname"  name="registerFirstname" class="form-control text-light" [class.invalid]="newuserfirstname.invalid && newuserfirstname.touched" maxlength="50" required>
+									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newuserfirstname="ngModel" [(ngModel)]="register_info.firstname"  name="registerFirstname" class="form-control text-light" [class.invalid]="newuserfirstname.invalid && newuserfirstname.touched" maxlength="50" required>
 									<span *ngIf="newuserfirstname.invalid && newuserfirstname.touched" class="text-danger">Invalid format</span><label for="newuserfirstname">Firstname</label>
 								</div>
 								<div class="md-form">
 									<mdb-icon fas icon="user  animated zoomIn"></mdb-icon>
-									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newusermiddlename="ngModel" [(ngModel)]="registerMiddlename"  name="registerMiddlename" class="form-control text-light" [class.invalid]="newusermiddlename.invalid && newusermiddlename.touched" maxlength="50" required>
+									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newusermiddlename="ngModel" [(ngModel)]="register_info.middlename"  name="registerMiddlename" class="form-control text-light" [class.invalid]="newusermiddlename.invalid && newusermiddlename.touched" maxlength="50" required>
 									<span *ngIf="newusermiddlename.invalid && newusermiddlename.touched" class="text-danger">Invalid format</span><label for="newusermiddlename">Middlename</label>
 								</div>
 								<div class="md-form">
 									<mdb-icon fas icon="user  animated zoomIn"></mdb-icon>
-									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newuserlastname="ngModel" [(ngModel)]="registerLastname"  name="registerLastname" class="form-control text-light" [class.invalid]="newuserlastname.invalid && newuserlastname.touched" maxlength="50" required>
+									<input mdbInput type="text" pattern="[A-Za-z\s.]*" #newuserlastname="ngModel" [(ngModel)]="register_info.lastname"  name="registerLastname" class="form-control text-light" [class.invalid]="newuserlastname.invalid && newuserlastname.touched" maxlength="50" required>
 									<span *ngIf="newuserlastname.invalid && newuserlastname.touched" class="text-danger">Invalid format</span><label for="newuserlastname">Lastname</label>
 								</div>
 
 								<div class="md-form">
 									<mdb-icon fas icon="mobile-alt animated zoomIn"></mdb-icon>
-									<input mdbInput type="text" pattern="[0-9]*" #newuserphone="ngModel" [(ngModel)]="registerPhone"  name="registerPhone" class="form-control text-light" [class.invalid]="newuserphone.invalid && newuserphone.touched" maxlength="11" required>
+									<input mdbInput type="text" pattern="[0-9]*" #newuserphone="ngModel" [(ngModel)]="register_info.phone"  name="registerPhone" class="form-control text-light" [class.invalid]="newuserphone.invalid && newuserphone.touched" maxlength="11" required>
 									<span *ngIf="newuserphone.invalid && newuserphone.touched" class="text-danger">Invalid phone format</span><label for="newuserphone">Phone</label>
 								</div>
 								<div class="md-form">
 									<mdb-icon far icon="envelope animated zoomIn"></mdb-icon>
-									<input mdbInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]*" #newuseremail="ngModel" [(ngModel)]="registerEmail"  name="registerEmail" class="form-control text-light" [class.invalid]="newuseremail.invalid && newuseremail.touched" maxlength="30" required>
+									<input mdbInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]*" #newuseremail="ngModel" [(ngModel)]="register_info.email"  name="registerEmail" class="form-control text-light" [class.invalid]="newuseremail.invalid && newuseremail.touched" maxlength="30" required>
 									<span *ngIf="newuseremail.invalid && newuseremail.touched" class="text-danger">Invalid email format</span><label for="newuseremail">Email</label>
 								</div>
 								<div class="md-form">
 									<mdb-icon fas icon="key animated zoomIn"></mdb-icon>
-									<input mdbInput pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" #newuserpassword="ngModel" [(ngModel)]="registerPassword"  name="registerPassword" class="form-control text-light" [class.invalid]="newuserpassword.invalid && newuserpassword.touched" maxlength="20" required>
+									<input mdbInput pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" #newuserpassword="ngModel" [(ngModel)]="register_info.password"  name="registerPassword" class="form-control text-light" [class.invalid]="newuserpassword.invalid && newuserpassword.touched" maxlength="20" required>
 									<span *ngIf="newuserpassword.invalid && newuserpassword.touched" class="text-danger">Must contain at least one number and one uppercase and lowercase letter, and at least 8 to 20 characters</span><label for="newuserpassword">Password</label>
 								</div>
 								<div class="md-form">
 										<mdb-icon fas icon="check-circle animated zoomIn"></mdb-icon>
 										<input mdbInput type="password" #verifypassword="ngModel" [(ngModel)]="verifyregpassword"  name="verifyregpassword" class="form-control text-light" [class.invalid]="verifypassword.invalid && verifypassword.touched" maxlength="20" required>
-										<span *ngIf="registerPassword != verifyregpassword && verifypassword.touched" class="text-danger">Passwords do not match</span>
+										<span *ngIf="register_info.password != verifyregpassword && verifypassword.touched" class="text-danger">Passwords do not match</span>
 										<label for="verifyregpassword">Confirm Password</label>
 									</div>
 								<div class="md-form">
