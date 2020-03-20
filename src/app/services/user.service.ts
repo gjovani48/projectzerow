@@ -16,8 +16,8 @@ export interface UserDetails{
   fingerprint_id: string
   pzwpoints: any
   registration_code: string
-  expiresIn: number
-  expiresAt: number
+  exp: number
+  iat: number
 }
 
 interface TokenResponse{
@@ -130,10 +130,7 @@ export class UserService {
     const user = this.getUserDetails()
 
     if(user){
-      // return user.exp > Date.now()/100
-      console.log("This is the user detail");
-      console.log(user);
-      return true;
+      return user.exp > Date.now()/1000;
     }
     else{
       return false;
@@ -163,11 +160,21 @@ export class UserService {
 
 	// Add New User
 	addUser(user): Observable<any> {
-		return this.http.post<any>(
+		const base = this.http.post<any>(
 			this.url + "/user",
 			user,
 			{ headers: this.headers }
 		)
+
+    const request = base.pipe(
+      map((data: TokenResponse)=>{
+         if (data.token){
+          this.saveToken(data.token)
+         }
+         return data
+      })
+    )
+    return request
 	}
 
 	// Add Fingerprint ID

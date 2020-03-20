@@ -41,7 +41,6 @@ export class AppComponent{
     this.userService.profile().subscribe(
       user=>{
         this.details = user;
-
         console.log(this.details);
       },
       err=>{
