@@ -20,7 +20,7 @@ var transporter  = nodemailer.createTransport({
   }
 });
 
-// Get All Users
+// Get All Userss
 router.get('/', (req,res) => {
     User.find({},(err,data)=>{
         if(err) throw err

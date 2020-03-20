@@ -70,7 +70,8 @@ login(){
 
     this.userService.addUser(this.register_info).subscribe(
       (res)=>{
-        console.log(res);
+        console.log(res.status);
+        alert(res.status)
         // this.router.navigateByUrl('/home');
       },
       err =>{
