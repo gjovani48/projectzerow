@@ -1,19 +1,36 @@
-<section class="banner" id="home">
-  <!-- <h2>help <br>
-    reduce <br>
-    plastic <br></h2> -->
+<section style="background-image: url(assets/img/products-banner.jpg);" class="banner" id="home">
+  
 </section>
+
+
 
 <!-- <li class="card" *ngFor="let product of products">{{product.name}}</li> -->
 
 
 
 <div class="main">
-  <h1 style = "margin-top: 5% ;">Baby & <span style="color: green; font-weight: 500; ;">Kids</span></h1>
+  <h1 style = "margin-top: 5% ;">{{category.category.name}}</h1>
   <ul class="cards">
     <li class="cards_item" *ngFor="let row of products">
       <div class="card">
-        <div class="card_image"><img src="assets/img/baby/{{row.image}}"></div>
+        <div class="card_image">
+          <img *ngIf="category.category.name=='Baby and Kids'" src="assets/img/baby/{{row.image}}">
+          <img *ngIf="category.category.name=='Liquors'" src="assets/img/liquors/{{row.image}}">
+          <img *ngIf="category.category.name=='Project:ZeroW Products'" src="assets/img/zerowProducts/{{row.image}}">
+          <img *ngIf="category.category.name=='Beverages'" src="assets/img/beverages/{{row.image}}">
+          <img *ngIf="category.category.name=='Breads and Biscuits'" src="assets/img/breakfast/{{row.image}}">
+          <img *ngIf="category.category.name=='Breads and Biscuits'" src="assets/img/breakfast/{{row.image}}">
+          <img *ngIf="category.category.name=='Canned Goods and Soups'" src="assets/img/canned/{{row.image}}">
+          <img *ngIf="category.category.name=='Condiments and Spices'" src="assets/img/condiments/{{row.image}}">
+          <img *ngIf="category.category.name=='Snacks and Candies'" src="assets/img/snacks/{{row.image}}">
+          <img *ngIf="category.category.name=='Dairy'" src="assets/img/dairy/{{row.image}}">
+          <img *ngIf="category.category.name=='Cleaning Supplies'" src="assets/img/cleaning/{{row.image}}">
+          <img *ngIf="category.category.name=='Health, Beauty, and Personal Care'" src="assets/img/health/{{row.image}}">
+          <img *ngIf="category.category.name=='Pharmacy'" src="assets/img/pharmacy/{{row.image}}">
+
+          
+
+        </div>
         <div class="card_content">
           <h2 class="card_title">{{row.name}}</h2>
           <p class="card_text">{{row.description}}</p>

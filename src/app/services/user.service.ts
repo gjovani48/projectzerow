@@ -16,8 +16,8 @@ export interface UserDetails{
   fingerprint_id: string
   pzwpoints: any
   registration_code: string
-  exp: number
-  iat: number
+  expiresIn: number
+  expiresAt: number
 }
 
 interface TokenResponse{
@@ -122,6 +122,8 @@ export class UserService {
 
     if(user){
       // return user.exp > Date.now()/100
+      console.log("This is the user detail");
+      console.log(user);
       return true;
     }
     else{

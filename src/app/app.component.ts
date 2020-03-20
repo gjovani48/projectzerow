@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService, UserDetails} from './services/user.service';
 import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',

@@ -14,6 +14,7 @@ export class ProductlistComponent implements OnInit {
 
   products = [];
   categoryId;
+  category;
 
   constructor(private userService: UserService,private categoryService: CategoryService,private router: Router,private route:ActivatedRoute) { }
 
@@ -30,7 +31,15 @@ export class ProductlistComponent implements OnInit {
 
     this.categoryService.getProductList(this.categoryId).subscribe(product=>{
           this.products = product;
-          console.log(this.products);
+
+        this.categoryService.getCategory(this.categoryId).subscribe(res=>{
+            this.category = res;
+        },
+        err=>{
+          console.log(err);
+        })
+
+
       },
       err=>{
         console.log(err);
