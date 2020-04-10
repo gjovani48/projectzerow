@@ -12,14 +12,23 @@ export class ProductComponent implements OnInit {
 
   constructor(private productService: ProductService,private userService: UserService, private router: Router) { }
 
+  products = [];
+  productsCarouselItem = [];
+  productsFilter: any = { name: '' };
+  p: number = 1;
+
+  
+
   ngOnInit() {
     this.getProducts();
-    this.getProfile();
+    //this.getProfile();
   }
 
   getProducts(){
     this.productService.getProducts().subscribe((response) => {
-      console.log(response)
+      this.products = response;
+      this.productsCarouselItem = response;
+      console.log(this.products)
     })
   }
 

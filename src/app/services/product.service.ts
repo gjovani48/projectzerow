@@ -13,7 +13,7 @@ export class ProductService {
 	// private url = this.httpconfig.getURL()
   // 	private headers = this.httpconfig.getHeaders()
   private url:string = "https://protected-escarpment-77600.herokuapp.com"
-  //private url:string = "http://localhost:80"
+  private local_url:string = "http://localhost:80"
   private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
 	// Get All Products
@@ -25,6 +25,14 @@ export class ProductService {
 	getProduct(id): Observable<Product> {
 		return this.http.get<any>(
 			this.url + "/product/" + id
+		)
+	}
+
+	getProductsOnCategory(categoryList){
+		return this.http.post<any>(
+			this.url + "/product/findIn",
+			categoryList,
+			{ headers: this.headers }
 		)
 	}
 

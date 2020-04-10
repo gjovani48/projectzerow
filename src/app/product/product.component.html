@@ -1,1 +1,53 @@
-<p>product works!</p>
+<mdb-carousel [isControls]="true" class="carousel slide" [animation]="'slide'">
+  <mdb-carousel-item *ngFor="let cItem of productsCarouselItem | slice:0:5">
+    <div class="view">
+      <img style="width:100%" class="img-fluid card-img-top" src="assets/images/{{cItem.image}}">
+      <div class="mask rgba-indigo-light waves-light" mdbWavesEffect></div>
+    </div>
+
+    <div class="carousel-caption">
+      <div class="animated fadeInDown delay-1s">
+        <h3 class="h3-responsive">Light mask</h3>
+        <p>First text</p>
+      </div>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
+
+<input class="form-control mr-sm-2" type="text" [(ngModel)]="productsFilter.name" placeholder="Search">
+
+<div class="main">
+
+  <!-- <input type="text" [(ngModel)]="productsFilter.name" placeholder="name"> -->
+
+ 
+
+  <ul class="cards row col-lg-12 col-12 col-sm-12">
+    <li class="cards_item col-sm-6 col-6 col-lg-4" *ngFor="let row of products| filterBy: productsFilter | paginate: { itemsPerPage: 10, currentPage: p }">
+      <div class="card">
+        <div class="card-header">
+          <div class="">
+            <img style="width:100%" class="img-fluid card-img-top" src="assets/images/{{row.image}}">
+          </div>
+        </div>
+        
+        <div class="card-body card_content">
+          <div style="height: 30px;" class="row col-sm-12 col-12 col-lg-12">
+            <h2 class="card_title">{{row.name}}</h2>
+          </div>
+          <hr>
+           <h6 style="text-align: right; color: #394a6d; font-weight: 500;">Price: {{row.price}}</h6>
+        </div>
+        
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="form-inline waves-light" mdbWavesEffect>
+  <div class="md-form mt-0">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+

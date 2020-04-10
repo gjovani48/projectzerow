@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService, UserDetails} from '../services/user.service';
 import { CategoryService } from '../services/category.service';
 import {Router} from '@angular/router';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -16,19 +17,21 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService,private categoryService: CategoryService,private router: Router) { }
+  constructor(private userService: UserService,private categoryService: CategoryService,private router: Router,private SpinnerService: NgxSpinnerService) { }
 
   ngOnInit() {
     //user profile
-    this.getProfile();
+    //this.getProfile();
     this.getCategories();
   }
 
 
   getCategories(){
+    this.SpinnerService.show();  
       this.categoryService.getCategories().subscribe(category=>{
           this.categories = category;
           console.log(this.categories);
+          this.SpinnerService.hide();
       },
       err=>{
         console.log(err);

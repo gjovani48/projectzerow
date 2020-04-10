@@ -7,6 +7,9 @@ import {LoginComponent} from './login/login.component';
 import {ProductlistComponent} from './productlist/productlist.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {ProfileComponent} from './profile/profile.component';
+import { AdminHomeComponent} from './admin/admin-home/admin-home.component';
+import { InventoryIndexComponent} from './admin/inventory/inventory-index/inventory-index.component';
+import { InventoryProductsComponent} from './admin/inventory/inventory-products/inventory-products.component';
 
 
 const routes: Routes = [
@@ -22,21 +25,33 @@ const routes: Routes = [
   {
 		path: 'products',
     component: ProductComponent,
-    canActivate: [AuthGuardService]
   },
   {
 		path: 'category',
     component: CategoryComponent,
-    canActivate: [AuthGuardService]
   },
   {
 		path: 'products/:id',
     component: ProductlistComponent,
-    canActivate: [AuthGuardService]
   },
   {
     path:'profile',
     component:ProfileComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin-home',
+    component:InventoryProductsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'inventory',
+    component:InventoryIndexComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'inventory-products',
+    component: InventoryProductsComponent,
     canActivate: [AuthGuardService]
   },
   {

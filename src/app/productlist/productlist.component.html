@@ -9,34 +9,29 @@
 
 
 <div class="main">
-  <h1 style = "margin-top: 5% ;">{{category.category.name}}</h1>
-  <ul class="cards">
-    <li class="cards_item" *ngFor="let row of products">
+
+  <input type="text" [(ngModel)]="productsFilter.name" placeholder="name">
+
+  <ul class="cards row col-lg-12 col-12 col-sm-12">
+    <li class="cards_item col-sm-6 col-6 col-lg-4" *ngFor="let row of products| filterBy: productsFilter | paginate: { itemsPerPage: 5, currentPage: p }">
       <div class="card">
-        <div class="card_image">
-          <img *ngIf="category.category.name=='Baby and Kids'" src="assets/img/baby/{{row.image}}">
-          <img *ngIf="category.category.name=='Liquors'" src="assets/img/liquors/{{row.image}}">
-          <img *ngIf="category.category.name=='Project:ZeroW Products'" src="assets/img/zerowProducts/{{row.image}}">
-          <img *ngIf="category.category.name=='Beverages'" src="assets/img/beverages/{{row.image}}">
-          <img *ngIf="category.category.name=='Breads and Biscuits'" src="assets/img/breakfast/{{row.image}}">
-          <img *ngIf="category.category.name=='Breads and Biscuits'" src="assets/img/breakfast/{{row.image}}">
-          <img *ngIf="category.category.name=='Canned Goods and Soups'" src="assets/img/canned/{{row.image}}">
-          <img *ngIf="category.category.name=='Condiments and Spices'" src="assets/img/condiments/{{row.image}}">
-          <img *ngIf="category.category.name=='Snacks and Candies'" src="assets/img/snacks/{{row.image}}">
-          <img *ngIf="category.category.name=='Dairy'" src="assets/img/dairy/{{row.image}}">
-          <img *ngIf="category.category.name=='Cleaning Supplies'" src="assets/img/cleaning/{{row.image}}">
-          <img *ngIf="category.category.name=='Health, Beauty, and Personal Care'" src="assets/img/health/{{row.image}}">
-          <img *ngIf="category.category.name=='Pharmacy'" src="assets/img/pharmacy/{{row.image}}">
-
-          
-
+        <div class="card-header">
+          <div class="">
+            <img style="width:100%" class="img-fluid card-img-top" src="assets/images/{{row.image}}">
+          </div>
         </div>
-        <div class="card_content">
-          <h2 class="card_title">{{row.name}}</h2>
-          <p class="card_text">{{row.description}}</p>
-          <h5 style="text-align: right; color: #394a6d; font-weight: 500;">{{row.price}}</h5>
+        
+        <div class="card-body card_content">
+          <div style="height: 30px;" class="row col-sm-12 col-12 col-lg-12">
+            <h2 class="card_title">{{row.name}}</h2>
+          </div>
+          <hr>
+           <h6 style="text-align: right; color: #394a6d; font-weight: 500;">Price: {{row.price}}</h6>
         </div>
+        
       </div>
     </li>
   </ul>
 </div>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

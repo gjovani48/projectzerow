@@ -624,6 +624,13 @@ span#b-5:focus ~ .slider .inset { margin-left:-400%; }
 @media (max-width: 480px) {
 
   #content-slider span.th img { display: none; }
+  
+  .card_text{
+    font-size:2vw;
+  }
+  .card_title{
+    font-size:2vw;
+  }
 
 }
 

@@ -30,6 +30,16 @@ router.get('/:id', (req,res) => {
 
 })
 
+router.post('/findIn', urlEncoded,(req,res)=>{
+
+  Product.find({ category_id: { $in:req.body } }).populate(['category_id']).exec((err, data) => {
+    if(err) throw err
+    console.log(req.body)
+    res.json(data)
+  })
+
+})
+
 // Add New Product
 router.post('/', urlEncoded,(req,res) => {
   var product = new Product({

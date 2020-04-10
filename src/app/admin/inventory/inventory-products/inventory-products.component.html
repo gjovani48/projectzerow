@@ -1,0 +1,113 @@
+
+
+
+<main class="py-5">  
+
+    <div class="btn-group-sm" role="group" aria-label="Basic example">
+        <button mdbBtn type="button" [class.disabled]="listView==false" [class.enabled]="listView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=true; listView=false"><mdb-icon fas icon="th"></mdb-icon></button>
+        <button mdbBtn type="button" [class.disabled]="gridView==false" [class.enabled]="gridView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=false; listView=true"><mdb-icon fas icon="th-list"></mdb-icon></button>
+    </div>
+
+    
+
+    <br>
+    <br>
+
+    <mat-form-field>
+        <mat-label>Category</mat-label>
+
+        <mat-select [formControl]="category" multiple>
+          <mat-select-trigger>
+            {{category.value ? category.value[0].name : ''}}
+            <span *ngIf="category.value?.length > 1" class="example-additional-selection">
+              (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let cat of categoryList" [value]="cat">{{cat.name}}</mat-option>
+        </mat-select>
+
+      </mat-form-field>
+
+      <button mdbBtn color="light" size="sm" class="waves-light" mdbWavesEffect (click)="filterCategories()">
+        filter
+      </button>
+      
+    <div [class.d-block]="listView==true" [class.d-none]="listView==false" class="container-fluid">
+
+        <mat-form-field>
+            <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+        </mat-form-field>
+       
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 z-depth-0  animated fadeIn">
+
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef > Name </th>
+                <td mat-cell *matCellDef="let element"> <img style="width:120px; height:60px;" height="60px" class="img-fluid" src="assets/images/{{element.image}}"></td>
+                </ng-container>
+        
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="price">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+                  <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                </ng-container>
+              
+              
+                <tr class="animated fadeIn" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr class="animated fadeIn" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+          </table>
+    
+          
+            <mat-paginator [length]="length"
+                            [pageSize]="pageSize"
+                            [pageSizeOptions]="pageSizeOptions"
+                            (page)="pageEvent = $event"
+                            showFirstLastButtons>
+            </mat-paginator>
+    </div> 
+      
+      
+    <div [class.d-block]="gridView==true" [class.d-none]="gridView==false" class="container-fluid">
+        
+
+        <mat-form-field>
+            <input matInput type="text" [(ngModel)]="productsFilter.name" placeholder="Search">
+        </mat-form-field>
+
+        <div class="row col-lg-12 col-12 col-sm-12 pt-5">
+            
+            <div class="col-lg-4 mb-2 animated flipInX" *ngFor="let row of products| filterBy: productsFilter | paginate: { itemsPerPage: 12, currentPage: p }">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row col-sm-12">
+                            <div class="col-sm-6">
+                                <img style="width:120px; height:60px;" height="60px" class="img-fluid" src="assets/images/{{row.image}}">
+                            </div>
+                            <div class="col-sm-6 container-fluid">
+                                <strong *ngIf="row.name.length>15; else elseBlock"><p style="font-size: 0.6rem">{{row.name.substr(0, 17)}}...</p></strong>
+                               
+                                <ng-template #elseBlock><strong><p style="font-size: 0.6rem">{{row.name.substr(0, 17)}}</p></strong></ng-template>
+                            </div>
+                            
+                        </div>
+                        <p style="font-size: 0.8rem" class="text-dark text-small float-right">Price: {{row.price}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+        </div>
+        <div class="row waves-light mt-3 border-top" mdbWavesEffect>
+            <div class="p-3">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</main>
