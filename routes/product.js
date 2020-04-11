@@ -3,6 +3,51 @@ const router = new express.Router()
 const Product = require('../model/product')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
+const path = require('path');
+const multer = require('multer');
+
+
+const DIR = './src/assets/images';
+
+var file_name ;
+
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    
+    file_name = file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+
+    cb(null, file_name);
+  }
+});
+
+let upload = multer({storage: storage});
+
+// router.use(function (req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+//   res.setHeader('Access-Control-Allow-Methods', 'POST');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
+
+
+router.post('/upload',upload.single('file'), function (req, res) {
+  if (!req.file) {
+      console.log("Your request doesn’t have any file");
+      return res.send({
+        success: false
+      });
+  
+    } else {
+      console.log('Your file has been received successfully');
+      return res.json({
+        success: file_name
+      })
+    }
+});
 
 // Get All Products
 router.get('/', (req,res) => {

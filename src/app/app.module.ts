@@ -17,7 +17,11 @@ import {SidenavModule} from 'angular-ng-sidenav';
 
 import {MatTableModule,MatSortModule,
         MatPaginatorModule,MatFormFieldModule,
-        MatInputModule,MatSelectModule} from '@angular/material';
+        MatInputModule,MatSelectModule,
+        MatCardModule,MatSnackBarModule} from '@angular/material';
+
+
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 import {AuthGuardService} from './auth-guard.service'
@@ -29,6 +33,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { InventoryIndexComponent } from './admin/inventory/inventory-index/inventory-index.component';
 import { InventoryProductsComponent } from './admin/inventory/inventory-products/inventory-products.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductCreateComponent } from './admin/forms/product-create/product-create.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminHomeComponent,
     InventoryIndexComponent,
     InventoryProductsComponent,
+    ProductCreateComponent,
   ],
   imports: [
     HttpClientModule,
@@ -56,12 +62,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
+    FileUploadModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatCardModule,
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

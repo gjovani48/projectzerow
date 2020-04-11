@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {InventoryProductsComponent} from '../inventory-products/inventory-products.component';
 import { UserService, UserDetails} from '../../../services/user.service';
 import {Router} from '@angular/router';
 
