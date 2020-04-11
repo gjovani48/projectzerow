@@ -40,6 +40,7 @@ export class ProductCreateComponent implements OnInit {
   categoryList = [];
   product: Product[];
 
+  img:string;
 
   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -48,14 +49,29 @@ export class ProductCreateComponent implements OnInit {
           let file_name = JSON.parse(response);
 
          this.productForm.patchValue({
-          image: file_name.success,
+          image: file_name.success.toString(),
         });
 
-        alert(file_name.success)
+        // this.img = file_name.success.toString();
+
+        // console.log(this.img.toString());
     };
     this.getCategories();
   }
 
+  name = 'Angular 4';
+  url;
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = reader.result;
+      }
+    }
+  }
 
   getCategories(){
     this.categoryService.getCategories().subscribe(
@@ -69,12 +85,15 @@ export class ProductCreateComponent implements OnInit {
   }
 
   addProduct(){
+    this.uploader.uploadAll();
+
     this.productService.addProduct(this.productForm.value).subscribe((response)=>{
       console.log(this.productForm.value)
       this.openSnackBar(response.msg,'dismis');
       console.log(this.productForm.value)
     })
   }
+
 
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {

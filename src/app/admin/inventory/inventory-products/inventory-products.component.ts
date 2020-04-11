@@ -5,6 +5,8 @@ import {CategoryService} from '../../../services/category.service'
 import {Router} from '@angular/router';
 import {Product} from '../../../models/product';
 
+
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormControl} from '@angular/forms';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource,MatPaginator} from '@angular/material';
@@ -25,14 +27,14 @@ export class InventoryProductsComponent implements OnInit {
   public gridView = false;
   public listView = true;
 
-  displayedColumns: string[] = ['image','name', 'price'];
+  displayedColumns: string[] = ['image','name', 'price','action'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
   // dtOptions: DataTables.Settings = {};
 
-  constructor(private userService: UserService,private router: Router,private productService: ProductService, private categoryService: CategoryService) { }
+  constructor(private _snackBar: MatSnackBar,private userService: UserService,private router: Router,private productService: ProductService, private categoryService: CategoryService) { }
 
   isAdmin : boolean;
   products = [];
@@ -135,6 +137,20 @@ export class InventoryProductsComponent implements OnInit {
     }
 
     
+  }
+
+  deleteProducts(id){
+
+    this.productService.deleteProduct(id).subscribe((response)=>{
+      this.openSnackBar(response.msg,'dismis');
+    })
+
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

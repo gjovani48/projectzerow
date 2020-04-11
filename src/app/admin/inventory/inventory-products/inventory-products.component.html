@@ -3,25 +3,27 @@
 
 <main class="py-5">  
 
-    <div class="btn-group-sm" role="group" aria-label="Basic example">
-        <button mdbBtn type="button" [class.disabled]="listView==false" [class.enabled]="listView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=true; listView=false"><mdb-icon fas icon="th"></mdb-icon></button>
-        <button mdbBtn type="button" [class.disabled]="gridView==false" [class.enabled]="gridView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=false; listView=true"><mdb-icon fas icon="th-list"></mdb-icon></button>
+    <div class="row">
+        <div class="btn-group-sm" role="group" aria-label="Basic example">
+            <button mdbBtn type="button" [class.disabled]="listView==false" [class.enabled]="listView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=true; listView=false"><mdb-icon fas icon="th"></mdb-icon></button>
+            <button mdbBtn type="button" [class.disabled]="gridView==false" [class.enabled]="gridView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=false; listView=true"><mdb-icon fas icon="th-list"></mdb-icon></button>
+        </div>
+    
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+    
+            <mat-select [formControl]="category" multiple>
+              <mat-select-trigger>
+                {{category.value ? category.value[0].name : ''}}
+                <span *ngIf="category.value?.length > 1" class="example-additional-selection">
+                  (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let cat of categoryList" [value]="cat">{{cat.name}}</mat-option>
+            </mat-select>
+    
+          </mat-form-field>
     </div>
-
-    <mat-form-field>
-        <mat-label>Category</mat-label>
-
-        <mat-select [formControl]="category" multiple>
-          <mat-select-trigger>
-            {{category.value ? category.value[0].name : ''}}
-            <span *ngIf="category.value?.length > 1" class="example-additional-selection">
-              (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
-            </span>
-          </mat-select-trigger>
-          <mat-option *ngFor="let cat of categoryList" [value]="cat">{{cat.name}}</mat-option>
-        </mat-select>
-
-      </mat-form-field>
 
       <button mdbBtn color="light" size="sm" class="waves-light" mdbWavesEffect (click)="filterCategories()">
         filter
@@ -51,6 +53,11 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
                   <td mat-cell *matCellDef="let element"> {{element.price}} </td>
                 </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element"> <button (click)="deleteProducts(element._id)">delete</button> </td>
+                  </ng-container>
               
               
                 <tr class="animated fadeIn" mat-header-row *matHeaderRowDef="displayedColumns"></tr>

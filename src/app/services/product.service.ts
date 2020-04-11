@@ -55,8 +55,8 @@ export class ProductService {
 	}
 
 	// Delete Product
-	deleteProduct(id): Observable<Product> {
-		return this.http.delete<Product>(
+	deleteProduct(id): Observable<any> {
+		return this.http.delete<any>(
 			this.url + "/product/" + id
 		)
 	}

@@ -17,7 +17,7 @@ let storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     
-    file_name = file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+    file_name = "prod_"+Date.now()+"_pzw"+ path.extname(file.originalname)
 
     cb(null, file_name);
   }
@@ -92,11 +92,12 @@ router.post('/', urlEncoded,(req,res) => {
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
-      image:  req.body.image,
+      image:  file_name,
   })
 
   product.save( (err) => {
       if(err) res.json({msg:"Invalid Request"})
+      console.log(product);
       res.json({msg:"Category Added"})
   })
 })
