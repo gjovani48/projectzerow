@@ -86,7 +86,6 @@ export class ProductCreateComponent implements OnInit {
 
   addProduct(){
     this.uploader.uploadAll();
-
     this.productService.addProduct(this.productForm.value).subscribe((response)=>{
       console.log(this.productForm.value)
       this.openSnackBar(response.msg,'dismis');

@@ -18,10 +18,11 @@ import {SidenavModule} from 'angular-ng-sidenav';
 import {MatTableModule,MatSortModule,
         MatPaginatorModule,MatFormFieldModule,
         MatInputModule,MatSelectModule,
-        MatCardModule,MatSnackBarModule} from '@angular/material';
+        MatCardModule,MatSnackBarModule,MatDialogModule} from '@angular/material';
 
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { NgxImgZoomModule } from 'ngx-img-zoom';
 
 
 import {AuthGuardService} from './auth-guard.service'
@@ -32,6 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { InventoryIndexComponent } from './admin/inventory/inventory-index/inventory-index.component';
 import { InventoryProductsComponent } from './admin/inventory/inventory-products/inventory-products.component';
+import {ProductDialog} from './admin/inventory/inventory-products/product-dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCreateComponent } from './admin/forms/product-create/product-create.component';
 
@@ -48,7 +50,9 @@ import { ProductCreateComponent } from './admin/forms/product-create/product-cre
     InventoryIndexComponent,
     InventoryProductsComponent,
     ProductCreateComponent,
+    ProductDialog,
   ],
+  entryComponents: [ProductDialog],
   imports: [
     HttpClientModule,
     NgxPaginationModule,
@@ -63,6 +67,7 @@ import { ProductCreateComponent } from './admin/forms/product-create/product-cre
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     FileUploadModule,
+    NgxImgZoomModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
@@ -70,7 +75,8 @@ import { ProductCreateComponent } from './admin/forms/product-create/product-cre
     MatInputModule,
     MatCardModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

@@ -5,7 +5,11 @@ import {CategoryService} from '../../../services/category.service'
 import {Router} from '@angular/router';
 import {Product} from '../../../models/product';
 
+import {ProductDialog} from './product-dialog';
+import { NgxImgZoomService } from 'ngx-img-zoom';
 
+
+import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormControl} from '@angular/forms';
 import {MatSort} from '@angular/material/sort';
@@ -19,7 +23,7 @@ import {PageEvent} from '@angular/material/paginator';
   styleUrls: ['./inventory-products.component.scss']
 })
 
-export class InventoryProductsComponent implements OnInit {
+export class InventoryProductsComponent implements OnInit {  
 
   category = new FormControl();
   categoryList = [];
@@ -34,7 +38,12 @@ export class InventoryProductsComponent implements OnInit {
 
   // dtOptions: DataTables.Settings = {};
 
-  constructor(private _snackBar: MatSnackBar,private userService: UserService,private router: Router,private productService: ProductService, private categoryService: CategoryService) { }
+  constructor(private ngxImgZoom: NgxImgZoomService,
+              private _snackBar: MatSnackBar,private userService: UserService,
+              private router: Router,private productService: ProductService, 
+              private categoryService: CategoryService,public dialog: MatDialog) { 
+    this.ngxImgZoom.setZoomBreakPoints([{w: 100, h: 100}, {w: 150, h: 150}, {w: 200, h: 200}, {w: 250, h: 250}, {w: 300, h: 300}]);
+  }
 
   isAdmin : boolean;
   products = [];
@@ -42,6 +51,7 @@ export class InventoryProductsComponent implements OnInit {
   productsFilter: any = { name: ''};
   p: number = 1;
 
+  
   
   //Price Filetr variables
   public priceA: Number = 0;
@@ -76,6 +86,25 @@ export class InventoryProductsComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     })
+  }
+
+  openProductDialog(product) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+        id: 1,
+        name: product
+    };
+
+    const dialogRef = this.dialog.open(ProductDialog,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   applyFilter(filterValue: string){

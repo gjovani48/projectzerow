@@ -174,7 +174,7 @@ router.post('/login', urlEncoded, (req,res)=>{
                     email: user.email
                 }
                 let token = jwt.sign(payload, process.env.SECRET_KEY,{
-                    expiresIn: 1440
+                    expiresIn: 10440
                 })
 
                 res.json({token: token})

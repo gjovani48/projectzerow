@@ -3,31 +3,56 @@
 
 <main class="py-5">  
 
-    <div class="row">
-        <div class="btn-group-sm" role="group" aria-label="Basic example">
-            <button mdbBtn type="button" [class.disabled]="listView==false" [class.enabled]="listView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=true; listView=false"><mdb-icon fas icon="th"></mdb-icon></button>
-            <button mdbBtn type="button" [class.disabled]="gridView==false" [class.enabled]="gridView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=false; listView=true"><mdb-icon fas icon="th-list"></mdb-icon></button>
-        </div>
-    
-        <mat-form-field>
-            <mat-label>Category</mat-label>
-    
-            <mat-select [formControl]="category" multiple>
-              <mat-select-trigger>
-                {{category.value ? category.value[0].name : ''}}
-                <span *ngIf="category.value?.length > 1" class="example-additional-selection">
-                  (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let cat of categoryList" [value]="cat">{{cat.name}}</mat-option>
-            </mat-select>
-    
-          </mat-form-field>
+  
+
+    <div class="row col-lg-12">
+
+      <div class="col-lg-4 pt-2">
+            <div class="btn-group-sm" role="group" aria-label="Basic example">
+                  <button mdbBtn type="button" [class.disabled]="listView==false" [class.enabled]="listView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=true; listView=false">
+                        <mdb-icon fas icon="th"></mdb-icon>
+                  </button>
+                  
+                  <button mdbBtn type="button" [class.disabled]="gridView==false" [class.enabled]="gridView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=false; listView=true"><mdb-icon fas icon="th-list"></mdb-icon>
+                  </button>
+            </div> 
+      </div>
+
+      
+
+      <div class="col-lg-4">
+            
+      </div>
+
+
+      <div class="col-lg-4">
+            <form class="ml-6">
+                  <mat-form-field>
+                        <mat-label>Category</mat-label>
+                
+                        <mat-select [formControl]="category" multiple>
+                          <mat-select-trigger>
+                            {{category.value ? category.value[0].name : ''}}
+                            <span *ngIf="category.value?.length > 1" class="example-additional-selection">
+                              (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
+                            </span>
+                          </mat-select-trigger>
+                          <mat-option *ngFor="let cat of categoryList" [value]="cat">{{cat.name}}</mat-option>
+                        </mat-select>
+          
+                  </mat-form-field>
+
+                  <button mdbBtn color="light" size="sm" class="waves-light" mdbWavesEffect (click)="filterCategories()">
+                    filter
+                  </button>
+            </form>
+      </div>  
+
+
     </div>
 
-      <button mdbBtn color="light" size="sm" class="waves-light" mdbWavesEffect (click)="filterCategories()">
-        filter
-      </button>
+      
+
       
     <div [class.d-block]="listView==true" [class.d-none]="listView==false" class="container-fluid">
 
@@ -35,10 +60,10 @@
             <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
         </mat-form-field>
        
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 z-depth-0  animated fadeIn">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z5">
 
             <ng-container matColumnDef="image">
-                <th mat-header-cell *matHeaderCellDef > Name </th>
+                <th mat-header-cell *matHeaderCellDef >Image</th>
                 <td mat-cell *matCellDef="let element"> <img style="width:120px; height:60px;" height="60px" class="img-fluid" src="assets/images/{{element.image}}"></td>
                 </ng-container>
         
@@ -55,13 +80,19 @@
                 </ng-container>
 
                 <ng-container matColumnDef="action">
-                    <th mat-header-cell *matHeaderCellDef> Action </th>
-                    <td mat-cell *matCellDef="let element"> <button (click)="deleteProducts(element._id)">delete</button> </td>
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> 
+                      <!-- <button (click)="deleteProducts(element._id)">delete</button> -->
+                      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                          <button (click)="openProductDialog(element)" mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon> View product information</button>
+                          <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon> Edit product information</button>
+                      </div>
+                     </td>
                   </ng-container>
               
               
-                <tr class="animated fadeIn" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr class="animated fadeIn" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr class="" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr class="" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     
           </table>
     
