@@ -8,7 +8,7 @@ const path = require('path');
 const multer = require('multer');
 
 
-const DIR = './src/assets/images';
+const DIR = './src/assets/img/category';
 
 var file_name ;
 
