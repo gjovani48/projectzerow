@@ -18,7 +18,7 @@ let storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     
-    file_name = "prod_"+Date.now()+"_pzw"+ path.extname(file.originalname)
+    file_name = "category_"+Date.now()+"_pzw"+ path.extname(file.originalname)
 
     cb(null, file_name);
   }

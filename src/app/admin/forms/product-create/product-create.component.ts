@@ -12,7 +12,7 @@ import {  FileUploader } from 'ng2-file-upload';
 
 //const uploadAPI = 'http://localhost:80/product/upload'; // better use a service class
 
-const uploadAPI = 'https://protected-escarpment-77600.herokuapp.com/category/upload';
+const uploadAPI = 'https://protected-escarpment-77600.herokuapp.com/product/upload';
 
 
 @Component({
