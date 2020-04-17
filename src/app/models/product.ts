@@ -5,5 +5,7 @@ export class Product {
     description: String
     price: Number
     image: String
+    quantity: Number
+    pzwpoints_req: Number
     created_at: Date
 }

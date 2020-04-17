@@ -10,7 +10,6 @@ import {ProfileComponent} from './profile/profile.component';
 import { AdminHomeComponent} from './admin/admin-home/admin-home.component';
 import { InventoryIndexComponent} from './admin/inventory/inventory-index/inventory-index.component';
 import { InventoryProductsComponent} from './admin/inventory/inventory-products/inventory-products.component';
-import { ProductCreateComponent } from './admin/forms/product-create/product-create.component';
 
 
 const routes: Routes = [
@@ -42,7 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'admin-home',
-    component:InventoryProductsComponent,
+    component:AdminHomeComponent,
     canActivate: [AuthGuardService]
   },
   {
@@ -53,11 +52,6 @@ const routes: Routes = [
   {
     path: 'inventory-products',
     component: InventoryProductsComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'inventory-products-create',
-    component: ProductCreateComponent,
     canActivate: [AuthGuardService]
   },
   {

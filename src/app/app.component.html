@@ -26,7 +26,7 @@
 </header>
 
 
-<mdb-navbar *ngIf="isAdmin" SideClass="navbar fixed-top navbar-expand-lg navbar-dark indigo scrolling-navbar intro-fixed-nav" [containerInside]="false">
+<mdb-navbar *ngIf="isAdmin" SideClass="navbar fixed-top navbar-expand-lg navbar-dark green accent-4 intro-fixed-nav" [containerInside]="false">
     <mdb-navbar-brand>
       
       <span class="mr-3" (click)="toggleSidenav()">
@@ -73,16 +73,16 @@
     [expanded]="isExpanded"
     [drawerState]="state"
     [drawerWidth]="'250px'"
-    [drawerWidthCollapsed]="'40px'"
-    [color]="'#eceff1'">
+    [drawerWidthCollapsed]="'0px'"
+    [color]="'#263238'">
 
     
   
-    <div *ngIf="isExpanded" class="animated fadeIn text-center" style="background-color:#eceff1; margin-top: 70px;"> 
+    <div *ngIf="isExpanded" class="animated fadeIn text-center" style="background-color:#263238; margin-top: 70px;"> 
       <a href="#home" class="logo text-light" style="font-size: 20px; font-weight: bold;">Project <i class="fas fa-recycle animated rotateOut slower infinite"></i> <span class="headerlogo" style="font-size: 20px; font-weight: bold;"> Zero</span></a>
     </div>
 
-    <div style="background-color:#eceff1; margin-top: 200px;">
+    <div style="background-color:#263238; margin-top: 200px;">
        
       <ul *ngIf="isExpanded" class="animated fadeIn">
         <li><a class="nav-link" routerLink="/admin-home">Dashboard</a></li>

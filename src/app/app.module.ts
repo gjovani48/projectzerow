@@ -18,7 +18,8 @@ import {SidenavModule} from 'angular-ng-sidenav';
 import {MatTableModule,MatSortModule,
         MatPaginatorModule,MatFormFieldModule,
         MatInputModule,MatSelectModule,
-        MatCardModule,MatSnackBarModule,MatDialogModule} from '@angular/material';
+        MatCardModule,MatSnackBarModule,
+        MatDialogModule,MatTabsModule} from '@angular/material';
 
 
 import { FileUploadModule } from 'ng2-file-upload';
@@ -36,6 +37,7 @@ import { InventoryProductsComponent } from './admin/inventory/inventory-products
 import {ProductDialog} from './admin/inventory/inventory-products/product-dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCreateComponent } from './admin/forms/product-create/product-create.component';
+import { InventoryCategoryComponent } from './admin/inventory/inventory-category/inventory-category.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { ProductCreateComponent } from './admin/forms/product-create/product-cre
     InventoryProductsComponent,
     ProductCreateComponent,
     ProductDialog,
+    InventoryCategoryComponent,
   ],
   entryComponents: [ProductDialog],
   imports: [
@@ -77,6 +80,7 @@ import { ProductCreateComponent } from './admin/forms/product-create/product-cre
     MatSelectModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTabsModule,
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

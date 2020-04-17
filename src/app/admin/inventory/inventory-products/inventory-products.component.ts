@@ -31,7 +31,7 @@ export class InventoryProductsComponent implements OnInit {
   public gridView = false;
   public listView = true;
 
-  displayedColumns: string[] = ['image','name', 'price','action'];
+  displayedColumns: string[] = ['No.','image','name', 'price','action'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -41,9 +41,7 @@ export class InventoryProductsComponent implements OnInit {
   constructor(private ngxImgZoom: NgxImgZoomService,
               private _snackBar: MatSnackBar,private userService: UserService,
               private router: Router,private productService: ProductService, 
-              private categoryService: CategoryService,public dialog: MatDialog) { 
-    this.ngxImgZoom.setZoomBreakPoints([{w: 100, h: 100}, {w: 150, h: 150}, {w: 200, h: 200}, {w: 250, h: 250}, {w: 300, h: 300}]);
-  }
+              private categoryService: CategoryService,public dialog: MatDialog) { }
 
   isAdmin : boolean;
   products = [];

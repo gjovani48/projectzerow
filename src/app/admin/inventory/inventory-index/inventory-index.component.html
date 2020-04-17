@@ -1,12 +1,17 @@
 <main class="py-5">
-    <div class="container-fluid green" style="height:1500px;">
-        <div class="row pt-5">
-            <a class="nav-link" routerLink="/inventory-products">Products</a>
-            <a class="nav-link" routerLink="/inventory-products-create">Create New</a>
-        </div>
+    <div class="container">
+
+    	<mat-tab-group>
+		  <mat-tab label="Products ">
+		  	<app-inventory-products></app-inventory-products>
+		  </mat-tab>
+		  <mat-tab label="Category"> <app-inventory-category></app-inventory-category> </mat-tab>
+		  <mat-tab label="Third"> Content 3 </mat-tab>
+		</mat-tab-group>
+        
     </div>
 
-    <app-inventory-products></app-inventory-products>
+    
 
 </main>
 

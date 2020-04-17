@@ -58,6 +58,16 @@ router.get('/', (req,res) => {
 })
 
 
+// router.get('/qty_add', (req,res) => {
+//     Product.updateMany({category_id:"5e585e3fcbd1ba001710412c"},{$set:{pzwpoints_req:99}},(err) => {
+//         if(err) res.json({msg:"Invalid Request"})
+//         res.json([{msg:"quantity Updated"}])
+//     })
+// })
+
+
+
+
 
 // router.get('/',(req,res)=>{
 //   Product.find({},(err,data)=>{
@@ -93,6 +103,8 @@ router.post('/', urlEncoded,(req,res) => {
       description: req.body.description,
       price: req.body.price,
       image:  file_name,
+      quantity: req.body.quantity,
+      pzwpoints_req: req.body.pzwpoints_req,
   })
 
   product.save( (err) => {
@@ -111,7 +123,7 @@ router.post('/productseeder', urlEncoded,(req,res) => {
   //     price: req.body.price,
   //     image:  req.body.image,
   // })
-  products = [
+ products = [
 
     {
       category_id: "5e575c6b7ab1f500178dc72f",
@@ -1272,6 +1284,8 @@ router.put('/:id', urlEncoded, (req,res) => {
         description: req.body.description,
         price: req.body.lapricestname,
         image:  req.body.image,
+        quantity: req.body.quantity,
+        pzwpoints_req: req.body.pzwpoints_req,
     },(err) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json([{msg:"Product Updated"}])

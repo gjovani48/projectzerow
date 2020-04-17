@@ -30,6 +30,14 @@ const Product = mongoose.model('product', {
         type: Number,
         require: true
     },
+    quantity:{
+        type: Number,
+        require: false
+    },
+    pzwpoints_req:{
+        type: Number,
+        require: false
+    },
     image: {
         type: String,
         require: true
