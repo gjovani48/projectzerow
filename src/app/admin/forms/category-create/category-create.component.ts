@@ -12,45 +12,35 @@ import {  FileUploader } from 'ng2-file-upload';
 
 //const uploadAPI = 'http://localhost:80/product/upload'; // better use a service class
 
-const uploadAPI = 'https://protected-escarpment-77600.herokuapp.com/category/upload';
-
+const uploadAPI = 'https://protected-escarpment-77600.herokuapp.com/product/upload';
 
 @Component({
-  selector: 'app-product-create',
-  templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.scss']
+  selector: 'app-category-create',
+  templateUrl: './category-create.component.html',
+  styleUrls: ['./category-create.component.scss']
 })
-export class ProductCreateComponent implements OnInit {
-
-  public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
+export class CategoryCreateComponent implements OnInit {
 
   constructor(private userService: UserService,
               private router: Router,
               private productService: ProductService, 
               private categoryService: CategoryService,private _snackBar: MatSnackBar){ }
 
-  productForm = new FormGroup({
+  categoryForm = new FormGroup({
     name : new FormControl(),
     description : new FormControl(),
-    price : new FormControl(),
     image : new FormControl(),
-    quantity : new FormControl(),
-    pzwpoints_req : new FormControl(0),
-    category_id : new FormControl(),
   });
 
-  categoryList = [];
-  product: Product[];
+  public uploader: FileUploader = new FileUploader({ url: uploadAPI, itemAlias: 'file' });
 
-  img:string;
-
-  ngOnInit() {
+   ngOnInit() {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
           console.log('FileUpload:uploaded successfully:', item, status, response);
           let file_name = JSON.parse(response);
 
-         this.productForm.patchValue({
+         this.categoryForm.patchValue({
           image: file_name.success.toString(),
         });
 
@@ -58,13 +48,34 @@ export class ProductCreateComponent implements OnInit {
 
         // console.log(this.img.toString());
     };
-    this.getCategories();
+
     this.getProfile();
+
   }
 
-  name = 'Angular 4';
-  url;
-  onSelectFile(event) {
+  	isAdmin : boolean;
+
+	getProfile(){
+	    this.userService.profile().subscribe(
+	      user=>{
+	        this.isAdmin = user.is_admin;
+	        
+	        if(this.isAdmin!=true){
+	          this.router.navigateByUrl('/home');
+	        }
+	        
+	      },
+	      err=>{
+	        console.log(err);
+	        // this.router.navigateByUrl('/login');
+	      }
+	    )
+
+	}
+
+	url;
+
+onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
@@ -76,51 +87,19 @@ export class ProductCreateComponent implements OnInit {
     }
   }
 
-  getCategories(){
-    this.categoryService.getCategories().subscribe(
-      resonse=>{
-        this.categoryList = resonse;
-      },
-      err=>{
-        console.log(err);
-      }
-    )
-  }
-
-  addProduct(){
+addCategory(){
     this.uploader.uploadAll();
-    this.productService.addProduct(this.productForm.value).subscribe((response)=>{
-      console.log(this.productForm.value)
+    this.categoryService.addCategory(this.categoryForm.value).subscribe((response)=>{
+      console.log(this.categoryForm.value)
       this.openSnackBar(response.msg,'dismis');
-      console.log(this.productForm.value)
+      console.log(this.categoryForm.value)
     })
   }
 
-
-  openSnackBar(message: string, action: string) {
+ openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
   }
-
-  isAdmin : boolean;
-
-getProfile(){
-    this.userService.profile().subscribe(
-      user=>{
-        this.isAdmin = user.is_admin;
-        
-        if(this.isAdmin!=true){
-          this.router.navigateByUrl('/home');
-        }
-        
-      },
-      err=>{
-        console.log(err);
-        // this.router.navigateByUrl('/login');
-      }
-    )
-
-}
 
 }

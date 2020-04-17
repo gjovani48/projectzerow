@@ -31,7 +31,7 @@ export class InventoryProductsComponent implements OnInit {
   public gridView = false;
   public listView = true;
 
-  displayedColumns: string[] = ['No.','image','name', 'price','action'];
+  displayedColumns: string[] = ['No.','image','name', 'price','quantity','action'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -78,6 +78,8 @@ export class InventoryProductsComponent implements OnInit {
     this.productService.getProducts().subscribe((response) => {
       this.products = response;
       this.productsCarouselItem = response;
+
+      console.log(response);
 
       this.dataSource = new MatTableDataSource(this.products);
 

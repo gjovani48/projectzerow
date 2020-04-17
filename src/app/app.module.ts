@@ -38,6 +38,7 @@ import {ProductDialog} from './admin/inventory/inventory-products/product-dialog
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCreateComponent } from './admin/forms/product-create/product-create.component';
 import { InventoryCategoryComponent } from './admin/inventory/inventory-category/inventory-category.component';
+import { CategoryCreateComponent } from './admin/forms/category-create/category-create.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { InventoryCategoryComponent } from './admin/inventory/inventory-category
     ProductCreateComponent,
     ProductDialog,
     InventoryCategoryComponent,
+    CategoryCreateComponent,
   ],
   entryComponents: [ProductDialog],
   imports: [

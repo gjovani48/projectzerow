@@ -7,9 +7,11 @@ import {LoginComponent} from './login/login.component';
 import {ProductlistComponent} from './productlist/productlist.component';
 import {AuthGuardService} from './services/auth-guard.service';
 import {ProfileComponent} from './profile/profile.component';
-import { AdminHomeComponent} from './admin/admin-home/admin-home.component';
-import { InventoryIndexComponent} from './admin/inventory/inventory-index/inventory-index.component';
-import { InventoryProductsComponent} from './admin/inventory/inventory-products/inventory-products.component';
+import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
+import {InventoryIndexComponent} from './admin/inventory/inventory-index/inventory-index.component';
+import {InventoryProductsComponent} from './admin/inventory/inventory-products/inventory-products.component';
+import {ProductCreateComponent} from './admin/forms/product-create/product-create.component';
+import {CategoryCreateComponent} from './admin/forms/category-create/category-create.component';
 
 
 const routes: Routes = [
@@ -52,6 +54,16 @@ const routes: Routes = [
   {
     path: 'inventory-products',
     component: InventoryProductsComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'inventory-products-create',
+    component: ProductCreateComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'inventory-category-create',
+    component: CategoryCreateComponent,
     canActivate: [AuthGuardService]
   },
   {
