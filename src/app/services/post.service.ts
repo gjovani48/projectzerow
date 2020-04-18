@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient,HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Post } from '../models/post'
 import { HTTPConfig } from '../services/config.service'
+
 
 @Injectable({
 	providedIn: 'root'
@@ -12,8 +13,9 @@ export class PostService {
 
 	constructor(private http: HttpClient, private httpconfig: HTTPConfig) { }
 
-	private url = this.httpconfig.getURL()
-  	private headers = this.httpconfig.getHeaders()
+	private url:string = "https://protected-escarpment-77600.herokuapp.com"
+    //private url:string = "http://localhost:80"
+  	private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
 
 	// Get All Posts

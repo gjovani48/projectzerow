@@ -20,6 +20,7 @@ const cart = require('./routes/cart')
 const sale = require('./routes/sale')
 const redeemable = require('./routes/redeemable')
 const redeem = require('./routes/redeem')
+const post = require('./routes/post')
 
 app.use('/user', user)
 app.use('/product', product)
@@ -28,6 +29,7 @@ app.use('/cart', cart)
 app.use('/sale', sale)
 app.use('/redeemable', redeemable)
 app.use('/redeem', redeem)
+app.use('/post', post)
 
 const PORT = process.env.PORT||80
 

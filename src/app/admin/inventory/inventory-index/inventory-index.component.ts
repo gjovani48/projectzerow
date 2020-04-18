@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {InventoryProductsComponent} from '../inventory-products/inventory-products.component';
 import {InventoryCategoryComponent} from '../inventory-category/inventory-category.component';
+import {InventoryRedeemableComponent} from '../inventory-redeemable/inventory-redeemable.component';
 import { UserService, UserDetails} from '../../../services/user.service';
 import {Router} from '@angular/router';
 

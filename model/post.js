@@ -6,6 +6,7 @@ try{
 catch (err) {
  handleError(err);
 }
+
 const Post = mongoose.model('post', {
 
     author:{

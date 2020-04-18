@@ -19,6 +19,10 @@
           
       </div> -->
 
+      <div class="col-lg-4">
+            
+      </div> 
+
       <div class="col-lg-4 text-center">
           <!-- //table view -->
             <mat-form-field [class.d-block]="listView==true" [class.d-none]="listView==false">
@@ -30,31 +34,7 @@
             <mat-form-field [class.d-block]="gridView==true" [class.d-none]="gridView==false">
               <input matInput type="text" [(ngModel)]="productsFilter.name" placeholder="Search">
           </mat-form-field>
-      </div>
-
-
-      <div class="col-lg-4">
-            <form class="">
-                  <mat-form-field >
-                        <mat-label>Category</mat-label>
-                
-                        <mat-select [formControl]="category" multiple>
-                          <mat-select-trigger>
-                            {{category.value ? category.value[0].name : ''}}
-                            <span *ngIf="category.value?.length > 1" class="example-additional-selection">
-                              (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                          </mat-select-trigger>
-                          <mat-option *ngFor="let cat of categoryList" [value]="cat">{{cat.name}}</mat-option>
-                        </mat-select>
-          
-                  </mat-form-field>
-
-                  <button style="font-size: .4rem" mdbBtn color="light" size="sm" class="input-group-prepend waves-light" mdbWavesEffect (click)="filterCategories()">
-                    <mdb-icon fas icon="filter"></mdb-icon> Filter
-                  </button>
-            </form>
-      </div>  
+      </div> 
 
 
     </div>
@@ -88,9 +68,9 @@
                 </ng-container>
               
                 <!-- Weight Column -->
-                <ng-container matColumnDef="price">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-                  <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                <ng-container matColumnDef="required points">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Points </th>
+                  <td mat-cell *matCellDef="let element"> {{element.pzwpoints_req}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="quantity">
@@ -146,7 +126,7 @@
                             </div>
                             
                         </div>
-                        <p style="font-size: 0.8rem" class="text-dark text-small float-right">Price: {{row.price}}</p>
+                        <p style="font-size: 0.8rem" class="text-dark text-small float-right">Required Points: {{row.pzwpoints_req}}</p>
                     </div>
                 </div>
             </div>
