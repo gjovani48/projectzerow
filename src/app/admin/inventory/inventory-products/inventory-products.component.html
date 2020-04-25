@@ -4,11 +4,11 @@
       <div class="col-lg-4 pt-3">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                   <button  style="font-size: .4rem" mdbBtn type="button text-sm" [class.disabled]="listView==false" [class.enabled]="listView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=true; listView=false">
-                  <mdb-icon fas icon="th-list"></mdb-icon> Grid View
+                  <mdb-icon fas icon="th"></mdb-icon> Grid View
                   </button>
                   
                   <button  style="font-size: .4rem" mdbBtn type="button text-sm" [class.disabled]="gridView==false" [class.enabled]="gridView==true" color="light" size="sm" class="waves-light" mdbWavesEffect (click)="gridView=false; listView=true">
-                  <mdb-icon fas icon="th"></mdb-icon> List View
+                  <mdb-icon fas icon="th-list"></mdb-icon> List View
                   </button>
 
                   <a  style="font-size: .4rem" mdbBtn color="light" size="sm" class="waves-light text-sm" routerLink="/inventory-products-create"><mdb-icon fas icon="plus-square"></mdb-icon> Create New</a>

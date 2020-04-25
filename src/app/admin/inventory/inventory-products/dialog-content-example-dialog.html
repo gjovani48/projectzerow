@@ -1,32 +1,65 @@
 <div class="animated fadeIn">
-  <strong>
-    <h5>{{name.name}}</h5>
-  </strong>
-
-<hr>
 
 <mat-dialog-content class="mat-typography">
 
-  <div class="row col-lg-12">
-    <div class="col-lg-4">
-      <div class="row col-lg-12">
-           <img src="assets/images/{{name.image}}" alt="thumbnail" class="img-thumbnail">
+  <mat-tab-group>
 
-      </div>
-     
-      <div class="row col-lg-12">
-          <p>P: {{name.price}}</p>
-      </div>
-    
-    </div>
+    <mat-tab label="First">
 
-    <div class="col-lg-8">
-      <p>{{name.description}}</p>
-    </div>
-    
-  </div>
+          <ng-template mat-tab-label>
+              <mdb-icon fas icon="tag"></mdb-icon>
+              <span class="ml-2">{{product.name}}</span>
+          </ng-template>
 
-  
+        <div class="row col-lg-12 mt-3">
+          <div class="col-lg-4">
+            <div class="row col-lg-12">
+                 <img (click)="updateStock()" src="assets/images/{{product.image}}" alt="thumbnail" class="img-thumbnail">
+
+            </div>
+          
+          </div>
+
+          <div class="col-lg-8">
+            <div class="row col-lg-12"> 
+              <blockquote class="blockquote bq-unique">
+                <p class="bq-title">Description</p>
+                <p>Price: {{product.price}}</p>
+                <p>Quantity: {{product.quantity}}</p>
+                <p>{{product.description}}</p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+
+    </mat-tab>
+
+    <mat-tab label="Edit Product Detail">
+        
+        <div class="row col-lg-12 mt-3">
+          <div class="col-lg-4">
+            <div class="row col-lg-12">
+                 <img src="assets/images/{{product.image}}" alt="thumbnail" class="img-thumbnail">
+            </div>
+          
+          </div>
+
+          <div class="col-lg-8">
+            <div class="row col-lg-12"> 
+              <blockquote class="blockquote bq-unique">
+                <p class="bq-title">Description</p>
+                <p>Price: {{product.price}}</p>
+                <p>Quantity: {{product.quantity}}</p>
+                <p>{{product.description}}</p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+    </mat-tab>
+
+  </mat-tab-group>
   
 </mat-dialog-content>
 <mat-dialog-actions align="end">

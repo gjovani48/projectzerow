@@ -1282,7 +1282,7 @@ router.put('/:id', urlEncoded, (req,res) => {
         category_id: req.body.category_id,
         name: req.body.name,
         description: req.body.description,
-        price: req.body.lapricestname,
+        price: req.body.price,
         image:  req.body.image,
         quantity: req.body.quantity,
         pzwpoints_req: req.body.pzwpoints_req,

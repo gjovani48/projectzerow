@@ -3,10 +3,30 @@
 
     	<mat-tab-group>
 		  <mat-tab label="Products ">
+		  	<ng-template mat-tab-label>
+	            <mdb-icon fas icon="boxes"></mdb-icon>
+	            <span class="ml-2">Products</span>
+	        </ng-template>
+
 		  	<app-inventory-products></app-inventory-products>
 		  </mat-tab>
-		  <mat-tab label="Category"> <app-inventory-category></app-inventory-category> </mat-tab>
-		  <mat-tab label="Redeemables"> <app-inventory-redeemable></app-inventory-redeemable> </mat-tab>
+		  <mat-tab label="Category"> 
+
+		  	<ng-template mat-tab-label>
+	            <mdb-icon fab icon="buffer"></mdb-icon>
+	            <span class="ml-2">Category</span>
+	        </ng-template>
+
+		  	<app-inventory-category></app-inventory-category> 
+
+		  </mat-tab>
+		  <mat-tab label="Redeemables"> 
+		  	<ng-template mat-tab-label>
+	            <mdb-icon fas icon="gift"></mdb-icon>
+	            <span class="ml-2">Redeemables</span>
+	        </ng-template>
+		  	<app-inventory-redeemable></app-inventory-redeemable> 
+		  </mat-tab>
 		</mat-tab-group>
         
     </div>
@@ -14,4 +34,5 @@
     
 
 </main>
+
 

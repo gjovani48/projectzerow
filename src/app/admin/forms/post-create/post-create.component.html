@@ -1,1 +1,16 @@
-<p>post-create works!</p>
+
+
+<main class="py-5">
+	<ckeditor [(ngModel)]="model.editorData"></ckeditor>
+    <div class="container">
+        <div class="row pt-5">
+           <!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
+           <div [innerHTML]="model.editorData"></div>
+        </div>
+    </div>
+
+
+
+    {{model.editorData}}
+</main>
+

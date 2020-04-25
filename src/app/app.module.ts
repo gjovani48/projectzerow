@@ -24,6 +24,9 @@ import {MatTableModule,MatSortModule,
 
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
+// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from 'ckeditor4-angular';
+
 
 
 import {AuthGuardService} from './auth-guard.service'
@@ -78,6 +81,7 @@ import { PostCreateComponent } from './admin/forms/post-create/post-create.compo
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule,
     FileUploadModule,
+    CKEditorModule,
     NgxImgZoomModule,
     MatTableModule,
     MatSortModule,
