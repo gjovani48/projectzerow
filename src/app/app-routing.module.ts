@@ -13,6 +13,7 @@ import {InventoryProductsComponent} from './admin/inventory/inventory-products/i
 import {ProductCreateComponent} from './admin/forms/product-create/product-create.component';
 import {CategoryCreateComponent} from './admin/forms/category-create/category-create.component';
 import {PostCreateComponent} from './admin/forms/post-create/post-create.component';
+import {PostComponent} from './admin/post/post.component';
 
 
 const routes: Routes = [
@@ -65,6 +66,11 @@ const routes: Routes = [
   {
     path: 'inventory-category-create',
     component: CategoryCreateComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'post',
+    component: PostComponent,
     canActivate: [AuthGuardService]
   },
   {

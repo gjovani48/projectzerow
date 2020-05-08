@@ -19,6 +19,7 @@ import {MatTableModule,MatSortModule,
         MatPaginatorModule,MatFormFieldModule,
         MatInputModule,MatSelectModule,
         MatCardModule,MatSnackBarModule,
+        MatButtonModule,
         MatDialogModule,MatTabsModule} from '@angular/material';
 
 
@@ -45,6 +46,7 @@ import { CategoryCreateComponent } from './admin/forms/category-create/category-
 import { InventoryRedeemableComponent } from './admin/inventory/inventory-redeemable/inventory-redeemable.component';
 import { PostComponent } from './admin/post/post.component';
 import { PostCreateComponent } from './admin/forms/post-create/post-create.component';
+import { ArticleListComponent } from './admin/post/article-list/article-list.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import { PostCreateComponent } from './admin/forms/post-create/post-create.compo
     InventoryRedeemableComponent,
     PostComponent,
     PostCreateComponent,
+    ArticleListComponent,
   ],
   entryComponents: [ProductDialog],
   imports: [

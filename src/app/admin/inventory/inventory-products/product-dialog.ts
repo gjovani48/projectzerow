@@ -7,10 +7,13 @@ import {Product} from '../../../models/product';
 @Component({
     selector: 'dialog-content-example-dialog',
     templateUrl: 'dialog-content-example-dialog.html',
+    styleUrls: ['./inventory-products.component.scss'],
   })
   export class ProductDialog{
 
     product:Product;
+
+    added_stock = 0;
 
 
   enableZoom: Boolean = true;
@@ -35,15 +38,15 @@ import {Product} from '../../../models/product';
 
       var edited_product = this.product;
 
-      if(confirm('Are you sure you want to add '+5+' stock to this item?')){
+      if(confirm('Are you sure you want to add '+this.added_stock+' stock to this item?')){
 
-        edited_product.quantity = parseInt(edited_product.quantity.toString())+7;
+        edited_product.quantity = parseInt(edited_product.quantity.toString())+this.added_stock;
         
 
         this.productService.updateProduct(edited_product).subscribe((response)=>{
 
-          alert(response.msg);
-
+          this.added_stock = 0;
+          
         })
 
       }

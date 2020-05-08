@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {PostCreateComponent} from '../forms/post-create/post-create.component';
+import {ArticleListComponent} from './article-list/article-list.component';
 
 @Component({
   selector: 'app-post',

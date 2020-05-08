@@ -11,7 +11,7 @@ const Post = mongoose.model('post', {
 
     author:{
         type: String,
-        require: true
+        require: false
     },
 
     title:{
@@ -26,12 +26,12 @@ const Post = mongoose.model('post', {
 
     image:{
         type: String,
-        require: true
+        require: false
     },
 
     media_url:{
         type: String,
-        require: true
+        require: false
     },
 
     date_posted:{

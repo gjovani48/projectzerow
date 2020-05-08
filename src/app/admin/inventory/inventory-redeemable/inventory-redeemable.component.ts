@@ -98,7 +98,7 @@ export class InventoryRedeemableComponent implements OnInit {
 
     dialogConfig.data = {
         id: 1,
-        name: product
+        product_info: product
     };
 
     const dialogRef = this.dialog.open(ProductDialog,dialogConfig);

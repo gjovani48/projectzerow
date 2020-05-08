@@ -4,14 +4,13 @@ import { Observable } from 'rxjs'
 import { Post } from '../models/post'
 import { HTTPConfig } from '../services/config.service'
 
-
 @Injectable({
 	providedIn: 'root'
 })
 
 export class PostService {
 
-	constructor(private http: HttpClient, private httpconfig: HTTPConfig) { }
+	constructor(private http: HttpClient) { }
 
 	private url:string = "https://protected-escarpment-77600.herokuapp.com"
     //private url:string = "http://localhost:80"

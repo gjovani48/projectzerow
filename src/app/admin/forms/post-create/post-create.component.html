@@ -1,6 +1,9 @@
-
-
 <main class="py-5">
+
+	<a routerLink="/post">
+		<mdb-icon fas icon="arrow-left"></mdb-icon>
+	</a> 
+
 	<ckeditor [(ngModel)]="model.editorData"></ckeditor>
     <div class="container">
         <div class="row pt-5">
@@ -8,9 +11,6 @@
            <div [innerHTML]="model.editorData"></div>
         </div>
     </div>
-
-
-
-    {{model.editorData}}
+    
 </main>
 

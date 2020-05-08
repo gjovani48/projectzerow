@@ -1,0 +1,8 @@
+<main class="py-5"> 
+	<a routerLink="/post-create">
+		create new
+	</a> 
+
+	<div *ngFor="let row of post" [innerHTML]="row.body"></div>
+
+</main>

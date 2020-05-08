@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 // import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
-
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
@@ -14,9 +13,10 @@ export class PostCreateComponent implements OnInit {
         editorData: '<p>Hello, world!</p>'
     };
 
-  constructor() { }
+  constructor(private loc: Location) { }
 
   ngOnInit() {
+    
   }
 
 }

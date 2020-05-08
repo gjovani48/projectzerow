@@ -14,7 +14,7 @@
         <div class="row col-lg-12 mt-3">
           <div class="col-lg-4">
             <div class="row col-lg-12">
-                 <img (click)="updateStock()" src="assets/images/{{product.image}}" alt="thumbnail" class="img-thumbnail">
+                 <img src="assets/images/{{product.image}}" alt="thumbnail" class="img-thumbnail">
 
             </div>
           
@@ -35,7 +35,7 @@
 
     </mat-tab>
 
-    <mat-tab label="Edit Product Detail">
+    <mat-tab label="Add stock">
         
         <div class="row col-lg-12 mt-3">
           <div class="col-lg-4">
@@ -46,13 +46,23 @@
           </div>
 
           <div class="col-lg-8">
-            <div class="row col-lg-12"> 
-              <blockquote class="blockquote bq-unique">
-                <p class="bq-title">Description</p>
-                <p>Price: {{product.price}}</p>
-                <p>Quantity: {{product.quantity}}</p>
-                <p>{{product.description}}</p>
-              </blockquote>
+            <div class="row col-lg-12">
+
+               <div class="mb-3 col-lg-12 mt-5">
+                  <p>Price: {{product.price}}</p>
+                  <p>Quantity: {{product.quantity}}</p>
+                  <hr>
+                  <mat-form-field style="width:100%" appearance="fill">
+                      <mat-label>Quantity</mat-label>
+                      <span matPrefix><i class="fas fa-plus-square"></i></span>
+                      <span matPrefix>&nbsp;</span>
+                      <input matInput type="number" [(ngModel)]="added_stock" class="example-right-align">
+                      <mat-hint align="end">Set quantity to be added</mat-hint>
+                  </mat-form-field>
+
+                  <button (click)="updateStock()" class="btn btn-success btn-sm">Add</button>
+
+                </div>
             </div>
           </div>
         </div>
