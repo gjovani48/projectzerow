@@ -25,6 +25,7 @@ router.post('/', urlEncoded,(req,res) => {
     var post = new Post({
         author: req.body.author,
         title: req.body.title,
+        brief_description: req.body.brief_description,
         body: req.body.body,
         image:  req.body.image,
         media_url: req.body.media_url
@@ -41,6 +42,7 @@ router.put('/:id', urlEncoded, (req,res) => {
     Post.updateOne({_id: req.params.id}, {
         author: req.body.author,
         title: req.body.title,
+        brief_description: req.body.brief_description,
         body: req.body.body,
         image:  req.body.image,
         media_url: req.body.media_url

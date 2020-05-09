@@ -1,16 +1,102 @@
 <main class="py-5">
 
-	<a routerLink="/post">
-		<mdb-icon fas icon="arrow-left"></mdb-icon>
-	</a> 
+  <div class="container-fluid">
+    
 
-	<ckeditor [(ngModel)]="model.editorData"></ckeditor>
-    <div class="container">
-        <div class="row pt-5">
-           <!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
-           <div [innerHTML]="model.editorData"></div>
-        </div>
-    </div>
+      <a routerLink="/post">
+        <mdb-icon fas icon="arrow-left"></mdb-icon>
+      </a> 
+
+      <div class="col-lg-12 ">
+
+            <div class="row">
+              
+                  <div class="col-lg-12 ">
+                        <div class="row ">
+
+                            <div class="col-lg-6">
+                                <div class="md-form input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text md-addon" id="material-addon1">
+                                        <mdb-icon fas icon="chalkboard-teacher"></mdb-icon>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Author" aria-label="Author" aria-describedby="material-addon1" [(ngModel)]="post_article.author">
+                                  </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="md-form input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text md-addon" id="material-addon1">
+                                        <mdb-icon fas icon="feather-alt"></mdb-icon>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Title" aria-label="Title" aria-describedby="material-addon1" [(ngModel)]="post_article.title">
+                                  </div>
+                            </div>
+
+                        </div>
+                  </div>
+
+                  <div class="col-lg-12 ">
+                      
+                        <div class="row ">
+
+                            <div class="col-lg-6">
+                                <div class="md-form input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text md-addon" id="material-addon1">
+                                        <mdb-icon far icon="file-image"></mdb-icon>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Image Url" aria-label="Image_Url" aria-describedby="material-addon1" [(ngModel)]="post_article.image">
+                                  </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="md-form input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text md-addon" id="material-addon1">
+                                        <mdb-icon fas icon="photo-video"></mdb-icon>
+                                      </span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Media Url (if any)" aria-label="Media_Url" aria-describedby="material-addon1" [(ngModel)]="post_article.media_url">
+                                  </div>
+                            </div>
+
+                        </div>
+
+                  </div>
+
+                  <div class="col-lg-12">
+                      
+                        <ckeditor [(ngModel)]="post_article.body"></ckeditor>
+                        <!-- {{post_article.author}}
+                        {{post_article.title}}
+                        {{post_article.image}}
+                        {{post_article.media_url}}
+
+      
+ -->
+
+                        
+
+                        <button mdbBtn type="button" color="default" outline="true" (click)="createpost()" mdbWavesEffect>Publish</button>
+
+                  </div>
+
+            </div>
+
+      </div>
+
+
+
+
+  </div>
     
 </main>
 
+
+
+  

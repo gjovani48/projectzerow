@@ -3,6 +3,24 @@
 		create new
 	</a> 
 
-	<div *ngFor="let row of post" [innerHTML]="row.body"></div>
+	<mat-accordion>
+	  
+	  <mat-expansion-panel *ngFor="let row of post">
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        {{row.title}}
+	      </mat-panel-title>
+	      <mat-panel-description>
+	        {{row.author}}
+	      </mat-panel-description>
+	    </mat-expansion-panel-header>
+
+
+	    <div class="container"  [innerHTML]="row.body"></div>
+	    
+	  </mat-expansion-panel>
+	
+	</mat-accordion>
+
 
 </main>

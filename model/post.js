@@ -19,9 +19,14 @@ const Post = mongoose.model('post', {
         require: true
     },
 
+    brief_description:{
+        type: String,
+        require: false
+    },
+
     body:{
         type: String,
-        require: true
+        require: false
     },
 
     image:{

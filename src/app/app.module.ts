@@ -19,7 +19,7 @@ import {MatTableModule,MatSortModule,
         MatPaginatorModule,MatFormFieldModule,
         MatInputModule,MatSelectModule,
         MatCardModule,MatSnackBarModule,
-        MatButtonModule,
+        MatButtonModule,MatExpansionModule,
         MatDialogModule,MatTabsModule} from '@angular/material';
 
 
@@ -27,6 +27,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { NgxImgZoomModule } from 'ngx-img-zoom';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 
@@ -96,6 +97,9 @@ import { ArticleListComponent } from './admin/post/article-list/article-list.com
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
+    MatExpansionModule,
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot(),
   ],
   providers: [AuthGuardService],
   bootstrap: [AppComponent]

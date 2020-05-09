@@ -26,6 +26,8 @@ export class ArticleListComponent implements OnInit {
 
   		this.post = res;
 
+      console.log(res)
+
   	})
 
   }
