@@ -15,6 +15,8 @@ export class AppComponent{
   title = 'projectzerow';
   details: UserDetails;
 
+  showFiller = false;
+
   message = "";
 
   credentials: TokenPayload = {

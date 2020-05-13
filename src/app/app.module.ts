@@ -20,6 +20,8 @@ import {MatTableModule,MatSortModule,
         MatInputModule,MatSelectModule,
         MatCardModule,MatSnackBarModule,
         MatButtonModule,MatExpansionModule,
+        MatSidenavModule, MatToolbarModule,MatIconModule,MatButtonToggleModule,
+        MatProgressBarModule,
         MatDialogModule,MatTabsModule} from '@angular/material';
 
 
@@ -48,6 +50,9 @@ import { InventoryRedeemableComponent } from './admin/inventory/inventory-redeem
 import { PostComponent } from './admin/post/post.component';
 import { PostCreateComponent } from './admin/forms/post-create/post-create.component';
 import { ArticleListComponent } from './admin/post/article-list/article-list.component';
+import { VideosComponent } from './admin/post/videos/videos.component';
+import { PosIndexComponent } from './admin/point-of-sale/pos-index/pos-index.component';
+import { UserIndexComponent } from './admin/users/user-index/user-index.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +74,9 @@ import { ArticleListComponent } from './admin/post/article-list/article-list.com
     PostComponent,
     PostCreateComponent,
     ArticleListComponent,
+    VideosComponent,
+    PosIndexComponent,
+    UserIndexComponent,
   ],
   entryComponents: [ProductDialog],
   imports: [
@@ -94,10 +102,16 @@ import { ArticleListComponent } from './admin/post/article-list/article-list.com
     MatInputModule,
     MatCardModule,
     MatSelectModule,
+    MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
+    MatSidenavModule,
+     MatToolbarModule,
+     MatProgressBarModule,
     MatExpansionModule,
+    MatButtonToggleModule,
+    MatButtonModule,
     FroalaEditorModule.forRoot(), 
     FroalaViewModule.forRoot(),
   ],

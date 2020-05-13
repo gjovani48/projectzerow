@@ -1,0 +1,47 @@
+<main class="py-5">
+
+	<div class="col-lg-12">
+
+		<div class="row">
+
+			<div class="col-lg-5 border">
+				<h1>sadjhakjdh</h1>
+			</div>
+
+			<div class="col-lg-7 border">
+
+				<mat-tab-group>
+
+					<mat-tab label="Products ">
+					  	<ng-template mat-tab-label>
+				            <mdb-icon fas icon="boxes"></mdb-icon>
+	            			<span class="ml-2">All</span>
+				        </ng-template>
+
+					  	<h2>All</h2>
+					  </mat-tab>
+
+					  <mat-tab *ngFor="let row of categories" label="Products ">
+					  	<ng-template mat-tab-label>
+				            <img style="width:120px; height:60px;" height="60px" class="img-fluid" src="assets/img/category/{{row.image}}">
+				            <span (click)="getProductsList(row)" class="ml-2">{{row.name}}</span>
+				        </ng-template>
+
+					  	<ul>
+					  		<li *ngFor="let product of categoryProducts">
+					  			{{product.name}}
+					  		</li>
+					  	</ul>
+
+					  </mat-tab>
+					  
+					</mat-tab-group>
+
+			</div>
+		</div>
+
+	</div>
+
+</main>
+
+

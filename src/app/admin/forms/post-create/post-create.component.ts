@@ -4,6 +4,9 @@ import {Post} from '../../../models/post';
 import {PostService} from '../../../services/post.service'
 
 // import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
@@ -38,19 +41,23 @@ export class PostCreateComponent implements OnInit {
     { name: 'about', items: [ 'About' ] }
   ];
 
-  constructor(private loc: Location,private postServices:PostService) { }
+  constructor(private loc: Location,private postServices:PostService, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   createpost(){
 
       this.postServices.addPost(this.post_article).subscribe((res)=>{
 
-        alert(res);
-        console.log(res);
+        this.openSnackBar(res.msg,'dismis');
 
       })
 

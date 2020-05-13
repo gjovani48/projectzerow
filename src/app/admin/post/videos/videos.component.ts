@@ -8,7 +8,7 @@ import {PageEvent} from "@angular/material";
 
 
 
- export interface PostItem {
+export interface PostItem {
     _id: any
     author: String
     title: String
@@ -18,18 +18,18 @@ import {PageEvent} from "@angular/material";
     media_url: String
 }
 
-
 @Component({
-  selector: 'app-article-list',
-  templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.scss']
+  selector: 'app-videos',
+  templateUrl: './videos.component.html',
+  styleUrls: ['./videos.component.scss']
 })
-export class ArticleListComponent implements OnInit {
+export class VideosComponent implements OnInit {
 
   constructor(private postServices: PostService,private changeDetectorRef: ChangeDetectorRef) { }
 
 
   public post:PostItem[];
+  public video = [];
 
 
   //Paginator
@@ -52,7 +52,19 @@ export class ArticleListComponent implements OnInit {
 
   	this.postServices.getPosts().subscribe((res)=>{
 
-  		this.post = res;
+  	 console.log(res)
+
+  	  res.forEach((item,index)=>{
+
+  	  		if(item.media_url){
+  	  			this.video.push(item)
+  	  		}
+
+  	  })
+
+  	  console.log(this.video)
+  	  this.post = this.video;
+
       this.dataSource = new MatTableDataSource<PostItem>(this.post);
       this.changeDetectorRef.detectChanges();
       this.dataSource.paginator = this.paginator;
@@ -62,9 +74,7 @@ export class ArticleListComponent implements OnInit {
 
   }
 
-   applyFilter(filterValue: string){
+  applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
-
-
 }

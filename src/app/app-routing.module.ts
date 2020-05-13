@@ -14,6 +14,8 @@ import {ProductCreateComponent} from './admin/forms/product-create/product-creat
 import {CategoryCreateComponent} from './admin/forms/category-create/category-create.component';
 import {PostCreateComponent} from './admin/forms/post-create/post-create.component';
 import {PostComponent} from './admin/post/post.component';
+import {PosIndexComponent} from './admin/point-of-sale/pos-index/pos-index.component';
+import {UserIndexComponent} from './admin/users/user-index/user-index.component';
 
 
 const routes: Routes = [
@@ -76,6 +78,16 @@ const routes: Routes = [
   {
     path: 'post-create',
     component: PostCreateComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'point-of-sale',
+    component: PosIndexComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'users',
+    component: UserIndexComponent,
     canActivate: [AuthGuardService]
   },
   {

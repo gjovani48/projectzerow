@@ -56,6 +56,12 @@ export class InventoryProductsComponent implements OnInit {
   public priceB: Number = 0;
   tempProducts = [];
 
+
+  public quantity_list = [];
+  public price_list = [];
+  public total_quantity:number;
+  public total_price:number;
+
   public dataSource;
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -79,13 +85,31 @@ export class InventoryProductsComponent implements OnInit {
       this.products = response;
       this.productsCarouselItem = response;
 
-      console.log(response);
+      response.forEach((item,index)=>{
+
+        this.quantity_list.push(item.quantity);
+        this.price_list.push(parseFloat(item.price.toString())*parseFloat(item.quantity.toString()));
+
+      }) 
+
+      
+
+      console.log(this.quantity_list);
+
 
       this.dataSource = new MatTableDataSource(this.products);
 
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     })
+  }
+
+  totalQty(a,b){
+    return a+b;
+  }
+
+  totalPrice(a,b){
+    return a+b;
   }
 
   openProductDialog(product) {
@@ -133,6 +157,7 @@ export class InventoryProductsComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       resonse=>{
         this.categoryList = resonse;
+        console.log(this.categoryList)
       },
       err=>{
         console.log(err);

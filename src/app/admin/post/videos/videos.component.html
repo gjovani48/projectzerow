@@ -1,0 +1,41 @@
+<main class="py-5">
+
+	<div class="col-lg-12">
+		<div class="col-lg-4 text-center">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+            </mat-form-field>
+    	</div>
+
+		<div class="row">
+			<div class="col-lg-4 mb-3" *ngFor="let row of obs | async">
+				<mdb-card>
+				  <!--Card image-->
+					 <div class="embed-responsive embed-responsive-16by9">
+					    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+					</div>
+				  <!--Card content-->
+					  <mdb-card-body>
+
+					    <!--Title-->
+					    <mdb-card-title mdbTooltip="{{row.title}}" placement="right">
+					      <h6 *ngIf="row.title.length > 20; else elseBlock">{{row.title.slice(0,26)}}...</h6>
+					      <ng-template #elseBlock>{{row.title.slice(0,20)}}</ng-template>
+					    </mdb-card-title>
+
+					    <!--Text-->
+					    <mdb-card-text>
+					    	<p style="font-size: .5rem;" class="text-muted">{{row.date_posted}}</p>
+					    </mdb-card-text>
+
+					  </mdb-card-body>
+				</mdb-card> 
+			</div>
+		</div>
+	</div>
+
+
+	<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+
+</main>
