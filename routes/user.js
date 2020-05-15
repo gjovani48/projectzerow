@@ -212,7 +212,7 @@ router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
       $inc:{pzwpoints: req.body.pzwpoints}
     },(err) => {
         if(err) res.json({msg:"Invalid Request"})
-        res.json([{msg:"PZW Points Added"}])
+        res.json({status:true})
     })
 })
 

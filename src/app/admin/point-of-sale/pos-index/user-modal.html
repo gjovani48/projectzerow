@@ -1,0 +1,53 @@
+<div class="animated fadeIn">
+
+  <mat-dialog-content class="mat-typography">
+
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+    <mat-form-field>
+        <mat-label>Search Item</mat-label>
+        <input matInput type="text" [(ngModel)]="productsFilter.firstname" placeholder="Search">
+        <mat-icon matSuffix>search</mat-icon>
+   </mat-form-field>
+
+    <ul>
+      <li *ngFor="let row of users | filterBy: productsFilter" (click)="selectUser(row)">
+
+        <span *ngIf="!row.isAdmin">{{row.firstname}} {{row.lastname}}</span>
+        
+      </li>
+    </ul>
+
+
+    <div class="container border">
+      
+      <ul>
+          <li>
+            Name: {{selected_user.firstname}} {{selected_user.lastname}}
+          </li>
+          <li>
+            Phone: {{selected_user.phone}}
+          </li> 
+           <li>
+            PZW Points: {{selected_user.pzwpoints}}
+          </li> 
+  
+      </ul>
+
+    </div>
+    
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions align="end">
+    <button mat-dialog-close (click)="submit()" class="btn btn-sm btn-light">dismiss</button>
+  </mat-dialog-actions>
+
+
+</div>
+
+
+
+<!-- Copyright 2019 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

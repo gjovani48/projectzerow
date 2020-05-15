@@ -24,6 +24,7 @@
     "@ckeditor/ckeditor5-angular": "^1.2.3",
     "@ckeditor/ckeditor5-build-classic": "^18.0.0",
     "@fortawesome/fontawesome-free": "^5.12.1",
+    "@ng-select/ng-select": "^4.0.0",
     "@types/chart.js": "^2.9.12",
     "angular-bootstrap-md": "^8.9.0",
     "angular-froala-wysiwyg": "^3.1.1-1",

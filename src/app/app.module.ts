@@ -42,6 +42,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { InventoryIndexComponent } from './admin/inventory/inventory-index/inventory-index.component';
 import { InventoryProductsComponent } from './admin/inventory/inventory-products/inventory-products.component';
 import {ProductDialog} from './admin/inventory/inventory-products/product-dialog';
+import {UserModal} from './admin/point-of-sale/pos-index/user-modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCreateComponent } from './admin/forms/product-create/product-create.component';
 import { InventoryCategoryComponent } from './admin/inventory/inventory-category/inventory-category.component';
@@ -68,6 +69,7 @@ import { UserIndexComponent } from './admin/users/user-index/user-index.componen
     InventoryProductsComponent,
     ProductCreateComponent,
     ProductDialog,
+    UserModal,
     InventoryCategoryComponent,
     CategoryCreateComponent,
     InventoryRedeemableComponent,
@@ -78,7 +80,7 @@ import { UserIndexComponent } from './admin/users/user-index/user-index.componen
     PosIndexComponent,
     UserIndexComponent,
   ],
-  entryComponents: [ProductDialog],
+  entryComponents: [ProductDialog,UserModal],
   imports: [
     HttpClientModule,
     NgxPaginationModule,

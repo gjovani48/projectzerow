@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient ,HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Sale } from '../models/sale'
-import { HTTPConfig } from '../services/config.service'
 
 @Injectable({
 	providedIn: 'root'
@@ -10,10 +9,11 @@ import { HTTPConfig } from '../services/config.service'
 
 export class SaleService {
 
-	constructor(private http: HttpClient, private httpconfig: HTTPConfig) { }
+	constructor(private http: HttpClient) { }
 
-	private url = this.httpconfig.getURL()
-  	private headers = this.httpconfig.getHeaders()
+	//private url:string = "https://protected-escarpment-77600.herokuapp.com"
+    private url:string = "http://localhost:80"
+  	private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
 	// Get All Sales
 	getSales(): Observable<Sale[]> {

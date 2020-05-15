@@ -1,11 +1,101 @@
 <main class="py-5">
 
 	<div class="col-lg-12">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="input-group input-group-sm">
+				  <input type="text" class="form-control form-control-sm" [(ngModel)]="dpname" aria-label="Text input with dropdown button">
+				  <div class="input-group-append">
+				    <div class="btn-group" mdbDropdown>
+				      <button mdbDropdownToggle type="button" mdbBtn color="default" size="sm" class="dropdown-toggle z-depth-0"
+				        mdbWavesEffect><mdb-icon fas icon="user-alt"></mdb-icon></button>
 
+				      <div class="dropdown-menu">
+				        <button class="dropdown-item" (click)="openProductDialog()"><mdb-icon fas icon="search"></mdb-icon> Search</button>
+				        <a class="dropdown-item" href="#"><mdb-icon fas icon="fingerprint"></mdb-icon> Scan fingerprint</a>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 
 			<div class="col-lg-5 border">
-				<h1>sadjhakjdh</h1>
+
+				<div class="row">
+					<div class="border col-lg-1 p-0">
+					     <button mdbBtn floating="true" type="button" class="btn btn-sm btn-light z-depth-0 waves-light" mdbWavesEffect><mdb-icon fas icon="user-check"></mdb-icon></button>
+					     
+					</div>
+					<div style="height: 350px" class="overflow-auto container pt-3 col-lg-11">
+					     <ul class="list-unstyled">
+					  		<li *ngFor="let i_row of item; index as i">
+								<div class="row">
+									<div  class="col-lg-12">
+											
+										<div  class="input-group mb-3">
+
+										  <div class="input-group-append">
+										    <span  style="width: 200px; height: 30px; font-size: .6rem" class="input-group-text" id="basic-addon2">{{i_row.name}}</span>
+										  </div>
+										  <input style="height: 30px;" type="number" class="form-control"  [(ngModel)]="i_row.quantity" value="i_row.quantity"
+										    aria-describedby="basic-addon2">
+
+										    <div class="input-group-append btn-group btn-group-sm">
+											    <button mdbBtn floating="true" size="sm" type="button" color="danger" outline="false" mdbWavesEffect (click)="removeItem(i)"><mdb-icon fas icon="minus-circle"></mdb-icon></button>
+											</div>
+
+											
+
+										</div>
+
+									</div>
+								</div>
+					  		</li>
+				  		</ul>
+					</div>
+
+					<div class="border col-lg-12">
+					     <h4>{{totalCost}}</h4>  <button (click)="conputeTotal()">total</button>
+					</div>
+
+					<div class="col-lg-12 border">
+						<div class="row">
+							<div class="col-lg-12 border">
+
+								<div class="row">
+									
+									<div class="col-lg-6">
+										
+										<ul class="list-unstyled">
+											<li>
+												Sub: 
+											</li>
+											<li>
+												<div class="md-form form-group">
+											        <input mdbInput type="number" readonly class="form-control">
+											     </div>
+											</li>
+										</ul>
+
+
+									</div>
+
+								</div>
+
+							</div>
+							<div class="col-lg-6 border">
+								<button style="width:100%;" mdbBtn type="button" color="warning" outline="true" mdbWavesEffect>New</button>
+							</div>
+							<div class="col-lg-6 border">
+						  		<button style="width:100%;" mdbBtn type="button" (click)="createSale()" color="success" outline="true" mdbWavesEffect>Finish</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
 			</div>
 
 			<div class="col-lg-7 border">
@@ -18,21 +108,119 @@
 	            			<span class="ml-2">All</span>
 				        </ng-template>
 
-					  	<h2>All</h2>
+					  	<div style="height: 400px" class="overflow-auto pb-1">
+					  		<div class="col-lg-12 col-12 col-sm-12 pt-3">
+					  			<div class="row">
+					  				
+					  				<div *ngFor="let row of obs | async |filterBy: productsFilterAll" (click)=" addItem(row)" class="col-lg-3 col-3 col-sm-3 mb-3">
+					  					
+					  					<mdb-card style="width: 123px;" mdbTooltip="{{row.name}} -- Availability: {{row.quantity}}" placement="top">
+
+					  						<div style="height: 12px;" class="container-fluid border-top pl-2">
+													
+													<p class="bg-dark font-weight-light" style="font-size: .6rem; width: 40px;">
+										    			<strong class="text-light"><span class="fontweight-bold">₱</span>: {{row.price}}</strong>
+										    		</p>
+
+												</div>
+
+										    <div style="height: 120px;" class="view rgba-white-slight waves-light p-3" mdbWavesEffect>
+										      <!-- Card img -->
+										      <mdb-card-img src="assets/images/{{row.image}}" alt="Card image cap"></mdb-card-img>
+										      <a>
+										        <div class="mask"></div>
+										      </a>
+										    </div>
+										    <!--Card content-->
+										    <div style="height: 40px;" class="container-fluid border-top pl-2">
+													
+													<p style="font-size: .5rem">
+										    			<strong>{{row.name}}</strong>
+										    		</p>
+
+												</div>
+
+										  </mdb-card>
+
+
+					  				</div>
+
+					  			</div>
+					  		</div>
+
+				 
+				        </div>
+
+				        <mat-progress-bar *ngIf="loadingAll" mode="indeterminate"></mat-progress-bar>
+
+				        <mat-form-field>
+				              <mat-label>Search Item</mat-label>
+				              <input matInput type="text" [(ngModel)]="productsFilterAll.name" placeholder="Search">
+				              <mat-icon matSuffix>search</mat-icon>
+				         </mat-form-field>
+				        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 					  </mat-tab>
 
 					  <mat-tab *ngFor="let row of categories" label="Products ">
 					  	<ng-template mat-tab-label>
-				            <img style="width:120px; height:60px;" height="60px" class="img-fluid" src="assets/img/category/{{row.image}}">
-				            <span (click)="getProductsList(row)" class="ml-2">{{row.name}}</span>
+				            <img (click)="getProductsList(row)" style="width:120px; height:60px;" height="60px" class="img-fluid" src="assets/img/category/{{row.image}}">
+				            <span class="ml-2" (click)="getProductsList(row)">{{row.name}}</span>
 				        </ng-template>
 
-					  	<ul>
-					  		<li *ngFor="let product of categoryProducts">
-					  			{{product.name}}
-					  		</li>
-					  	</ul>
+				        
 
+				        <div style="height: 400px" class="overflow-auto pb-1">
+
+				        	<div class="col-lg-12 col-12 col-sm-12 pt-3">
+					  			<div class="row">
+					  				
+					  				<div *ngFor="let product of categoryProducts|filterBy: productsFilter" (contextmenu)="onRightClick($event)" (click)=" addItem(product)" class="col-lg-3 col-3 col-sm-3 mb-3">
+					  					
+					  					
+
+					  					<mdb-card style="width: 123px;" mdbTooltip="{{product.name}} -- Availability: {{product.quantity}}" placement="top">
+
+					  						<div style="height: 12px;" class="container-fluid border-top pl-2">
+													
+													<p class="bg-dark font-weight-light" style="font-size: .6rem; width: 40px;">
+										    			<strong class="text-light"><span class="fontweight-bold">₱</span>: {{product.price}}</strong>
+										    		</p>
+
+												</div>
+
+										    <div style="height: 120px;" class="view rgba-white-slight waves-light p-3" mdbWavesEffect>
+										      <!-- Card img -->
+										      <mdb-card-img src="assets/images/{{product.image}}" alt="Card image cap"></mdb-card-img>
+										      <a>
+										        <div class="mask"></div>
+										      </a>
+										    </div>
+										    <!--Card content-->
+										    <div style="height: 40px;" class="container-fluid border-top pl-2">
+													
+													<p style="font-size: .5rem">
+										    			<strong>{{product.name}}</strong>
+										    		</p>
+
+												</div>
+
+										  </mdb-card>
+										  
+					  				</div>
+
+					  			</div>
+					  		</div>
+
+				        	
+				        </div>
+					  	
+
+					  	<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+					  	<mat-form-field>
+				              <mat-label>Search Item</mat-label>
+				              <input matInput type="text" [(ngModel)]="productsFilter.name" placeholder="Search">
+				              <mat-icon matSuffix>search</mat-icon>
+				          </mat-form-field>
 					  </mat-tab>
 					  
 					</mat-tab-group>

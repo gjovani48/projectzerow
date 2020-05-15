@@ -187,10 +187,10 @@ export class UserService {
 	}
 
 	// Add PZW Points
-	addPZWPoints(user): Observable<any> {
+	addPZWPoints(userId,pzwpoints): Observable<any> {
 		return this.http.put<any>(
-			this.url + '/user/' + user._id + '/pzwpoints',
-			user,
+			this.url + '/user/' + userId + '/pzwpoints',
+			pzwpoints,
 			{ headers: this.headers }
 		)
 	}
