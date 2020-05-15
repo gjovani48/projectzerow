@@ -206,7 +206,7 @@ export class PosIndexComponent implements OnInit {
 	  	this.saleServices.addSale(sales_data).subscribe((res)=>{
 	  		
 
-	  		if(res.status==true|| this.selectedUser._id!=""){
+	  		if(res.status==true && this.selectedUser._id!=""){
 
 	  			this.userService.addPZWPoints(sales_data.user_id,pzwpoints).subscribe((res)=>{
 
@@ -218,7 +218,7 @@ export class PosIndexComponent implements OnInit {
 	  			})
 
 	  		}
-	  		else{
+	  		else if(res.status==true && this.selectedUser._id==""){
 	  			alert('transaction success');
 	  		}
 
