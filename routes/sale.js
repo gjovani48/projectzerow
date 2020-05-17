@@ -34,7 +34,9 @@ router.post('/', urlEncoded,(req,res) => {
     var sale = new Sale({
         user_id: user_id,
         item: req.body.item,
-        total: req.body.total
+        total: req.body.total,
+        amount_due: req.body.amount_due,
+        change: req.body.change
     })
 
     itemArray = req.body.item;
@@ -57,9 +59,8 @@ router.post('/', urlEncoded,(req,res) => {
 // Update Sale by ID
 router.put('/:id', urlEncoded, (req,res) => {
     Sale.updateOne({_id: req.params.id}, {
-        user_id: req.body.user_id,
-        product_id: req.body.product_id,
-        quantity:  req.body.quantity,
+        user_id: user_id,
+        item: req.body.item,
         total: req.body.total
     },(err) => {
         if(err) res.json({msg:"Invalid Request"})

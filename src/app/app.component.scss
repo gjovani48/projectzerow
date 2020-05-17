@@ -928,3 +928,15 @@ ul li:hover{
     min-width: 100%;
   }
 }
+
+.activeRoute{
+  color: #263238;
+  border-left: 3px solid #00c853;
+}
+
+
+.floating-button{
+  position:fixed;
+  margin-top: 350px;
+  margin-left: 72%;
+}

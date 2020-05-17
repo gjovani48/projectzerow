@@ -10,12 +10,16 @@ import {ProfileComponent} from './profile/profile.component';
 import {AdminHomeComponent} from './admin/admin-home/admin-home.component';
 import {InventoryIndexComponent} from './admin/inventory/inventory-index/inventory-index.component';
 import {InventoryProductsComponent} from './admin/inventory/inventory-products/inventory-products.component';
+import {InventoryRedeemableComponent} from './admin/inventory/inventory-redeemable/inventory-redeemable.component';
+import {InventoryCategoryComponent} from './admin/inventory/inventory-category/inventory-category.component';
 import {ProductCreateComponent} from './admin/forms/product-create/product-create.component';
 import {CategoryCreateComponent} from './admin/forms/category-create/category-create.component';
 import {PostCreateComponent} from './admin/forms/post-create/post-create.component';
 import {PostComponent} from './admin/post/post.component';
 import {PosIndexComponent} from './admin/point-of-sale/pos-index/pos-index.component';
 import {UserIndexComponent} from './admin/users/user-index/user-index.component';
+
+import { SalesComponent } from './admin/point-of-sale/sales/sales.component';
 
 
 const routes: Routes = [
@@ -46,47 +50,62 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'admin-home',
+    path: 'admin/home',
     component:AdminHomeComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'inventory',
+    path: 'admin/inventory',
     component:InventoryIndexComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'inventory-products',
+    path: 'admin/products',
     component: InventoryProductsComponent,
     canActivate: [AuthGuardService]
   },
+   {
+    path: 'admin/category',
+    component: InventoryCategoryComponent,
+    canActivate: [AuthGuardService]
+  },
+   {
+    path: 'admin/redeemables',
+    component: InventoryRedeemableComponent,
+    canActivate: [AuthGuardService]
+  },
   {
-    path: 'inventory-products-create',
+    path: 'admin/products/create',
     component: ProductCreateComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'inventory-category-create',
+    path: 'admin/category/create',
     component: CategoryCreateComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'post',
+    path: 'admin/post',
     component: PostComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'post-create',
+    path: 'admin/post/create',
     component: PostCreateComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'point-of-sale',
+    path: 'admin/point-of-sale',
     component: PosIndexComponent,
     canActivate: [AuthGuardService]
   },
   {
-    path: 'users',
+    path: 'admin/sales',
+    component: SalesComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/users',
     component: UserIndexComponent,
     canActivate: [AuthGuardService]
   },

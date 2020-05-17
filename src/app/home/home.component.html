@@ -394,20 +394,20 @@
       <form>
         <div class="row100">
           <div class="inputBx50">
-            <input type="text" name="" placeholder="Full Name">
+            <input type="text" [(ngModel)]="subs_name" name="subs_name" placeholder="Full Name">
           </div>
           <div class="inputBx50">
-            <input type="text" name="" placeholder="Email Address">
+            <input type="text" [(ngModel)]="subs_email" name="subs_email" placeholder="Email Address">
           </div>
         </div>
         <div class="row100">
           <div class="inputBx100">
-            <textarea placeholder="Message"></textarea>
+            <textarea [(ngModel)]="subs_msg" name="subs_msg" placeholder="Message"></textarea>
           </div>
         </div>
         <div class="row100">
           <div class="inputBx100">
-            <input type="submit" name="" value="Send">
+            <input (click)="sendMessage()" type="submit" name="" value="Send">
           </div>
         </div>
       </form>

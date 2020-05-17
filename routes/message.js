@@ -30,7 +30,8 @@ router.post('/', urlEncoded,(req,res) => {
     
     message.save( (err) => {
         if(err) res.json({msg:"Invalid Request"})
-        res.json({msg:"Post Added"})
+        res.json({status:true})
+        console.log({status:true})
     })
 })
 

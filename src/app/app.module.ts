@@ -54,6 +54,7 @@ import { ArticleListComponent } from './admin/post/article-list/article-list.com
 import { VideosComponent } from './admin/post/videos/videos.component';
 import { PosIndexComponent } from './admin/point-of-sale/pos-index/pos-index.component';
 import { UserIndexComponent } from './admin/users/user-index/user-index.component';
+import { SalesComponent } from './admin/point-of-sale/sales/sales.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { UserIndexComponent } from './admin/users/user-index/user-index.componen
     VideosComponent,
     PosIndexComponent,
     UserIndexComponent,
+    SalesComponent,
   ],
   entryComponents: [ProductDialog,UserModal],
   imports: [

@@ -62,6 +62,9 @@ export class PosIndexComponent implements OnInit {
   public totalCost;
   public item = [];
 
+  public amount_due = 0;
+  public change = 0;
+
   public posProduct:PosProduct[];
   public selectedUser = {
   	 _id: '',
@@ -165,7 +168,7 @@ export class PosIndexComponent implements OnInit {
   		}
   	}
 
-  	
+  	this.conputeTotal()
 
   	
   }
@@ -189,6 +192,7 @@ export class PosIndexComponent implements OnInit {
 
   removeItem(index){
   	this.item.splice(index,1);
+  	this.conputeTotal()
   }
 
   createSale(){
@@ -197,9 +201,11 @@ export class PosIndexComponent implements OnInit {
 	  	sales_data.user_id = this.selectedUser._id;
 	  	sales_data.item = this.item;
 	  	sales_data.total = this.totalCost;
+	  	sales_data.amount_due = this.amount_due;
+	  	sales_data.change = this.change;
 
 	  	var pzwpoints = {
-	  		pzwpoints: parseFloat(sales_data.total.toString())*0.5
+	  		pzwpoints: parseFloat(sales_data.total.toString())*.05
 	  	}
 
 
@@ -227,11 +233,17 @@ export class PosIndexComponent implements OnInit {
 
   }
 
+  payment(){
+
+  	this.change = parseFloat(this.amount_due.toString()) - parseFloat(this.totalCost.toString());
+
+  }
+
   onRightClick(){
 
   }
 
-   openProductDialog() {
+   openUserDialog() {
 
     const dialogConfig = new MatDialogConfig();
 
@@ -255,5 +267,10 @@ export class PosIndexComponent implements OnInit {
     });
 
 
+  }
+
+  removeCustomer(){
+  	this.selectedUser = null;
+  	this.dpname = null;
   }
 }

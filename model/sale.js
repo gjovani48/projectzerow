@@ -50,6 +50,16 @@ const Sale = mongoose.model('sale', {
         require: true
     },
 
+    amount_due: {
+        type: Number,
+        require: true
+    },
+
+    change: {
+        type: Number,
+        require: true
+    },
+
     sale_date: {
         type: Date,
         default: Date.now

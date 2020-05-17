@@ -3,7 +3,9 @@ import { UserService, UserDetails, TokenPayload, user_info} from './services/use
 import {Router,Event, NavigationStart, NavigationEnd} from '@angular/router';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { MDBBootstrapModule, ModalModule , ModalDirective} from 'angular-bootstrap-md';
-import { NgxSpinnerService } from "ngx-spinner"; 
+import { NgxSpinnerService } from "ngx-spinner";
+
+import { MessegeService } from './services/messege.service';
 
 @Component({
   selector: 'app-root',
@@ -53,7 +55,9 @@ export class AppComponent{
   @ViewChild('registerSuccessModal',{static: true}) registerSuccessModal: ModalDirective;
   @ViewChild('registerFailModal',{static: true}) registerFailModal: ModalDirective;
 
-  constructor(private userService: UserService,private router: Router,private SpinnerService: NgxSpinnerService,private modal: ModalModule) { 
+  constructor(private userService: UserService,private router: Router,
+    private SpinnerService: NgxSpinnerService,
+    private modal: ModalModule, private messageServices: MessegeService) { 
 
     this.router.events.subscribe((routerEvent: Event)=>{
 
@@ -72,6 +76,7 @@ export class AppComponent{
     })
 
     this.getProfile();
+    this.countNewMessage();
 
   }
 
@@ -90,7 +95,7 @@ export class AppComponent{
         this.isAdmin = user.is_admin;
         
         if(this.isAdmin==true){
-          this.router.navigateByUrl('/admin-home');
+          this.router.navigateByUrl('/admin/home');
         }
         
       },
@@ -198,6 +203,26 @@ login(){
           this.router.navigate(['/home']);
     },2000)
 
+  }
+
+  public unreadMsg = [];
+
+  countNewMessage(){
+    this.messageServices.getMessages().subscribe((res)=>{
+
+      res.forEach((row,i)=>{
+
+        if(row.status == false){
+
+          this.unreadMsg.push(row);
+
+        }
+
+
+      })
+
+
+    })
   }
 
 }

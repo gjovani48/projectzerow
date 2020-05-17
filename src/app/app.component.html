@@ -42,14 +42,85 @@
      (click)="drawer.close()">menu</mat-icon>
     </mat-toolbar>
 
-    <div style="background-color:#263238; margin-top: 200px;">
+    <div class="col pt-5 text-center text-light position-static mt-3">
+      <mdb-icon fas class="fa-2x" icon="user-circle"></mdb-icon>
+    </div>
+
+    <div class="col text-center text-light mb-3 pb-2 border-bottom">
+      <strong>Admin User</strong>
+    </div>
+
+    <div style="background-color:#263238;">
        
-      <ul *ngIf="isExpanded" class="animated fadeIn">
-        <li><a class="nav-link" routerLink="/admin-home">Dashboard</a></li>
-        <li><a class="nav-link" routerLink="/point-of-sale">Point of sale</a></li>
-        <li><a class="nav-link" routerLink="/inventory">INVENTORY</a></li>
-        <li><a class="nav-link" routerLink="/post">Post</a></li>
-        <li><a class="nav-link" routerLink="/users">User Accounts</a></li>
+      <ul style="background-color:#263238; font-size: .8rem" *ngIf="isExpanded" class="list-group animated fadeIn">
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/home" routerLinkActive="activeRoute text-light rounded-0 ">
+            <span class="input-group">
+              <mat-icon class="mr-3">dashboard</mat-icon><br>Dashboard
+            </span>
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/post" routerLinkActive="activeRoute text-light rounded-0 ">
+            <span class="input-group">
+              <mat-icon class="mr-3"> email</mat-icon> Messages
+            </span>
+
+            {{unreadMsg.length}}
+
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/sales" routerLinkActive="activeRoute text-light rounded-0 ">
+            <span class="input-group">
+              <mat-icon class="mr-3">receipt</mat-icon> Sales
+            </span>
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/products" routerLinkActive="activeRoute text-light rounded-0 ">
+            <span class="input-group">
+              <mat-icon class="mr-3">style</mat-icon> Products
+            </span>
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/redeemables" routerLinkActive="activeRoute text-light rounded-0 ">
+            <span class="input-group">
+              <mat-icon class="mr-3">pages</mat-icon> Redeemables
+            </span>
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/category" routerLinkActive="activeRoute text-light rounded-0 ">
+            <span class="input-group">
+              <mat-icon class="mr-3"> category</mat-icon> Categories
+            </span>
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/users" routerLinkActive="activeRoute text-light rounded-0 ">
+            
+            <span class="input-group">
+              <mat-icon class="mr-3">account_box</mat-icon> Customers
+            </span>
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/post" routerLinkActive="activeRoute text-light rounded-0 ">
+            <span class="input-group">
+              <mat-icon class="mr-3">featured_play_list</mat-icon> Post
+            </span>
+          </a>
+        </li>
+
       </ul>
 
     </div>
@@ -72,7 +143,7 @@
       <div *ngIf="loadingIn" class="animated wow zoomInDown" data-wow-delay="1.6s" >
             <a href="">Loading</a>
       </div>
-      <div class="container-fluid">
+      <div class="white container-fluid">
         <router-outlet *ngIf="isAdmin">
 
       </router-outlet>

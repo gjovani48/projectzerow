@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, UserDetails} from '../../services/user.service';
+import { ProductService,} from '../../services/product.service';
+import { CategoryService,} from '../../services/category.service';
+import { SaleService,} from '../../services/sale.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,16 +12,23 @@ import {Router} from '@angular/router';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor(private userService: UserService,private router: Router) { }
+  constructor(private userServices: UserService,private router: Router, private productServices: ProductService, 
+    private categoryServices:CategoryService, private saleServices: SaleService) { }
 
   isAdmin : boolean;
 
+  public users = [];
+  public categories = [];
+  public products = [];
+  public sales = [];
+
   ngOnInit() {
     this.getProfile();
+    this.getData();
   }
 
   getProfile(){
-    this.userService.profile().subscribe(
+    this.userServices.profile().subscribe(
       user=>{
         this.isAdmin = user.is_admin;
         
@@ -33,6 +43,27 @@ export class AdminHomeComponent implements OnInit {
       }
     )
 
-}
+  }
+
+
+  getData(){
+
+    this.userServices.getUsers().subscribe((res)=>{
+        this.users = res;
+    })
+
+    this.productServices.getProducts().subscribe((res)=>{
+        this.products = res;
+    })
+
+    this.categoryServices.getCategories().subscribe((res)=>{
+        this.categories = res;
+    })
+
+    this.saleServices.getSales().subscribe((res)=>{
+        this.sales = res;
+    })
+
+  }
 
 }

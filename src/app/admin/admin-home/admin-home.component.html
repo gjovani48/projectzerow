@@ -1,10 +1,79 @@
-<main class="py-5">
-    <div class="container" style="height:1500px;">
-        <div class="row pt-5">
-            <div class="col text-center">
-                <h2>This Navbar isn't fixed</h2>
-                <h5>When you scroll down it will disappear</h5>
-            </div>
-        </div>
+<main class="white py-5">
+    <div class="container-fluid white">
+
+    	<div class="col-lg-12">
+			<div class="row">
+
+				<div class="col-lg-3">
+					
+					<div class="card mb-2 admin-card-sizing">
+						<div class="card-body">
+							<p>
+							<mat-icon class="card-icon mr-3 float-right">style</mat-icon>
+							<span>Product: </span> <br>
+							{{products.length}}
+							</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-lg-3">
+					
+					<div class="card mb-2 admin-card-sizing">
+						<div class="card-body">
+							<p>
+							<mat-icon class="card-icon mr-3 float-right"> category</mat-icon>
+							<span>Category: </span> <br>
+							{{categories.length}}
+							</p>
+						</div>
+					</div>
+
+				</div>
+				<div class="col-lg-3">
+					
+					<div class="card mb-2 admin-card-sizing">
+						<div class="card-body">
+							<p>
+							<mat-icon class="card-icon mr-3 float-right">account_box</mat-icon>
+	 						<span>users: </span> <br>
+	 						{{users.length}}
+	 						</p>
+	 					</div>
+					</div>
+
+				</div>
+				<div class="col-lg-3">
+					
+					<div class="card mb-2 admin-card-sizing">
+						<div class="card-body">
+							<p>
+								<mat-icon class="card-icon mr-3 float-right">receipt</mat-icon>
+								<span>Sales: </span> <br>
+								{{sales.length}}
+							</p>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="card">
+								<a routerLink="/point-of-sale">Create New Sale</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+	        </div>
+    	</div>
+        
     </div>
 </main>
+
+
+
+
+
