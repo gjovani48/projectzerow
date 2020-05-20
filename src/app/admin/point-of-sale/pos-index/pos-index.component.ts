@@ -2,10 +2,12 @@ import {Component, OnInit, ViewChild,ChangeDetectorRef} from '@angular/core';
 import { Observable } from 'rxjs';
 import {UserService, UserDetails} from '../../../services/user.service';
 import {ProductService} from '../../../services/product.service'
+import {RedeemService} from '../../../services/redeem.service'
 import {CategoryService} from '../../../services/category.service'
 import {SaleService} from '../../../services/sale.service'
 import {Router} from '@angular/router';
 import {Sale} from '../../../models/sale';
+import {Redeem} from '../../../models/redeem';
 import {Product} from '../../../models/product';
 
 
@@ -52,7 +54,7 @@ export class PosIndexComponent implements OnInit {
 
     constructor(private ngxImgZoom: NgxImgZoomService,
               private _snackBar: MatSnackBar,private userService: UserService,private saleServices: SaleService,
-              private router: Router,private productService: ProductService, 
+              private router: Router,private productService: ProductService, private redeemServices: RedeemService,
               private categoryService: CategoryService,public dialog: MatDialog,private changeDetectorRef: ChangeDetectorRef) { }
 
   categories = [];
@@ -60,7 +62,9 @@ export class PosIndexComponent implements OnInit {
 
   public sales:Sale[];
   public totalCost;
+  public totalCost_points;
   public item = [];
+  public redeemed_item = [];
 
   public amount_due = 0;
   public change = 0;
@@ -98,9 +102,11 @@ export class PosIndexComponent implements OnInit {
 
 
  public categoryProducts = [];
+ public redeemables = [];
 
  public loading: boolean;
  public loadingAll:boolean;
+ public inredeem:boolean = false;
 
 
   getProducts(){
@@ -173,26 +179,75 @@ export class PosIndexComponent implements OnInit {
   	
   }
 
+
   conputeTotal(){
 
-  	var x=[];
+    var x=[];
 
-  	for(var i=0; i<this.item.length; i++){
-  		x[i] = parseFloat(this.item[i].price.toString())*parseFloat(this.item[i].quantity.toString());
-  	}
+    for(var i=0; i<this.item.length; i++){
+        x[i] = parseFloat(this.item[i].price.toString())*parseFloat(this.item[i].quantity.toString());
+      }
 
-  	this.totalCost = x.reduce(function(a, b){
-		return a + b;
-	}, 0);
-  	
+      this.totalCost = x.reduce(function(a, b){
+      return a + b;
+    }, 0);
+    
 
-  	console.log(this.totalCost);
+    console.log(this.totalCost);
 
   }
+
+
+
+
+  addItemRedeem(row){
+
+    var indx;
+
+    if(this.redeemed_item.length<1){
+      this.redeemed_item.push({_id:row._id,name:row.name,image:row.image,pzwpoints_req:row.pzwpoints_req,quantity:1});
+    }
+    else{
+
+      if(this.redeemed_item.some((res,i)=>{return res._id === row._id && ~(indx = i)})){
+        this.redeemed_item[indx].quantity+=1;
+      }
+      else{
+        this.redeemed_item.push({_id:row._id,name:row.name,image:row.image,pzwpoints_req:row.pzwpoints_req,quantity:1});
+      }
+    }
+
+    this.conputeTotalRedeem();
+
+    
+  }
+
+  conputeTotalRedeem(){
+
+    var x=[];
+
+    for(var i=0; i<this.redeemed_item.length; i++){
+        x[i] = parseFloat(this.redeemed_item[i].pzwpoints_req.toString())*parseFloat(this.redeemed_item[i].quantity.toString());
+      }
+
+      this.totalCost_points = x.reduce(function(a, b){
+      return a + b;
+    }, 0);
+    
+
+  }
+
+
+
 
   removeItem(index){
   	this.item.splice(index,1);
   	this.conputeTotal()
+  }
+
+   removeRedeemedItem(index){
+    this.redeemed_item.splice(index,1);
+    this.conputeTotalRedeem()
   }
 
   createSale(){
@@ -233,6 +288,40 @@ export class PosIndexComponent implements OnInit {
 
   }
 
+  createRedeem(){
+
+      var redeem_data = new Redeem();
+      redeem_data.user_id = this.selectedUser._id;
+      redeem_data.item = this.redeemed_item;
+      redeem_data.total = this.totalCost_points;
+      redeem_data.remaining_points = parseFloat(this.selectedUser.pzwpoints.toString()) - parseFloat(redeem_data.total.toString());
+
+      var pzwpoints = {
+        pzwpoints: redeem_data.remaining_points
+      }
+
+
+      this.redeemServices.addRedeem(redeem_data).subscribe((res)=>{
+        
+
+        if(res.status==true){
+
+          this.userService.deductPZWPoints(redeem_data.user_id,pzwpoints).subscribe((res)=>{
+
+
+            if(res.status==true){
+              alert('poins deducted to the user| transaction success');
+            }
+
+          })
+
+        }
+
+      })
+
+
+  }
+
   payment(){
 
   	this.change = parseFloat(this.amount_due.toString()) - parseFloat(this.totalCost.toString());
@@ -243,9 +332,12 @@ export class PosIndexComponent implements OnInit {
 
   }
 
-   openUserDialog() {
+   openUserDialog(msg) {
 
     const dialogConfig = new MatDialogConfig();
+
+  
+
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
@@ -256,7 +348,9 @@ export class PosIndexComponent implements OnInit {
 	    left: '0'
 	};
 
-    dialogConfig.data = {};
+    dialogConfig.data = {
+        title: msg
+    };
 
     const dialogRef = this.dialog.open(UserModal,dialogConfig);
 
@@ -272,5 +366,36 @@ export class PosIndexComponent implements OnInit {
   removeCustomer(){
   	this.selectedUser = null;
   	this.dpname = null;
+  }
+
+
+  openRedeem(){
+
+    setTimeout(()=>{
+      
+      this.inredeem = true;
+
+    this.loading = true;
+    this.categoryProducts = [];
+
+    this.categoryService.getProductList('5e585e3fcbd1ba001710412c').subscribe(res=>{
+          this.categoryProducts = res;
+          console.log(res)
+
+          this.loading = false;
+      },
+      err=>{
+        console.log(err);
+      })
+
+
+    },2000)
+    
+    
+
+  }
+
+  closeRedeem(){
+    this.inredeem = false;
   }
 }

@@ -3,6 +3,12 @@ import { HttpClient ,HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Sale } from '../models/sale'
 
+export interface montlysale{
+	_id: any
+	totalAmount: Number
+	count: Number
+}
+
 @Injectable({
 	providedIn: 'root'
 })
@@ -18,6 +24,10 @@ export class SaleService {
 	// Get All Sales
 	getSales(): Observable<Sale[]> {
 		return this.http.get<any>(this.url + "/sale");
+	}
+
+	getMonthlySales(): Observable<montlysale[]> {
+		return this.http.get<any>(this.url + "/sale/monthly");
 	}
 
 	// Get Sale by ID

@@ -48,6 +48,10 @@ export class SalesComponent implements OnInit {
  	this.getSales();
  }
 
+ printThis(){
+ 	window.print();
+ }
+
  getSales(){
 
  	this.saleServices.getSales().subscribe((res)=>{

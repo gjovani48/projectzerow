@@ -1,6 +1,8 @@
 export class Redeem {
-    _id: any
-    redeemable_id: any
+     _id: any
     user_id: any
-    redeem_date: Date
+    item: any
+    total: Number
+    remaining_points: Number
+    sale_date: Date
 }

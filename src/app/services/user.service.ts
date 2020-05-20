@@ -194,6 +194,15 @@ export class UserService {
 			{ headers: this.headers }
 		)
 	}
+  
+
+  deductPZWPoints(userId,pzwpoints): Observable<any> {
+    return this.http.put<any>(
+      this.url + '/user/' + userId + '/pzwpoints_deduct',
+      pzwpoints,
+      { headers: this.headers }
+    )
+  }
 
 	// Update User
 	updateUser(user): Observable<any> {

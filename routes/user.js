@@ -216,6 +216,15 @@ router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
     })
 })
 
+router.put('/:id/pzwpoints_deduct', urlEncoded, (req,res) => {
+    User.updateOne({_id: req.params.id}, {
+      $inc:{pzwpoints: -Math.abs(req.body.pzwpoints)}
+    },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json({status:true})
+    })
+})
+
 // Update User by ID
 router.put('/:id', urlEncoded, (req,res) => {
     User.updateOne({_id: req.params.id}, {

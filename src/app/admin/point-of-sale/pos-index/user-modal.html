@@ -4,14 +4,16 @@
 
     <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
+    <h3>{{msg}}</h3>
+
     <mat-form-field>
-        <mat-label>Search Item</mat-label>
+        <mat-label>Search Customer</mat-label>
         <input matInput type="text" [(ngModel)]="productsFilter.firstname" placeholder="Search">
         <mat-icon matSuffix>search</mat-icon>
    </mat-form-field>
 
-    <ul>
-      <li *ngFor="let row of users | filterBy: productsFilter" (click)="selectUser(row)">
+    <ul class="names">
+      <li *ngFor="let row of users | filterBy: productsFilter"  (click)="selectUser(row)">
 
         <span *ngIf="!row.isAdmin">{{row.firstname}} {{row.lastname}}</span>
         
@@ -19,9 +21,9 @@
     </ul>
 
 
-    <div class="container border">
+    <div *ngIf="selected_user" class="container border">
       
-      <ul>
+      <ul class="names">
           <li>
             Name: {{selected_user.firstname}} {{selected_user.lastname}}
           </li>

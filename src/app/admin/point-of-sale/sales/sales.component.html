@@ -1,9 +1,9 @@
-<main class="py-5">
+<main class="py-3">
     <div class="container-fluid">
 
     	<div class="col-lg-12">
 
-    		<table style="width:100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+    		<table style="width:100%;" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z0 table-bordered">
 
                 <ng-container matColumnDef="No.">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
@@ -69,6 +69,11 @@
             </mat-paginator>
 
     	</div>
+
+
+      <button (click)="printThis()">
+        print
+      </button>
     	 
         
     </div>

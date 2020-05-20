@@ -27,11 +27,11 @@
 						  <input type="text" class="form-control form-control-sm" placeholder="Customer" [(ngModel)]="dpname" aria-label="Text input with dropdown button" readonly>
 						  <div class="input-group-append">
 						    <div class="btn-group " mdbDropdown>
-						      <button mdbDropdownToggle type="button" mdbBtn color="default" size="sm" class="dropdown-toggle z-depth-0"
+						      <button mdbDropdownToggle type="button" mdbBtn color="success" size="sm" class="dropdown-toggle z-depth-0"
 						        mdbWavesEffect><mdb-icon fas icon="user-alt"></mdb-icon></button>
 
 						      <div class="dropdown-menu">
-						        <button class="dropdown-item" (click)="openUserDialog()"><mdb-icon fas icon="search"></mdb-icon> Search</button>
+						        <button class="dropdown-item" (click)="openUserDialog('Create transaction for: ')"><mdb-icon fas icon="search"></mdb-icon> Search</button>
 						        <a class="dropdown-item" href="#"><mdb-icon fas icon="fingerprint"></mdb-icon> Scan fingerprint</a>
 						      </div>
 
@@ -45,7 +45,9 @@
 
 					</div>
 
-					<div style="height: 350px" class="overflow-auto container pt-3 col-lg-12">
+				<!-- Begin Sale -->
+
+					<div *ngIf="inredeem==false" style="height: 350px" class="overflow-auto container pt-3 col-lg-12">
 					     <ul class="list-unstyled">
 					  		<li *ngFor="let i_row of item; index as i">
 								<div class="row">
@@ -73,7 +75,7 @@
 				  		</ul>
 					</div>
 
-					<div class="col-lg-12 ">
+					<div *ngIf="inredeem==false" class="col-lg-12 ">
 						<div class="row">
 							<div class="col-lg-12 border-top border-bottom">
 									
@@ -100,6 +102,7 @@
 
 										</div>
 									
+									
 									</div>
 								</div>
 
@@ -115,7 +118,7 @@
 							  <input type="number" [(ngModel)]="amount_due" (change)="payment()" [class.disabled]="item.length<1" (keyup)="payment()" class="form-control">
 
 							  <div class="input-group-append">
-							   <button style="width:100%;" [class.disabled]="item.length<1" mdbBtn type="button" (click)="createSale()" color="success" outline="true" mdbWavesEffect><mdb-icon fas icon="check-circle"></mdb-icon> Complete Transaction</button>
+							   <button style="width:100%;" [class.disabled]="totalCost>amount_due || amount_due<1" mdbBtn type="button" (click)="createSale()" color="success" outline="true" mdbWavesEffect><mdb-icon fas icon="check-circle"></mdb-icon> Complete Transaction</button>
 							  </div>
 
 							</div>
@@ -123,35 +126,114 @@
 						</div>
 					</div>
 
+
+					<!-- End Sale -->
+
+
+					<!-- Begin Redeem -->
+
+					<div *ngIf="inredeem==true" style="height: 350px" class="overflow-auto container pt-3 col-lg-12">
+					     <ul class="list-unstyled">
+					  		<li *ngFor="let i_row of redeemed_item; index as i">
+								<div class="row">
+									<div  class="col-lg-12">
+											
+										<div  class="input-group mb-3">
+
+										  <div class="input-group-append">
+										    <span  style="width: 200px; height: 30px; font-size: .6rem" class="input-group-text" id="basic-addon2">{{i_row.name}}</span>
+										  </div>
+										  <input style="height: 30px;" type="number" class="form-control" (change)="conputeTotalRedeem()"  [(ngModel)]="i_row.quantity" value="i_row.quantity"
+										    aria-describedby="basic-addon2">
+
+										    <div class="input-group-append btn-group btn-group-sm">
+											    <button mdbBtn floating="true" size="sm" type="button" color="danger" outline="false" mdbWavesEffect (click)="removeRedeemedItem(i)"><mdb-icon fas icon="minus-circle"></mdb-icon></button>
+											</div>
+
+											
+
+										</div>
+
+									</div>
+								</div>
+					  		</li>
+				  		</ul>
+					</div>
+
+					<div *ngIf="inredeem==true" class="col-lg-12 ">
+						<div class="row">
+							<div class="col-lg-12 border-top border-bottom">
+									
+										
+								<div class="col-lg-12 pt-2">
+
+									<div class="row">
+										
+										<div class="col-lg-12">
+											
+											<h5>Total PZW Points: <br> {{totalCost_points}}</h5>
+
+										</div>
+									
+									
+									</div>
+								</div>
+
+
+							</div>
+
+							<div class="md-form input-group mb-3">
+
+							  <div class="input-group-append">
+							   <button style="width:100%;" mdbBtn type="button" (click)="createRedeem()" color="success" outline="true" mdbWavesEffect><mdb-icon fas icon="check-circle"></mdb-icon> Redeem Item</button>
+							  </div>
+
+							</div>
+
+						</div>
+					</div>
+
+
+					<!-- End Redeem -->
+
+
 				</div>
 
 			</div>
 
-			<div class="col-lg-7 border">
+			<div class="col-lg-7">
 
 				<div class="row">
 					
-					<div class="col-lg-12">
+					<div class="col-lg-12 pt-2 mb-1">
 						
-						<h2>Toolbar</h2>
-						<li><a class="nav-link" routerLink="/inventory">INVENTORY</a></li>
-						 <div class="btn-group mx-4 float-right" mdbDropdown>
-					      <mdb-badge color="special-color" mdbDropdownToggle classInside="dropdown-toggle" class="waves-effect" mdbWavesEffect><mdb-icon fas icon="ellipsis-h"></mdb-icon>
-					      </mdb-badge>
-					      <div class="dropdown-menu dropdown-primary">
-					        <a class="dropdown-item" href="#">Search Sales</a>
-					        <a class="dropdown-item" href="#">Show Last Sale</a>
-					        <a class="dropdown-item" href="#">Lookup Receipt</a>
-					        <div class="divider dropdown-divider"></div>
-					        <a class="dropdown-item" href="#">Separated link</a>
-					      </div>
-					    </div>
+						<div style="width:100%;" class="btn-group btn-group-sm border" role="group" aria-label="Basic example">
+						    <a mdbBtn type="button" color="unique" size="sm" class="waves-light"  routerLink="/admin/inventory" mdbWavesEffect><mdb-icon fas icon="cube"></mdb-icon> INVENTORY</a>
+						    <button *ngIf="inredeem==false" mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect (click)="openUserDialog('Redeem Item For: '); openRedeem();"><mdb-icon fas icon="gifts"></mdb-icon> Reedem Item</button>
+						   
+						    <button *ngIf="inredeem==true" mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect (click)="closeRedeem();"><mdb-icon fas icon="gifts"></mdb-icon> Make Sale</button>
+
+						    <button mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect>Right</button>
+
+						    <div class="btn-group btn-group-sm" mdbDropdown>
+						        <button mdbDropdownToggle type="button" size="sm" mdbBtn color="unique" class="dropdown-toggle waves-light" mdbWavesEffect>
+						            <mdb-icon fas icon="caret-square-down"></mdb-icon> Dropdown
+						        </button>
+
+						        <div class="dropdown-menu dropdown-primary">
+						            <a class="dropdown-item" href="#">Search Sales</a>
+							        <a class="dropdown-item" href="#">Show Last Sale</a>
+							        <a class="dropdown-item" href="#">Lookup Receipt</a>
+						        </div>
+
+						    </div>
+						</div>
 
 					</div>
 
-					<div class="col-lg-12">
+					<div *ngIf="inredeem==false" class="col-lg-12">
 
-							<mat-tab-group>
+							<mat-tab-group class="border">
 
 								<mat-tab label="Products ">
 								  	<ng-template mat-tab-label>
@@ -225,7 +307,7 @@
 							        	
 							        	</div>
 							        </div>
-							        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+							        <mat-paginator class="border-top" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 								  </mat-tab>
 
 								  <mat-tab *ngFor="let row of categories" label="Products ">
@@ -308,6 +390,94 @@
 								  
 								</mat-tab-group>
 					</div>
+
+
+					<div *ngIf="inredeem==true" class="col-lg-12">
+
+
+						<div style="height: 400px" class="overflow-auto pb-1 border">
+
+							        	<div class="col-lg-12 col-12 col-sm-12 pt-3">
+								  			<div class="row">
+								  				
+								  				<div *ngFor="let product of categoryProducts|filterBy: productsFilter" (contextmenu)="onRightClick($event)" (click)=" addItemRedeem(product)" class="col-lg-3 col-3 col-sm-3 mb-3">
+								  					
+								  					
+
+								  					<mdb-card style="width: 123px;" mdbTooltip="{{product.name}} -- Availability: {{product.quantity}}" placement="top">
+
+								  						<div style="height: 12px;" class="container-fluid border-top pl-2">
+																
+																<p class="bg-dark font-weight-light" style="font-size: .6rem; width: 40px;">
+													    			<strong class="text-light"><span class="fontweight-bold">₱</span>: {{product.pzwpoints_req}}</strong>
+													    		</p>
+
+															</div>
+
+													    <div style="height: 120px;" class="view rgba-white-slight waves-light p-3" mdbWavesEffect>
+													      <!-- Card img -->
+													      <mdb-card-img src="assets/images/{{product.image}}" alt="Card image cap"></mdb-card-img>
+													      <a>
+													        <div class="mask"></div>
+													      </a>
+													    </div>
+													    <!--Card content-->
+													    <div style="height: 40px;" class="container-fluid border-top pl-2">
+																
+																<p style="font-size: .5rem">
+													    			<strong>{{product.name}}</strong>
+													    		</p>
+
+															</div>
+
+													  </mdb-card>
+													  
+								  				</div>
+
+								  			</div>
+								  		</div>
+
+							        	
+							</div>
+								  	
+
+							<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+							
+							<div class="col-lg-12 border">
+
+								<div class="row">
+							        		
+					        		<div class="col-lg-8">
+					        			<mat-form-field style="width:100%;">
+							              <mat-label>Search Item</mat-label>
+							              <input matInput type="text" [(ngModel)]="productsFilter.name" placeholder="Search">
+							              <mat-icon matSuffix>search</mat-icon>
+							         	</mat-form-field>
+					        		</div>
+
+								        		
+
+					        		<div class="col-lg-4 p-2">
+					        			<button class="btn btn-light btn-sm z-depth-0">
+					        				<mdb-icon fas icon="barcode"></mdb-icon> Scan Barcode
+					        			</button>
+					        		</div>
+								        	
+								</div>
+
+							</div>
+
+					</div>
+
+
+
+
+
+
+
+
+		
 
 				</div>
 

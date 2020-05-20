@@ -46,7 +46,7 @@
       <mdb-icon fas class="fa-2x" icon="user-circle"></mdb-icon>
     </div>
 
-    <div class="col text-center text-light mb-3 pb-2 border-bottom">
+    <div style="border-bottom: 1px solid white; border-style: dotted" class="col text-center text-light mb-3 pb-2 border-left-0 border-top-0 border-right-0">
       <strong>Admin User</strong>
     </div>
 
@@ -54,7 +54,7 @@
        
       <ul style="background-color:#263238; font-size: .8rem" *ngIf="isExpanded" class="list-group animated fadeIn">
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/home" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/home" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3">dashboard</mat-icon><br>Dashboard
             </span>
@@ -62,7 +62,7 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/post" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/post" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3"> email</mat-icon> Messages
             </span>
@@ -73,7 +73,7 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/sales" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/sales" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3">receipt</mat-icon> Sales
             </span>
@@ -81,7 +81,7 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/products" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/products" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3">style</mat-icon> Products
             </span>
@@ -89,7 +89,7 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/redeemables" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/redeemables" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3">pages</mat-icon> Redeemables
             </span>
@@ -97,7 +97,7 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/category" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/category" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3"> category</mat-icon> Categories
             </span>
@@ -105,7 +105,7 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/users" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/users" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             
             <span class="input-group">
               <mat-icon class="mr-3">account_box</mat-icon> Customers
@@ -114,7 +114,7 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/post" routerLinkActive="activeRoute text-light rounded-0 ">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/post" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3">featured_play_list</mat-icon> Post
             </span>
@@ -128,14 +128,25 @@
   
   <mat-toolbar class="container-fluid  main header">
     <mat-icon
-            *ngIf="!drawer.opened"
-            (click)="drawer.toggle()">
+        *ngIf="!drawer.opened"
+        (click)="drawer.toggle()">
             menu
-          </mat-icon>
-          
-    <span [class.pleft]="drawer.opened" class="move-left" style="width: 100%;">
-      <a *ngIf="userService.isLoggedIn()" class="nav-link float-right" (click)="logout();"><span>Logout</span></a>
-    </span>
+    </mat-icon>
+      
+    
+
+    <div [class.pleft]="drawer.opened" class="move-left" style="width: 100%;">
+
+      <a style="font-size: .6rem;" class="nav-link float-left">
+        {{router.url}}
+      </a>
+      
+      <div *ngIf="userService.isLoggedIn()" class="btn-group btn-group-sm float-right pt-2" role="group" aria-label="Basic example">
+          <button mdbBtn type="button" color="light" (click)="logout();" size="sm" class="waves-light" mdbWavesEffect>Logout</button>
+          <button mdbBtn type="button" color="light" size="sm" class="waves-light" mdbWavesEffect>Middle</button>
+          <button mdbBtn type="button" color="light" size="sm" class="waves-light" mdbWavesEffect>Right</button>
+      </div>
+    </div>
   </mat-toolbar>
 
   <div class="mt-5">

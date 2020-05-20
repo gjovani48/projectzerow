@@ -3,6 +3,15 @@ const router = new express.Router()
 const Message = require('../model/message')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
+const nodemailer = require('nodemailer')
+
+var transporter  = nodemailer.createTransport({
+  service: 'gmail',
+  auth:{
+    user:'projectzerowdevs@gmail.com',
+    pass: '!1Projectzerow',
+  }
+});
 
 // Get All Posts
 router.get('/', (req,res) => {
@@ -33,6 +42,23 @@ router.post('/', urlEncoded,(req,res) => {
         res.json({status:true})
         console.log({status:true})
     })
+})
+
+router.post('/sendemail',(req,res)=>{
+
+    var mailOptions = {
+      from: 'Project:ZeroW',
+      to: req.body.email,
+      subject: 'Message From Project:Zerow Developers',
+      text: req.body.message
+    }
+
+    transporter.sendMail(mailOptions,(err,data)=>{
+      if (err) throw err
+      res.json({status: true})
+    })
+
+
 })
 
 // Update Post by ID

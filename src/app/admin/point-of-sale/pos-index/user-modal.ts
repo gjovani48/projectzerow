@@ -5,7 +5,7 @@ import {UserService, UserDetails} from '../../../services/user.service';
 @Component({
     selector: 'dialog-content-example-dialog',
     templateUrl: 'user-modal.html',
-    styleUrls: ['./pos-index.component.scss'],
+    styleUrls: ['./user-modal.component.scss'],
   })
   export class UserModal{
 
@@ -22,6 +22,7 @@ import {UserService, UserDetails} from '../../../services/user.service';
 
    public users = [];
    public selected_user;
+   public msg;
 
    productsFilter: any = { firstname: '', lastname: ''};
 
@@ -29,7 +30,8 @@ import {UserService, UserDetails} from '../../../services/user.service';
         private dialogRef: MatDialogRef<UserModal>,private userServices:UserService,
         @Inject(MAT_DIALOG_DATA) data) {
 
-      this.getUsers();
+        this.msg = data.title;
+        this.getUsers();
 
     }
 

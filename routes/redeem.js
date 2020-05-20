@@ -1,6 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const Redeem = require('../model/redeem')
+const Product = require('../model/product')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 
@@ -23,13 +24,27 @@ router.get('/:id', (req,res) => {
 // Add New Redeem
 router.post('/', urlEncoded,(req,res) => {
     var redeem = new Redeem({
-        redeemable_id: req.body.name,
-        user_id: req.body.description,
+        user_id: req.body.user_id,
+        item: req.body.item,
+        total: req.body.total,
+        remaining_points: req.body.remaining_points
     })
+
+    itemArray = req.body.item;
     
     redeem.save( (err) => {
+
         if(err) res.json({msg:"Invalid Request"})
-        res.json({msg:"Redeem Added"})
+
+        for(var i=0; i<itemArray.length; i++){
+            Product.updateOne({_id:itemArray[i]._id }, 
+                {$inc:{quantity:-Math.abs(itemArray[i].quantity)}},
+            (err) => {
+                if(err) res.json({msg:"Invalid Request"})
+            })
+        }
+
+        res.json({status:true})
     })
 })
 

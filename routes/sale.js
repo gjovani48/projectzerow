@@ -14,6 +14,22 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/monthly', (req,res) => {
+    Sale.aggregate([
+     {
+       $group:
+         {
+           _id: { month: { $month: "$sale_date"}, year: { $year: "$sale_date" } },
+           totalAmount: { $sum: "$total" },
+           count: { $sum: 1 }
+         }
+     }
+   ],function(err,  sale) {
+            if (err) res.send(err);
+            res.json(sale);
+    });
+})
+
 // Get Sale by ID
 router.get('/:id', (req,res) => {
     Sale.findOne({_id:req.params.id}).populate(['user_id', 'product_id']).exec((err, data) => {
@@ -55,6 +71,8 @@ router.post('/', urlEncoded,(req,res) => {
         res.json({status:true})
     })
 })
+
+
 
 // Update Sale by ID
 router.put('/:id', urlEncoded, (req,res) => {
