@@ -34,6 +34,7 @@ export class SalesComponent implements OnInit {
               private categoryService: CategoryService,public dialog: MatDialog,private changeDetectorRef: ChangeDetectorRef) { }
 
  public sales = [];
+ public totalSale = [];
  public dataSource;
 
  displayedColumns: string[] = ['No.','user_id','item', 'total','amount_due','change','sale_date'];
@@ -55,6 +56,10 @@ export class SalesComponent implements OnInit {
  getSales(){
 
  	this.saleServices.getSales().subscribe((res)=>{
+
+ 		res.forEach((row)=>{
+ 			this.totalSale.push(row.total);
+ 		})
 		
 		this.sales = res;
 
@@ -70,6 +75,12 @@ export class SalesComponent implements OnInit {
  applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
+
+ totalAll(a,b){
+
+ 	return a+b;
+
+ }
 
 
 }

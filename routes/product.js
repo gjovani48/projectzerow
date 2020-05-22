@@ -1,6 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const Product = require('../model/product')
+const Category = require('../model/category')
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 const path = require('path');
@@ -55,6 +56,31 @@ router.get('/', (req,res) => {
         if(err) throw err
         res.json(data)
     })
+})
+
+
+router.get('/countitems', (req,res) => {
+    Product.aggregate([
+      {
+          $unwind: '$category_id'
+      },
+      {
+       $group:
+         {
+           _id:'$category_id',
+           count: { $sum: 1 },
+         }
+     }
+   ]).exec(function(err, transactions) {
+        // Don't forget your error handling
+        // The callback with your transactions
+        // Assuming you are having a Tag model
+        Category.populate(transactions, {path: '_id'}, function(err, populatedTransactions) {
+            // Your populated translactions are inside populatedTransactions
+            if(err) throw err
+            res.json(populatedTransactions)
+        })
+     });
 })
 
 
@@ -1291,6 +1317,8 @@ router.put('/:id', urlEncoded, (req,res) => {
         res.json([{msg:"Product Updated"}])
     })
 })
+
+
 
 // Delete Product
 router.delete('/:id', (req, res) => {

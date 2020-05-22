@@ -297,7 +297,7 @@ export class PosIndexComponent implements OnInit {
       redeem_data.remaining_points = parseFloat(this.selectedUser.pzwpoints.toString()) - parseFloat(redeem_data.total.toString());
 
       var pzwpoints = {
-        pzwpoints: redeem_data.remaining_points
+        pzwpoints: this.totalCost_points
       }
 
 
