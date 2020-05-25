@@ -21,12 +21,16 @@ export class CategoryService {
 		return this.http.get<any>(this.url + "/category");
 	}
 
+	getCategoriesArchive(): Observable<Category[]> {
+		return this.http.get<any>(this.url + "/category/arc");
+	}
+
 	// Get Category by ID
 	getCategory(id): Observable<Category> {
 		return this.http.get<any>(
 			this.url + "/category/" + id
 		)
-  }
+  	}
 
   getCategoryCount(): Observable<any> {
 		return this.http.get<any>(
@@ -44,6 +48,14 @@ export class CategoryService {
 	addCategory(category): Observable<any> {
 		return this.http.post<any>(
 			this.url + "/category",
+			category,
+			{ headers: this.headers }
+		)
+	}
+
+	archiveCategory(category): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/category/arcive",
 			category,
 			{ headers: this.headers }
 		)

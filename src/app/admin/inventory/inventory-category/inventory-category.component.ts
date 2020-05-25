@@ -64,6 +64,15 @@ export class InventoryCategoryComponent implements OnInit {
     })
   }
 
+  archive(element){
+
+    this.categoryService.archiveCategory(element).subscribe((response)=>{
+      this.openSnackBar("category move to archive",'dismis');
+      this.getCategories();
+    })
+
+  }
+
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
@@ -90,6 +99,12 @@ export class InventoryCategoryComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
 
+  }
+
+   openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }
