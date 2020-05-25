@@ -83,6 +83,7 @@ export class MsgIndexComponent implements OnInit {
 
   	this.messagesServices.openMessage(message).subscribe((res)=>{
 
+  		console.log(res);
   		alert(res);
 
   	})

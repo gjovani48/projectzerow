@@ -95,16 +95,16 @@ router.post('/archiveall', urlEncoded, (req,res) => {
 })
 
 router.post('/archive', urlEncoded, (req,res) => {
-    Message.updateOne({_id:req.body.id}, { $set: { is_archive: true } },(err) => {
+    Message.updateOne({_id:req.body._id}, { $set: { is_archive: true } },(err) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json([{msg:"Product Updated"}])
     })
 })
 
 router.post('/open', urlEncoded, (req,res) => {
-    Message.updateOne({_id:req.body.id}, { $set: { status: true } },(err) => {
+    Message.updateOne({_id:req.body._id}, { $set: { status: true } },(err) => {
         if(err) res.json({msg:"Invalid Request"})
-        res.json([{msg:"status Updated"}])
+        res.json({msg:"status Updated"})
     })
 })
 
