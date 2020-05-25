@@ -21,6 +21,20 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/arc', (req,res) => {
+    Message.find({is_archive:true},(err,data)=>{
+        if(err) throw err 
+        res.json(data)
+    })
+})
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Message.updateOne({_id:req.body._id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 // Get Post by ID
 router.get('/:id', (req,res) => {
     Message.findOne({_id:req.params.id}).exec((err,data)=>{

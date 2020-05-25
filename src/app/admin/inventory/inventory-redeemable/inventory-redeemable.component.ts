@@ -95,6 +95,18 @@ export class InventoryRedeemableComponent implements OnInit {
     })
   }
 
+
+
+  archive(element){
+
+    this.productService.archiveProduct(element).subscribe((response)=>{
+      this.openSnackBar("Product move to archive",'dismis');
+      console.log(response);
+      this.getProducts();
+    })
+
+  }
+
   openProductDialog(product) {
 
     const dialogConfig = new MatDialogConfig();

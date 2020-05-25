@@ -13,6 +13,21 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/arc', (req,res) => {
+    Redeem.find({is_archive:true}).sort({redeem_date:-1}).populate(['redeemable_id', 'user_id']).exec((err, data) => {
+        if(err) throw err
+        res.json(data)
+    })
+})
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Redeem.updateOne({_id:req.body._id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+
 // Get Redeem by ID
 router.get('/:id', (req,res) => {
     Redeem.find({user_id:req.params.id}).sort({redeem_date:-1}).populate(['redeemable_id', 'user_id']).exec((err, data) => {

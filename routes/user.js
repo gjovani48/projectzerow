@@ -28,6 +28,20 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/arc', (req,res) => {
+    User.find({is_archive:true},(err,data)=>{
+        if(err) throw err
+        res.json(data)
+    })
+})
+
+router.post('/archive', urlEncoded, (req,res) => {
+    User.updateOne({_id:req.body._id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 
 router.get('/profile', (req, res)=>{
 

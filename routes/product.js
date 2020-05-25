@@ -58,6 +58,13 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/arc', (req,res) => {
+    Product.find({is_archive:true}).populate(['category_id']).exec((err, data) => {
+        if(err) throw err
+        res.json(data)
+    })
+})
+
 
 router.get('/countitems', (req,res) => {
     Product.aggregate([
@@ -1325,6 +1332,7 @@ router.post('/archiveall', urlEncoded, (req,res) => {
         res.json([{msg:"Product Updated"}])
     })
 })
+
 
 
 router.post('/archive', urlEncoded, (req,res) => {

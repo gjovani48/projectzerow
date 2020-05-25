@@ -50,8 +50,22 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/arc', (req,res) => {
+     Category.find({is_archive:true},(err,data)=>{
+        if(err) throw err
+        res.json(data)
+    })
+})
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Category.updateOne({_id:req.body._id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 router.get('/productlist/:id', (req,res) => {
-  Product.find({category_id:req.params.id},(err,data)=>{
+  Product.find({category_id:req.params.id,is_achive: false},(err,data)=>{
     if(err) throw err
     res.json(data)
   })
