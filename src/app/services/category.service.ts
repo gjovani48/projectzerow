@@ -55,7 +55,7 @@ export class CategoryService {
 
 	archiveCategory(category): Observable<any> {
 		return this.http.post<any>(
-			this.url + "/category/arcive",
+			this.url + "/category/archive",
 			category,
 			{ headers: this.headers }
 		)

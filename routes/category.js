@@ -65,7 +65,7 @@ router.post('/archive', urlEncoded, (req,res) => {
 })
 
 router.get('/productlist/:id', (req,res) => {
-  Product.find({category_id:req.params.id,is_achive: false},(err,data)=>{
+  Product.find({category_id:req.params.id,is_archive: false},(err,data)=>{
     if(err) throw err
     res.json(data)
   })
