@@ -101,6 +101,13 @@ router.post('/archive', urlEncoded, (req,res) => {
     })
 })
 
+router.post('/open', urlEncoded, (req,res) => {
+    Message.updateOne({_id:req.body.id}, { $set: { status: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"status Updated"}])
+    })
+})
+
 // Delete Post
 router.delete('/:id', (req, res) => {
     Message.deleteOne({_id: req.params.id}, (err) => {

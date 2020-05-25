@@ -66,6 +66,7 @@ import {HistoryDialog} from './admin/users/user-index/history-dialog';
 
 import {SalesDialog} from './admin/point-of-sale/sales/sales-dialog';
 import {PosSalesDialog} from './admin/point-of-sale/pos-index/pos-sales-dialog';
+import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import {PosSalesDialog} from './admin/point-of-sale/pos-index/pos-sales-dialog';
     PosIndexComponent,
     UserIndexComponent,
     SalesComponent,
+    MsgIndexComponent,
   ],
   entryComponents: [ProductDialog,UserModal,ProductDialogCreate,
                       CategorytDialogCreate,UserInformationDialog,EmailDialog,

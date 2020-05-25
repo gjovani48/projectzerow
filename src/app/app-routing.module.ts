@@ -20,6 +20,7 @@ import {PosIndexComponent} from './admin/point-of-sale/pos-index/pos-index.compo
 import {UserIndexComponent} from './admin/users/user-index/user-index.component';
 
 import { SalesComponent } from './admin/point-of-sale/sales/sales.component';
+import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
 
 
 const routes: Routes = [
@@ -87,6 +88,11 @@ const routes: Routes = [
   {
     path: 'admin/post',
     component: PostComponent,
+    canActivate: [AuthGuardService]
+  },
+   {
+    path: 'admin/messages',
+    component: MsgIndexComponent,
     canActivate: [AuthGuardService]
   },
   {

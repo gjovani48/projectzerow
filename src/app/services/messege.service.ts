@@ -29,6 +29,22 @@ export class MessegeService {
 		)
 	}
 
+	archiveMessage(message): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/message/archive",
+			message,
+			{ headers: this.headers }
+		)
+	}
+
+	openMessage(message): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/message/open",
+			message,
+			{ headers: this.headers }
+		)
+	}
+
 	// Add New Post
 	addMessage(message): Observable<any> {
 		return this.http.post<any>(
