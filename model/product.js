@@ -42,6 +42,10 @@ const Product = mongoose.model('product', {
         type: String,
         require: true
     },
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
     created_at: {
         type: Date,
         default: Date.now

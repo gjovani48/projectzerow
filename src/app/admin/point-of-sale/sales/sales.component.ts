@@ -10,6 +10,7 @@ import {Product} from '../../../models/product';
 
 
 
+import {SalesDialog} from './sales-dialog';
 
 // import {ProductDialog} from './product-dialog';
 import { NgxImgZoomService } from 'ngx-img-zoom';
@@ -37,7 +38,7 @@ export class SalesComponent implements OnInit {
  public totalSale = [];
  public dataSource;
 
- displayedColumns: string[] = ['No.','user_id','item', 'total','amount_due','change','sale_date'];
+ displayedColumns: string[] = ['No.','user_id','item', 'total','amount_due','change','sale_date','action'];
  length = 100;
  pageSize = 10;
  pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -53,20 +54,29 @@ export class SalesComponent implements OnInit {
  	window.print();
  }
 
+
+ public anonymousSale = [];
+
  getSales(){
 
  	this.saleServices.getSales().subscribe((res)=>{
 
  		res.forEach((row)=>{
  			this.totalSale.push(row.total);
+
+       if(row.user_id == null){
+         this.anonymousSale.push(row);
+       }
+
  		})
 		
 		this.sales = res;
 
 		this.dataSource = new MatTableDataSource(this.sales);
 
-	      this.dataSource.sort = this.sort;
-	      this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+
  	})
 
 
@@ -81,6 +91,30 @@ export class SalesComponent implements OnInit {
  	return a+b;
 
  }
+
+ openSalesDialog(sales) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.width = "450px"
+
+    dialogConfig.position = {
+      'top': "30px;"
+    }
+
+    dialogConfig.data = {
+        sales_info: sales
+    };
+
+    const dialogRef = this.dialog.open(SalesDialog,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+
 
 
 }

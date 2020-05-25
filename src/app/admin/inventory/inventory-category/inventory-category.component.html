@@ -1,12 +1,36 @@
-<main class="py-5">  
-<div class="container-fluid">
+<div class="container-fluid mt-3">
 
-      <a  style="font-size: .4rem" mdbBtn color="light" size="sm" class="waves-light text-sm" routerLink="/admin/category/create"><mdb-icon fas icon="plus-square"></mdb-icon> Create New </a>
+      <div class="row col-lg-12">
 
-			<mat-form-field >
+        <div class="col-lg-4 pt-3">
+              
+              <button (click)="openCategoryDialogCreate()"  mdbTooltip="Add New Category" placement="top" type="button" class="btn btn-default btn-circle">
+                      <mdb-icon fas icon="plus-square"></mdb-icon>
+              </button>
+
+        </div>
+
+      <!-- <div class="col-lg-2 text-center pt-2">
+          
+      </div> -->
+
+        <div class="col-lg-4">
+              
+        </div> 
+
+        <div class="col-lg-4 text-center">
+            <mat-form-field style="width:100%;">
               <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
             </mat-form-field>
+        </div> 
+
+
+    </div>
        
+
+
+       <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
         <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
 
                 <ng-container matColumnDef="No.">
@@ -38,11 +62,11 @@
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
                     <td mat-cell *matCellDef="let element" class="text-center"> 
-                      <!-- <button (click)="deleteProducts(element._id)">delete</button> -->
-                      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                          <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect><mdb-icon fas icon="search"></mdb-icon> View product information</button>
-                          <button mdbBtn type="button" color="blue-grey" size="sm" class="waves-light" mdbWavesEffect><mdb-icon fas icon="edit"></mdb-icon> Edit product information</button>
-                      </div>
+
+                       <button  mdbTooltip="View Category Information" placement="top" type="button" class="btn btn-default btn-circle">
+                        <mdb-icon fas icon="search"></mdb-icon>
+                      </button>
+
                      </td>
                   </ng-container>
               
@@ -59,5 +83,4 @@
                             (page)="pageEvent = $event"
                             showFirstLastButtons>
             </mat-paginator>
-    </div> 
-</main>  
+    </div>  

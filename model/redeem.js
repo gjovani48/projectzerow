@@ -55,6 +55,11 @@ const Sale = mongoose.model('redeem', {
         require: true
     },
 
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
+
     redeem_date: {
         type: Date,
         default: Date.now

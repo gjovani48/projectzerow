@@ -1,0 +1,112 @@
+<div style="font-size: .7rem" class="container">
+	
+	<div class="col-lg-12">
+		
+		<div class="row">
+				
+			<div class="col-lg-12 border-bottom">
+
+				<h5>
+					Project:Zerow Store
+				</h5>
+
+			
+			</div>
+
+			<div class="col-lg-12 pt-3">
+
+				<div class="row">
+					
+					<div class="col-lg-6">
+						Name: {{(!sales.user_id)? 'null': sales.user_id.firstname+" "+sales.user_id.lastname}}
+					</div>
+
+					<div class="col-lg-6">
+						<span class="float-right">Transaction Date: {{sales.sale_date | date:'mediumTime'}}</span>					
+					</div>
+
+					<hr>
+
+				</div>
+
+			</div>
+
+
+			<div class="col-lg-12">
+
+				<div class="row">
+					
+					<div class="col-lg-12 border-top mt-2">
+
+						<strong>Items</strong><br><br>
+
+						<ul class="list-unstyled">
+							<li *ngFor="let row of sales.item">
+								{{row.name}} <span class="float-right">{{row.quantity}} x {{row.price}}</span>
+							</li>
+						</ul>
+
+					</div>
+
+					<hr>
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-12">
+
+				<div class="row">
+					
+					<div class="col-lg-12 border-top mt-2">
+
+						<ul class="list-unstyled">
+							
+							<li>Total: <span class="float-right">{{sales.total}}</span></li>
+							<li>Amount Due: <span class="float-right">{{sales.amount_due}}</span></li>
+							<li>Change: <span class="float-right">{{sales.change}}</span></li>
+
+						</ul>
+
+					</div>
+
+					<div *ngIf="sales.user_id" class="col-lg-12 border-top mt-2">
+
+						<ul class="list-unstyled">
+							<li>Ponts Earned: <span class="float-right">{{sales.total*.05 | number: '1.2-3'}}</span></li>
+						</ul>
+
+					</div>
+
+
+					<div class="col-lg-12 border-top mt-2">
+						Transaction code: <span class="float-right">{{tr_code}}</span>
+					</div>
+					
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+	</div>
+
+</div>
+
+<br><br>
+
+<mat-dialog-actions align="end">
+
+    <button *ngIf="sales.user_id" mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>
+    	<mdb-icon fas icon="envelope-square"></mdb-icon> Send as email
+    </button>
+    
+    <button mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>
+    	<mdb-icon fas icon="print"></mdb-icon> Print
+    </button>
+
+</mat-dialog-actions>
+

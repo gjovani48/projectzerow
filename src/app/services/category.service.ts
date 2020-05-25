@@ -28,6 +28,12 @@ export class CategoryService {
 		)
   }
 
+  getCategoryCount(): Observable<any> {
+		return this.http.get<any>(
+			this.url + "/product/countitems"
+		)
+  }
+
   getProductList(id): Observable<Product[]> {
 		return this.http.get<any>(
 			this.url + "/category/productlist/" + id

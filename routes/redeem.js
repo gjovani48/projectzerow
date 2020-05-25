@@ -7,7 +7,7 @@ const urlEncoded = bodyParser.json()
 
 // Get All Redeems
 router.get('/', (req,res) => {
-    Redeem.find({}).populate(['redeemable_id', 'user_id']).exec((err, data) => {
+    Redeem.find({is_archive:false}).sort({redeem_date:-1}).populate(['redeemable_id', 'user_id']).exec((err, data) => {
         if(err) throw err
         res.json(data)
     })
@@ -15,7 +15,7 @@ router.get('/', (req,res) => {
 
 // Get Redeem by ID
 router.get('/:id', (req,res) => {
-    Redeem.findOne({_id:req.params.id}).populate(['redeemable_id', 'user_id']).exec((err, data) => {
+    Redeem.find({user_id:req.params.id}).sort({redeem_date:-1}).populate(['redeemable_id', 'user_id']).exec((err, data) => {
         if(err) throw err
         res.json(data)
     })
@@ -58,6 +58,23 @@ router.put('/:id', urlEncoded, (req,res) => {
         res.json([{msg:"Redeem Updated"}])
     })
 })
+
+
+router.post('/archiveall', urlEncoded, (req,res) => {
+    Redeem.updateMany({}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Redeem.updateOne({_id:req.body.id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 
 // Delete Redeem
 router.delete('/:id', (req, res) => {

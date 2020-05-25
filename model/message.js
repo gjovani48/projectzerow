@@ -28,6 +28,10 @@ const Message = mongoose.model('message', {
         type: Date,
         default: Date.now
     },
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
     status:{
         type: Boolean,
         default: false

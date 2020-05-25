@@ -12,6 +12,7 @@ import {Product} from '../../../models/product';
 
 
 import {UserModal} from './user-modal';
+import {PosSalesDialog} from './pos-sales-dialog';
 
 // import {ProductDialog} from './product-dialog';
 import { NgxImgZoomService } from 'ngx-img-zoom';
@@ -252,6 +253,8 @@ export class PosIndexComponent implements OnInit {
 
   createSale(){
 
+      var tr_code;
+
 	  	var sales_data = new Sale();
 	  	sales_data.user_id = this.selectedUser._id;
 	  	sales_data.item = this.item;
@@ -265,6 +268,10 @@ export class PosIndexComponent implements OnInit {
 
 
 	  	this.saleServices.addSale(sales_data).subscribe((res)=>{
+
+        console.log(res)
+
+        tr_code = res.transaction_code;
 	  		
 
 	  		if(res.status==true && this.selectedUser._id!=""){
@@ -273,17 +280,23 @@ export class PosIndexComponent implements OnInit {
 
 
 	  				if(res.status==true){
-	  					alert('poins added to the user| transaction success');
+	  					alert('poins added to the user| transaction success'+" "+res.transaction_code);
 	  				}
 
 	  			})
 
+          this.openPosSalesDialog(sales_data,res.transaction_code);
+
 	  		}
 	  		else if(res.status==true && this.selectedUser._id==""){
-	  			alert('transaction success');
+	  			alert('transaction success'+res.transaction_code);
+          this.openPosSalesDialog(sales_data,res.transaction_code);
 	  		}
 
 	  	})
+
+
+      
 
 
   }
@@ -398,4 +411,39 @@ export class PosIndexComponent implements OnInit {
   closeRedeem(){
     this.inredeem = false;
   }
+
+   openPosSalesDialog(sales,code) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.width = "450px"
+
+    dialogConfig.position = {
+      'top': "30px;"
+    }
+
+    dialogConfig.data = {
+        sales_info: sales,
+        transaction_code: code
+    };
+
+    const dialogRef = this.dialog.open(PosSalesDialog,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
+
+  getLatestSale(){
+
+    this.saleServices.getLatestSale().subscribe((res)=>{
+
+      console.log(res);
+
+    })
+
+  }
+
 }

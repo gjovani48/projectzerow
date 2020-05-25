@@ -44,7 +44,7 @@ router.post('/upload',upload.single('file'), function (req, res) {
 
 // Get All Categorys
 router.get('/', (req,res) => {
-    Category.find({},(err,data)=>{
+    Category.find({is_archive:false},(err,data)=>{
         if(err) throw err
         res.json(data)
     })
@@ -96,6 +96,20 @@ router.put('/:id', urlEncoded, (req,res) => {
     },(err) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json([{msg:"Category Updated"}])
+    })
+})
+
+router.post('/archiveall', urlEncoded, (req,res) => {
+    Category.updateMany({}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Category.updateOne({_id:req.body.id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
     })
 })
 

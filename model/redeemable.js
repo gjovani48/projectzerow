@@ -27,6 +27,11 @@ const Redeemable = mongoose.model('redeemable', {
         require: true
     },
 
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
+
     pzwcost:{
         type: Number,
         require: true

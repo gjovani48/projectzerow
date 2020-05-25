@@ -8,7 +8,7 @@ const urlEncoded = bodyParser.json()
 // Get All Sales
 
 router.get('/', (req,res) => {
-    Sale.find({}).populate(['user_id','item.product_id']).exec((err, data) => {
+    Sale.find({is_archive:false}).sort({sale_date: -1}).populate(['user_id','item.product_id']).exec((err, data) => {
         if(err) throw err
         res.json(data)
     })
@@ -30,9 +30,30 @@ router.get('/monthly', (req,res) => {
     });
 })
 
+router.get('/latest', (req,res) => {
+    Sale.findOne({}).sort({sale_date: -1}).populate(['user_id','item.product_id']).exec((err, data) => {
+        if(err) throw err
+        res.json(data)
+    })
+})
+
+router.get('/oldest', (req,res) => {
+    Sale.findOne({}).sort({sale_date: 1}).populate(['user_id','item.product_id']).exec((err, data) => {
+        if(err) throw err
+        res.json(data)
+    })
+})
+
+router.get('/slug/:id', (req,res) => {
+   Sale.findOne({_id:req.params.id}).populate(['user_id', 'product_id']).exec((err, data) => {
+        if(err) throw err
+        res.json(data)
+    })
+})
+
 // Get Sale by ID
 router.get('/:id', (req,res) => {
-    Sale.findOne({_id:req.params.id}).populate(['user_id', 'product_id']).exec((err, data) => {
+    Sale.find({user_id:req.params.id}).sort({sale_date: -1}).populate(['user_id', 'product_id']).exec((err, data) => {
         if(err) throw err
         res.json(data)
     })
@@ -41,11 +62,9 @@ router.get('/:id', (req,res) => {
 // Add New Sale
 router.post('/', urlEncoded,(req,res) => {
 
-    console.log(req.body.user_id)
 
     var user_id = (req.body.user_id=="")? "5e637de1f897de1475f1498a":req.body.user_id;
 
-    console.log(user_id)
 
     var sale = new Sale({
         user_id: user_id,
@@ -57,7 +76,8 @@ router.post('/', urlEncoded,(req,res) => {
 
     itemArray = req.body.item;
 
-    sale.save( (err) => {
+    Sale.create(sale).then((sales_data,err)=>{
+
         if(err) res.json({msg:"Invalid Request"})
 
         for(var i=0; i<itemArray.length; i++){
@@ -68,7 +88,10 @@ router.post('/', urlEncoded,(req,res) => {
             })
         }
 
-        res.json({status:true})
+        res.json({status:true,transaction_code:sales_data._id})
+
+        console.log(sales_data)
+
     })
 })
 
@@ -101,6 +124,22 @@ router.put('/:id', urlEncoded, (req,res) => {
 //         res.json([{msg:"Product Updated"}])
 //     })
 // })
+
+
+router.post('/archiveall', urlEncoded, (req,res) => {
+    Sale.updateMany({}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Sale.updateOne({_id:req.body.id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 
 // Delete Sale
 router.delete('/:id', (req, res) => {

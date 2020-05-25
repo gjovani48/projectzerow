@@ -6,7 +6,7 @@ const urlEncoded = bodyParser.json()
 
 // Get All Posts
 router.get('/', (req,res) => {
-    Post.find({},(err,data)=>{
+    Post.find({is_archive:false},(err,data)=>{
         if(err) throw err 
         res.json(data)
     })
@@ -51,6 +51,24 @@ router.put('/:id', urlEncoded, (req,res) => {
         res.json([{msg:"Post Updated"}])
     })
 })
+
+
+router.post('/archiveall', urlEncoded, (req,res) => {
+    Post.updateMany({}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Post.updateOne({_id:req.body.id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 
 // Delete Post
 router.delete('/:id', (req, res) => {

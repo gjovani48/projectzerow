@@ -15,7 +15,7 @@ var transporter  = nodemailer.createTransport({
 
 // Get All Posts
 router.get('/', (req,res) => {
-    Message.find({},(err,data)=>{
+    Message.find({is_archive:false},(err,data)=>{
         if(err) throw err 
         res.json(data)
     })
@@ -70,6 +70,20 @@ router.put('/:id', urlEncoded, (req,res) => {
     },(err) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json([{msg:"Post Updated"}])
+    })
+})
+
+router.post('/archiveall', urlEncoded, (req,res) => {
+    Message.updateMany({}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Message.updateOne({_id:req.body.id}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
     })
 })
 

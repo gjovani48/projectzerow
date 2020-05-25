@@ -52,7 +52,7 @@ router.post('/upload',upload.single('file'), function (req, res) {
 
 // Get All Products
 router.get('/', (req,res) => {
-    Product.find({}).populate(['category_id']).exec((err, data) => {
+    Product.find({is_archive:false}).populate(['category_id']).exec((err, data) => {
         if(err) throw err
         res.json(data)
     })
@@ -1313,6 +1313,22 @@ router.put('/:id', urlEncoded, (req,res) => {
         quantity: req.body.quantity,
         pzwpoints_req: req.body.pzwpoints_req,
     },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+
+router.post('/archiveall', urlEncoded, (req,res) => {
+    Product.updateMany({}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+
+router.post('/archive', urlEncoded, (req,res) => {
+    Product.updateOne({_id:req.body._id}, { $set: { is_archive: true } },(err) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json([{msg:"Product Updated"}])
     })

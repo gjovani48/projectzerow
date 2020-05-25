@@ -60,6 +60,11 @@ const Sale = mongoose.model('sale', {
         require: true
     },
 
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
+
     sale_date: {
         type: Date,
         default: Date.now

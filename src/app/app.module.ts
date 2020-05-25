@@ -42,10 +42,12 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { InventoryIndexComponent } from './admin/inventory/inventory-index/inventory-index.component';
 import { InventoryProductsComponent } from './admin/inventory/inventory-products/inventory-products.component';
 import {ProductDialog} from './admin/inventory/inventory-products/product-dialog';
+import {ProductDialogCreate} from './admin/inventory/inventory-products/product-dialog-create';
 import {UserModal} from './admin/point-of-sale/pos-index/user-modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCreateComponent } from './admin/forms/product-create/product-create.component';
 import { InventoryCategoryComponent } from './admin/inventory/inventory-category/inventory-category.component';
+import { CategorytDialogCreate } from './admin/inventory/inventory-category/category-dialog-create';
 import { CategoryCreateComponent } from './admin/forms/category-create/category-create.component';
 import { InventoryRedeemableComponent } from './admin/inventory/inventory-redeemable/inventory-redeemable.component';
 import { PostComponent } from './admin/post/post.component';
@@ -55,6 +57,15 @@ import { VideosComponent } from './admin/post/videos/videos.component';
 import { PosIndexComponent } from './admin/point-of-sale/pos-index/pos-index.component';
 import { UserIndexComponent } from './admin/users/user-index/user-index.component';
 import { SalesComponent } from './admin/point-of-sale/sales/sales.component';
+
+
+import {UserInformationDialog} from './admin/users/user-index/information-dialog';
+import {EmailDialog} from './admin/users/user-index/email-dialog';
+import {HistoryDialog} from './admin/users/user-index/history-dialog';
+
+
+import {SalesDialog} from './admin/point-of-sale/sales/sales-dialog';
+import {PosSalesDialog} from './admin/point-of-sale/pos-index/pos-sales-dialog';
 
 @NgModule({
   declarations: [
@@ -70,7 +81,14 @@ import { SalesComponent } from './admin/point-of-sale/sales/sales.component';
     InventoryProductsComponent,
     ProductCreateComponent,
     ProductDialog,
+    ProductDialogCreate,
+    PosSalesDialog,
+    EmailDialog,
+    HistoryDialog,
+    CategorytDialogCreate,
     UserModal,
+    SalesDialog,
+    UserInformationDialog,
     InventoryCategoryComponent,
     CategoryCreateComponent,
     InventoryRedeemableComponent,
@@ -82,7 +100,9 @@ import { SalesComponent } from './admin/point-of-sale/sales/sales.component';
     UserIndexComponent,
     SalesComponent,
   ],
-  entryComponents: [ProductDialog,UserModal],
+  entryComponents: [ProductDialog,UserModal,ProductDialogCreate,
+                      CategorytDialogCreate,UserInformationDialog,EmailDialog,
+                    HistoryDialog,SalesDialog,PosSalesDialog],
   imports: [
     HttpClientModule,
     NgxPaginationModule,

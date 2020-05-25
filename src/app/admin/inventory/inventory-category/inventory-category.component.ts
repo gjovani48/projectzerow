@@ -16,6 +16,9 @@ import {MatTableDataSource,MatPaginator} from '@angular/material';
 import {PageEvent} from '@angular/material/paginator';
 
 
+import {CategorytDialogCreate} from './category-dialog-create';
+
+
 @Component({
   selector: 'app-inventory-category',
   templateUrl: './inventory-category.component.html',
@@ -30,6 +33,7 @@ export class InventoryCategoryComponent implements OnInit {
 
    categories = [];
    public dataSource;
+   public loading = true;
 
   displayedColumns: string[] = ['No.','image','name','blnk','action'];
   length = 100;
@@ -45,6 +49,9 @@ export class InventoryCategoryComponent implements OnInit {
 
 
   getCategories(){
+    this.categories = [];
+    this.loading = true;
+
     this.categoryService.getCategories().subscribe((response) => {
       this.categories = response;
       this.dataSource = new MatTableDataSource(response);
@@ -53,11 +60,36 @@ export class InventoryCategoryComponent implements OnInit {
 
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+      this.loading = false;
     })
   }
 
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+    openCategoryDialogCreate() {
+
+
+
+  const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.height = 'auto';
+    dialogConfig.width = '400px';
+    dialogConfig.position = {
+      'top': '0',
+      'right': '0'
+  };
+
+
+    const dialogRef = this.dialog.open(CategorytDialogCreate,dialogConfig);
+
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
   }
 
 }

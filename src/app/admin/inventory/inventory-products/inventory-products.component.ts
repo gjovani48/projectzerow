@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {Product} from '../../../models/product';
 
 import {ProductDialog} from './product-dialog';
+import {ProductDialogCreate} from './product-dialog-create';
 import { NgxImgZoomService } from 'ngx-img-zoom';
 
 
@@ -30,6 +31,7 @@ export class InventoryProductsComponent implements OnInit {
 
   public gridView = false;
   public listView = true;
+  public loading = true;
 
   displayedColumns: string[] = ['No.','image','name', 'price','quantity','action'];
   length = 100;
@@ -81,6 +83,10 @@ export class InventoryProductsComponent implements OnInit {
   pageEvent: PageEvent;
 
   getProducts(){
+
+    this.products = [];
+    this.loading = true;
+
     this.productService.getProducts().subscribe((response) => {
       this.products = response;
       this.productsCarouselItem = response;
@@ -101,6 +107,9 @@ export class InventoryProductsComponent implements OnInit {
 
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+
+      this.loading = false;
+
     })
   }
 
@@ -116,8 +125,14 @@ export class InventoryProductsComponent implements OnInit {
 
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+
+    dialogConfig.height = '85%';
+    dialogConfig.width = '400px';
+    dialogConfig.position = {
+      'top': '0',
+      'right': '0'
+    };
+
 
     dialogConfig.data = {
         id: 1,
@@ -129,6 +144,30 @@ export class InventoryProductsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+   openProductDialogCreate() {
+
+
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.height = '100%';
+    dialogConfig.width = '400px';
+    dialogConfig.position = {
+      'top': '0',
+      'right': '0'
+  };
+
+
+    const dialogRef = this.dialog.open(ProductDialogCreate,dialogConfig);
+
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
   }
 
   applyFilter(filterValue: string){
@@ -191,6 +230,15 @@ export class InventoryProductsComponent implements OnInit {
     }
 
     
+  }
+
+  archive(element){
+
+    this.productService.archiveProduct(element).subscribe((response)=>{
+      this.openSnackBar("Product move to archive",'dismis');
+      this.getProducts();
+    })
+
   }
 
   deleteProducts(id){

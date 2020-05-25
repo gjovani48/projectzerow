@@ -43,6 +43,10 @@ const Cart = mongoose.model('cart', {
       type:Number,
       require: false,
     },
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
     created_date:{
         type: Date,
         default: Date.now

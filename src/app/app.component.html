@@ -136,16 +136,16 @@
     
 
     <div [class.pleft]="drawer.opened" class="move-left" style="width: 100%;">
-
-      <a style="font-size: .6rem;" class="nav-link float-left">
-        {{router.url}}
-      </a>
       
-      <div *ngIf="userService.isLoggedIn()" class="btn-group btn-group-sm float-right pt-2" role="group" aria-label="Basic example">
-          <button mdbBtn type="button" color="light" (click)="logout();" size="sm" class="waves-light" mdbWavesEffect>Logout</button>
-          <button mdbBtn type="button" color="light" size="sm" class="waves-light" mdbWavesEffect>Middle</button>
-          <button mdbBtn type="button" color="light" size="sm" class="waves-light" mdbWavesEffect>Right</button>
-      </div>
+
+      <span *ngIf="userService.isLoggedIn()" style="font-size: .6rem;" type="button" class="border-0 float-right white" (click)="logout();">
+        <u><mdb-icon fas icon="user-minus"></mdb-icon> Signout</u>
+      </span>
+
+      <span *ngIf="userService.isLoggedIn()" style="font-size: .6rem;" type="button" class="border-0 mr-3 float-right white">
+        <u><mdb-icon fas icon="tools"></mdb-icon> Configuration</u>
+      </span>
+
     </div>
   </mat-toolbar>
 
@@ -187,7 +187,7 @@
   <div class="modal-dialog modal-lg cascading-modal modal-avatar" role="document">
     <div class="modal-content bg-unique-dark ml-12">
       <div class="modal-header">
-        <img src="assets/img/mark.jpg" class="rounded-circle img-responsive animated zoomIn">
+        <img src="assets/img/login.png" class="rounded-circle img-responsive animated zoomIn">
         <h3 class="text-light">Login</h3>
       </div>
 
@@ -238,7 +238,7 @@
   <div class="modal-dialog modal-lg cascading-modal modal-avatar" role="document">
     <div class="modal-content bg-unique-dark">
       <div class="modal-header">
-        <img src="assets/img/mark.jpg" class="rounded-circle img-responsive animated zoomIn">
+        <img src="assets/img/signup.png" class="rounded-circle img-responsive animated zoomIn">
         <h3 class="text-light">Register</h3>
       </div>
 

@@ -42,7 +42,7 @@
 
 
   <mat-dialog-actions align="end">
-    <button mat-dialog-close (click)="submit()" class="btn btn-sm btn-light">dismiss</button>
+    <button mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>ok</button>
   </mat-dialog-actions>
 
 

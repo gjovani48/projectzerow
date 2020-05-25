@@ -22,6 +22,11 @@ const Category = mongoose.model('category', {
         require: true
     },
 
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
+
     image:{
         type: String,
         require: true

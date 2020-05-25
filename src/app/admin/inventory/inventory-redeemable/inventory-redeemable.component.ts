@@ -46,6 +46,7 @@ export class InventoryRedeemableComponent implements OnInit {
 
   isAdmin : boolean;
   products = [];
+  public loading = true;
   productsCarouselItem = [];
   productsFilter: any = { name: ''};
   p: number = 1;
@@ -76,6 +77,10 @@ export class InventoryRedeemableComponent implements OnInit {
   pageEvent: PageEvent;
 
   getProducts(){
+
+    this.loading = true;
+    this.products = [];
+
     this.categoryService.getProductList('5e585e3fcbd1ba001710412c').subscribe((response) => {
       this.products = response;
       this.productsCarouselItem = response;
@@ -86,6 +91,7 @@ export class InventoryRedeemableComponent implements OnInit {
 
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+       this.loading = false;
     })
   }
 
@@ -93,8 +99,12 @@ export class InventoryRedeemableComponent implements OnInit {
 
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+     dialogConfig.height = '85%;';
+     dialogConfig.width = '400px';
+     dialogConfig.position = {
+        'top': '0',
+        'right': '0'
+    };
 
     dialogConfig.data = {
         id: 1,

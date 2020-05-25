@@ -26,6 +26,14 @@ export class SaleService {
 		return this.http.get<any>(this.url + "/sale");
 	}
 
+	getLatestSale(): Observable<Sale[]> {
+		return this.http.get<any>(this.url + "/sale/latest");
+	}
+
+	getOldestSale(): Observable<Sale[]> {
+		return this.http.get<any>(this.url + "/sale/oldest");
+	}
+
 	getMonthlySales(): Observable<montlysale[]> {
 		return this.http.get<any>(this.url + "/sale/monthly");
 	}
@@ -34,6 +42,12 @@ export class SaleService {
 	getSale(id): Observable<Sale> {
 		return this.http.get<any>(
 			this.url + "/sale/" + id
+		)
+	}
+
+	getSaleByCode(id): Observable<Sale> {
+		return this.http.get<any>(
+			this.url + "/sale/slug/" + id
 		)
 	}
 

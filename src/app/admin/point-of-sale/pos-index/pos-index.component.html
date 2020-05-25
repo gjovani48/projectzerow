@@ -209,11 +209,12 @@
 						
 						<div style="width:100%;" class="btn-group btn-group-sm border" role="group" aria-label="Basic example">
 						    <a mdbBtn type="button" color="unique" size="sm" class="waves-light"  routerLink="/admin/inventory" mdbWavesEffect><mdb-icon fas icon="cube"></mdb-icon> INVENTORY</a>
+
 						    <button *ngIf="inredeem==false" mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect (click)="openUserDialog('Redeem Item For: '); openRedeem();"><mdb-icon fas icon="gifts"></mdb-icon> Reedem Item</button>
 						   
 						    <button *ngIf="inredeem==true" mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect (click)="closeRedeem();"><mdb-icon fas icon="gifts"></mdb-icon> Make Sale</button>
 
-						    <button mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect>Right</button>
+						    
 
 						    <div class="btn-group btn-group-sm" mdbDropdown>
 						        <button mdbDropdownToggle type="button" size="sm" mdbBtn color="unique" class="dropdown-toggle waves-light" mdbWavesEffect>
@@ -221,9 +222,9 @@
 						        </button>
 
 						        <div class="dropdown-menu dropdown-primary">
-						            <a class="dropdown-item" href="#">Search Sales</a>
-							        <a class="dropdown-item" href="#">Show Last Sale</a>
-							        <a class="dropdown-item" href="#">Lookup Receipt</a>
+						            <span class="dropdown-item" (click)="getLatestSale()">Search Sales</span>
+							        <span class="dropdown-item" (click)="getLatestSale()">Show Last Sale</span>
+							        <span class="dropdown-item" >Lookup Receipt</span>
 						        </div>
 
 						    </div>
@@ -245,7 +246,7 @@
 								  		<div class="col-lg-12 col-12 col-sm-12 pt-3">
 								  			<div class="row">
 								  				
-								  				<div *ngFor="let row of obs | async |filterBy: productsFilterAll" (click)=" addItem(row)" class="col-lg-3 col-3 col-sm-3 mb-3">
+								  				<div *ngFor="let row of obs | async | filterBy: productsFilterAll" (click)=" addItem(row)" class="col-lg-3 col-3 col-sm-3 mb-3">
 								  					
 								  					<mdb-card style="width: 123px;" mdbTooltip="{{row.name}} -- Availability: {{row.quantity}}" placement="top">
 
@@ -287,6 +288,7 @@
 							        <mat-progress-bar *ngIf="loadingAll" mode="indeterminate"></mat-progress-bar>
 
 							        <div class="col-lg-12 border-top">
+
 							        	<div class="row">
 							        		
 							        		<div class="col-lg-8">
@@ -306,8 +308,11 @@
 							        		</div>
 							        	
 							        	</div>
+							        	
 							        </div>
-							        <mat-paginator class="border-top" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+							        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+							        
 								  </mat-tab>
 
 								  <mat-tab *ngFor="let row of categories" label="Products ">
@@ -323,7 +328,7 @@
 							        	<div class="col-lg-12 col-12 col-sm-12 pt-3">
 								  			<div class="row">
 								  				
-								  				<div *ngFor="let product of categoryProducts|filterBy: productsFilter" (contextmenu)="onRightClick($event)" (click)=" addItem(product)" class="col-lg-3 col-3 col-sm-3 mb-3">
+								  				<div *ngFor="let product of categoryProducts|filterBy: productsFilter" (click)=" addItem(product)" class="col-lg-3 col-3 col-sm-3 mb-3">
 								  					
 								  					
 
@@ -400,7 +405,7 @@
 							        	<div class="col-lg-12 col-12 col-sm-12 pt-3">
 								  			<div class="row">
 								  				
-								  				<div *ngFor="let product of categoryProducts|filterBy: productsFilter" (contextmenu)="onRightClick($event)" (click)=" addItemRedeem(product)" class="col-lg-3 col-3 col-sm-3 mb-3">
+								  				<div *ngFor="let product of categoryProducts | filterBy: productsFilter" (click)=" addItemRedeem(product)" class="col-lg-3 col-3 col-sm-3 mb-3">
 								  					
 								  					
 

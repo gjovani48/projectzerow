@@ -45,6 +45,14 @@ export class ProductService {
 		)
 	}
 
+	archiveProduct(product): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/product/archive",
+			product,
+			{ headers: this.headers }
+		)
+	}
+
 	// Update Product
 	updateProduct(product): Observable<any> {
 		return this.http.put<any>(

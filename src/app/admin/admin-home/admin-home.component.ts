@@ -29,10 +29,13 @@ export class AdminHomeComponent implements OnInit {
   public products = [];
   public sales = [];
 
+  public cats = [];
+
   ngOnInit() {
     this.getProfile();
     this.getData();
     this.getMonthlySales();
+    this.getCategoriesCount();
   }
 
   getProfile(){
@@ -107,6 +110,13 @@ export class AdminHomeComponent implements OnInit {
 
     
 
+  }
+
+  getCategoriesCount(){
+    
+    this.categoryServices.getCategoryCount().subscribe((response) => {
+      this.cats = response;
+    })
   }
 
 

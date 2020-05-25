@@ -66,6 +66,11 @@ const User = mongoose.model('user', {
       require: false
     },
 
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
+
     created_at: {
         type: Date,
         default: Date.now

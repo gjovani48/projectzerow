@@ -39,6 +39,11 @@ const Post = mongoose.model('post', {
         require: false
     },
 
+    is_archive:{
+        type: Boolean,
+        default: false
+    },
+
     date_posted:{
         type: Date,
         default: Date.now
