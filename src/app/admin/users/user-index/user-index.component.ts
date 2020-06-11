@@ -12,6 +12,7 @@ import {Redeem} from '../../../models/redeem';
 import {Product} from '../../../models/product';
 
 
+import {SelectionModel} from '@angular/cdk/collections';
 
 
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
@@ -35,15 +36,18 @@ export class UserIndexComponent implements OnInit {
 
 
 public users:User[];
+public isMarked:Boolean=true;
 
  constructor(
               private _snackBar: MatSnackBar,private userServices: UserService,private saleServices: SaleService,
               private router: Router,private productService: ProductService, private redeemServices: RedeemService,
               private categoryService: CategoryService,public dialog: MatDialog,private changeDetectorRef: ChangeDetectorRef) { }
 
-public dataSource;
+public dataSource = new MatTableDataSource<User>();
 
- displayedColumns: string[] = ['No.','firstname','lastname','phone', 'email','pzwpoints','Action'];
+public selection = new SelectionModel<User>(true, []);
+
+ displayedColumns: string[] = ['select','No.','firstname','lastname','phone', 'email','pzwpoints','Action'];
  length = 100;
  pageSize = 10;
  pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -72,6 +76,27 @@ public dataSource;
   	})
 
 
+  }
+
+   isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: User): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id}`;
   }
 
   applyFilter(filterValue: string){
@@ -112,12 +137,14 @@ public dataSource;
 
     const dialogConfig = new MatDialogConfig();
 
-	    dialogConfig.height = 'auto';
-	    dialogConfig.width = '400px';
+	    dialogConfig.height = '85%';
+      dialogConfig.width = '400px';
+      dialogConfig.position = {
 
-	    dialogConfig.position = {
-		    'top': '100px'
-		};
+        'top': '0',
+        'right': '0'
+        
+      };
 	    
 	    dialogConfig.data = {
 	        user: user

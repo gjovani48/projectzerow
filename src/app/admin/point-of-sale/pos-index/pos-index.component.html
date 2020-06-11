@@ -27,7 +27,7 @@
 						  <input type="text" class="form-control form-control-sm" placeholder="Customer" [(ngModel)]="dpname" aria-label="Text input with dropdown button" readonly>
 						  <div class="input-group-append">
 						    <div class="btn-group " mdbDropdown>
-						      <button mdbDropdownToggle type="button" mdbBtn color="success" size="sm" class="dropdown-toggle z-depth-0"
+						      <button mdbDropdownToggle type="button" mdbBtn color="success" size="sm" class="dropdown-toggle"
 						        mdbWavesEffect><mdb-icon fas icon="user-alt"></mdb-icon></button>
 
 						      <div class="dropdown-menu">
@@ -86,13 +86,13 @@
 										
 										<div class="col-lg-6">
 											
-											<h5>Total: <br> ₱ {{totalCost}}</h5>
+											<h5 style="font-size: .8rem;">Total: <br> ₱ {{totalCost}}</h5>
 
 										</div>
 
 										<div class="col-lg-6">
 												
-											<h5>Amount Due: <br> ₱ {{amount_due}}</h5>
+											<h5 style="font-size: .8rem;">Amount Due: <br> ₱ {{amount_due}}</h5>
 
 										</div>
 
@@ -171,7 +171,7 @@
 										
 										<div class="col-lg-12">
 											
-											<h5>Total PZW Points: <br> {{totalCost_points}}</h5>
+											<h5 style="font-size: .9rem;">Total PZW Points:<span class="float-right">{{totalCost_points}}</span></h5>
 
 										</div>
 									
@@ -184,9 +184,7 @@
 
 							<div class="md-form input-group mb-3">
 
-							  <div class="input-group-append">
 							   <button style="width:100%;" mdbBtn type="button" (click)="createRedeem()" color="success" outline="true" mdbWavesEffect><mdb-icon fas icon="check-circle"></mdb-icon> Redeem Item</button>
-							  </div>
 
 							</div>
 
@@ -214,20 +212,8 @@
 						   
 						    <button *ngIf="inredeem==true" mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect (click)="closeRedeem();"><mdb-icon fas icon="gifts"></mdb-icon> Make Sale</button>
 
-						    
+						     <button mdbBtn type="button" color="unique" size="sm" class="waves-light" mdbWavesEffect (click)="cancellTransaction()"><mdb-icon fas icon="ban"></mdb-icon> Cancel Transaction</button>
 
-						    <div class="btn-group btn-group-sm" mdbDropdown>
-						        <button mdbDropdownToggle type="button" size="sm" mdbBtn color="unique" class="dropdown-toggle waves-light" mdbWavesEffect>
-						            <mdb-icon fas icon="caret-square-down"></mdb-icon> Dropdown
-						        </button>
-
-						        <div class="dropdown-menu dropdown-primary">
-						            <span class="dropdown-item" (click)="getLatestSale()">Search Sales</span>
-							        <span class="dropdown-item" (click)="getLatestSale()">Show Last Sale</span>
-							        <span class="dropdown-item" >Lookup Receipt</span>
-						        </div>
-
-						    </div>
 						</div>
 
 					</div>
@@ -242,7 +228,9 @@
 				            			<span class="ml-2">All</span>
 							        </ng-template>
 
-								  	<div style="height: 400px" class="overflow-auto pb-1">
+							        
+
+								  	<div style="height: 450px" class="overflow-auto pb-1">
 								  		<div class="col-lg-12 col-12 col-sm-12 pt-3">
 								  			<div class="row">
 								  				
@@ -282,7 +270,8 @@
 								  			</div>
 								  		</div>
 
-							 
+							 		
+
 							        </div>
 
 							        <mat-progress-bar *ngIf="loadingAll" mode="indeterminate"></mat-progress-bar>
@@ -291,7 +280,7 @@
 
 							        	<div class="row">
 							        		
-							        		<div class="col-lg-8">
+							        		<div class="col-lg-8 pl-3">
 							        			<mat-form-field style="width:100%;">
 									              <mat-label>Search Item</mat-label>
 									              <input matInput type="text" [(ngModel)]="productsFilterAll.name" placeholder="Search">
@@ -310,8 +299,6 @@
 							        	</div>
 							        	
 							        </div>
-
-							        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 							        
 								  </mat-tab>
 
@@ -323,7 +310,7 @@
 
 							        
 
-							        <div style="height: 400px" class="overflow-auto pb-1">
+							        <div style="height: 450px" class="overflow-auto pb-1">
 
 							        	<div class="col-lg-12 col-12 col-sm-12 pt-3">
 								  			<div class="row">
@@ -374,7 +361,7 @@
 							          <div class="row">
 							        		
 							        		<div class="col-lg-8">
-							        			<mat-form-field style="width:100%;">
+							        			<mat-form-field class="pl-3" style="width:100%;">
 									              <mat-label>Search Item</mat-label>
 									              <input matInput type="text" [(ngModel)]="productsFilter.name" placeholder="Search">
 									              <mat-icon matSuffix>search</mat-icon>
@@ -400,7 +387,7 @@
 					<div *ngIf="inredeem==true" class="col-lg-12">
 
 
-						<div style="height: 400px" class="overflow-auto pb-1 border">
+						<div style="height: 450px" class="overflow-auto pb-1 border">
 
 							        	<div class="col-lg-12 col-12 col-sm-12 pt-3">
 								  			<div class="row">
@@ -454,7 +441,7 @@
 								<div class="row">
 							        		
 					        		<div class="col-lg-8">
-					        			<mat-form-field style="width:100%;">
+					        			<mat-form-field class="pl-3" style="width:100%;">
 							              <mat-label>Search Item</mat-label>
 							              <input matInput type="text" [(ngModel)]="productsFilter.name" placeholder="Search">
 							              <mat-icon matSuffix>search</mat-icon>
@@ -475,14 +462,6 @@
 
 					</div>
 
-
-
-
-
-
-
-
-		
 
 				</div>
 

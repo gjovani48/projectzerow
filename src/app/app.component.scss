@@ -881,7 +881,7 @@ ul li:hover{
   position: fixed;
   height: 100vh;
   min-width: 20%;
-  background-color:#263238;
+  background-color:#212121;
   border-right: 1px solid #ccc;
 }
 .drawer .header {
@@ -970,4 +970,8 @@ body{margin:40px;}
   font-size: 24px;
   line-height: 1.33;
   border-radius: 35px;
+}
+
+mat-icon{
+  font-size: .9rem;
 }

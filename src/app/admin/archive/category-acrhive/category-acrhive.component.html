@@ -1,0 +1,116 @@
+<div class="container-fluid mt-3">
+
+      <div class="row col-lg-12">
+
+        <div class="col-lg-4 pt-3">
+
+              <button mdbTooltip="Mark multiple" (click)="isMarked=false" [class.disabled]="isMarked==false" placement="top" type="button" class="btn btn-default btn-circle">
+                        <mdb-icon fas icon="check-double"></mdb-icon>
+              </button>
+
+              <button *ngIf="isMarked==false" mdbTooltip="Arhcive Selected" (click)="archiveMany()"  placement="top" type="button" class="btn btn-default btn-circle">
+                    <mdb-icon fas icon="trash-alt"></mdb-icon>
+              </button>
+
+
+              <button mdbTooltip="Mark multiple" *ngIf="isMarked==false" (click)="isMarked=true"  class="animated slideInLeft" [class.slideOutLeft]="isMarked==false" placement="top" type="button" class="btn btn-primary btn-circle">
+                    <mdb-icon fas icon="angle-left"></mdb-icon>
+              </button>
+
+        </div>
+
+      <!-- <div class="col-lg-2 text-center pt-2">
+          
+      </div> -->
+
+        <div class="col-lg-4">
+              
+        </div> 
+
+        <div class="col-lg-4 text-center">
+            <mat-form-field style="width:100%;">
+              <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+            </mat-form-field>
+        </div> 
+
+
+    </div>
+       
+
+
+       <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+
+                <ng-container matColumnDef="select">
+                  <th  [class.d-none]="isMarked==true" class="animated fadeIn" mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                  </th>
+                  <td  [class.d-none]="isMarked==true" class="animated fadeIn" mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="No.">
+                  <th class="pl-2" mat-header-cell *matHeaderCellDef mat-sort-header>&ngsp;&ngsp;&ngsp;&ngsp;No.</th>
+                  <td class="pl-2" mat-cell *matCellDef="let element: index as i">
+                    &ngsp;&ngsp;&ngsp;&ngsp;{{i+1}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="image">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let element"> <img style="width:120px; height:60px;" height="60px" class="img-fluid" src="data:image/png;base64,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"></td>
+                </ng-container>
+        
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="blnk">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                  <td mat-cell *matCellDef="let element"></td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Action </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> 
+
+                       <button (click)="archive(element)" mdbTooltip="Archive Category Information" placement="top" type="button" class="btn btn-danger btn-circle">
+                        <mdb-icon fas icon="trash"></mdb-icon>
+                      </button>
+
+                      <button   mdbTooltip="Restore" placement="top" type="button" class="btn btn-success btn-circle">
+                        <mdb-icon fas icon="trash-restore"></mdb-icon>
+                      </button>
+
+                     </td>
+                  </ng-container>
+              
+              
+                <tr class="" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+          </table>
+    
+          
+            <mat-paginator [length]="length"
+                            [pageSize]="pageSize"
+                            [pageSizeOptions]="pageSizeOptions"
+                            (page)="pageEvent = $event"
+                            showFirstLastButtons>
+            </mat-paginator>
+    </div>  

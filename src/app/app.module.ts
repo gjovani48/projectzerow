@@ -22,6 +22,7 @@ import {MatTableModule,MatSortModule,
         MatButtonModule,MatExpansionModule,
         MatSidenavModule, MatToolbarModule,MatIconModule,MatButtonToggleModule,
         MatProgressBarModule,
+        MatCheckboxModule,MatStepperModule,
         MatDialogModule,MatTabsModule} from '@angular/material';
 
 
@@ -42,6 +43,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { InventoryIndexComponent } from './admin/inventory/inventory-index/inventory-index.component';
 import { InventoryProductsComponent } from './admin/inventory/inventory-products/inventory-products.component';
 import {ProductDialog} from './admin/inventory/inventory-products/product-dialog';
+import {CategoryDialog} from './admin/inventory/inventory-category/category-dialog';
 import {ProductDialogCreate} from './admin/inventory/inventory-products/product-dialog-create';
 import {UserModal} from './admin/point-of-sale/pos-index/user-modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -67,6 +69,17 @@ import {HistoryDialog} from './admin/users/user-index/history-dialog';
 import {SalesDialog} from './admin/point-of-sale/sales/sales-dialog';
 import {PosSalesDialog} from './admin/point-of-sale/pos-index/pos-sales-dialog';
 import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
+import {MessageDialog} from './admin/msg/msg-index/msg-dialog';
+import { SalesAcrhiveComponent } from './admin/archive/sales-acrhive/sales-acrhive.component';
+import { ProductAcrhiveComponent } from './admin/archive/product-acrhive/product-acrhive.component';
+import { MessageAcrhiveComponent } from './admin/archive/message-acrhive/message-acrhive.component';
+import { CategoryAcrhiveComponent } from './admin/archive/category-acrhive/category-acrhive.component';
+import { PostAcrhiveComponent } from './admin/archive/post-acrhive/post-acrhive.component';
+import { UserAcrhiveComponent } from './admin/archive/user-acrhive/user-acrhive.component';
+import { AcrhiveIndexComponent } from './admin/archive/acrhive-index/acrhive-index.component';
+import { TmchnSalesComponent } from './admin/point-of-sale/tmchn-sales/tmchn-sales.component';
+import { AccountConfigComponent } from './admin/account-config/account-config.component';
+import { ViewProductComponent } from './product/view-product/view-product.component';
 
 @NgModule({
   declarations: [
@@ -82,8 +95,10 @@ import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
     InventoryProductsComponent,
     ProductCreateComponent,
     ProductDialog,
+    CategoryDialog,
     ProductDialogCreate,
     PosSalesDialog,
+    MessageDialog,
     EmailDialog,
     HistoryDialog,
     CategorytDialogCreate,
@@ -101,10 +116,20 @@ import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
     UserIndexComponent,
     SalesComponent,
     MsgIndexComponent,
+    SalesAcrhiveComponent,
+    ProductAcrhiveComponent,
+    MessageAcrhiveComponent,
+    CategoryAcrhiveComponent,
+    PostAcrhiveComponent,
+    UserAcrhiveComponent,
+    AcrhiveIndexComponent,
+    TmchnSalesComponent,
+    AccountConfigComponent,
+    ViewProductComponent,
   ],
   entryComponents: [ProductDialog,UserModal,ProductDialogCreate,
                       CategorytDialogCreate,UserInformationDialog,EmailDialog,
-                    HistoryDialog,SalesDialog,PosSalesDialog],
+                    HistoryDialog,SalesDialog,PosSalesDialog,MessageDialog,CategoryDialog],
   imports: [
     HttpClientModule,
     NgxPaginationModule,
@@ -132,7 +157,9 @@ import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
     MatSnackBarModule,
     MatDialogModule,
     MatTabsModule,
+    MatStepperModule,
     MatSidenavModule,
+    MatCheckboxModule,
      MatToolbarModule,
      MatProgressBarModule,
     MatExpansionModule,

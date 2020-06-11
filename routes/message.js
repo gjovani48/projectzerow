@@ -5,11 +5,23 @@ const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 const nodemailer = require('nodemailer')
 
-var transporter  = nodemailer.createTransport({
-  service: 'gmail',
-  auth:{
+// var transporter  = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth:{
+//     user:'projectzerowdevs@gmail.com',
+//     pass: '!1Projectzerow',
+//   }
+// });
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',//smtp.gmail.com  //in place of service use host...
+  secure: false,//true
+  port: 25,//465
+  auth: {
     user:'projectzerowdevs@gmail.com',
     pass: '!1Projectzerow',
+  }, tls: {
+    rejectUnauthorized: false
   }
 });
 
@@ -35,6 +47,16 @@ router.post('/archive', urlEncoded, (req,res) => {
     })
 })
 
+router.post('/archive/many', urlEncoded, (req,res) => {
+
+    console.log(req.body._ids);
+
+    // Message.updateOne({_id:{$in:req.body._ids}}, { $set: { is_archive: true } },(err) => {
+    //     if(err) res.json({msg:"Invalid Request"})
+    //     res.json([{msg:"Product Updated"}])
+    // })
+})
+
 // Get Post by ID
 router.get('/:id', (req,res) => {
     Message.findOne({_id:req.params.id}).exec((err,data)=>{
@@ -58,7 +80,25 @@ router.post('/', urlEncoded,(req,res) => {
     })
 })
 
-router.post('/sendemail',(req,res)=>{
+router.post('/sendemail',urlEncoded,(req,res)=>{
+
+    // let htmlContent = `
+    //             <h1><strong>Contact Form</strong></h1>
+    //             <p>Hi,</p>
+    //             <p>${name} contacted with the following Details</p>
+    //             <br/>
+    //             <p>Email: ${email}</p>
+    //             <p>Phone: ${phone}</p>
+    //             <p>Company Name: ${companyName}</p>
+    //             <p>Message: ${message}</p>
+    //             `
+    // let mailOptions = {
+    //     from: "Example <example@gmail.com>",
+    //     to: "me@gmail.com",
+    //     subject: "Mail Test",
+    //     text: "",
+    //     html: htmlContent
+    // }
 
     var mailOptions = {
       from: 'Project:ZeroW',
@@ -69,6 +109,7 @@ router.post('/sendemail',(req,res)=>{
 
     transporter.sendMail(mailOptions,(err,data)=>{
       if (err) throw err
+
       res.json({status: true})
     })
 

@@ -1,17 +1,60 @@
-<h2 mat-dialog-title>Install Angular</h2>
+<h2 mat-dialog-title>Customer</h2>
 
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography border-top">
 
-	<ul class="list-unstyled">
-		<li >{{userinfo.firstname}}</li>
-		<li >{{userinfo.lastname}}</li>
-	</ul>
+	<div style="height: 400px; font-size: .7rem;" class="container-fluid pt-2">
 
 
+		<div class="row">
+			
+			<div class="col-lg-12 border-bottom">
+				
+				<strong>Customer Info</strong>	
+
+				<ul class="list-unstyled">
+					<li >Firstname <span class="float-right">{{userinfo.firstname}}</span></li>
+					<li >Lastname  <span class="float-right">{{userinfo.lastname}}</span></li>
+					<li >Lastname  <span class="float-right">{{userinfo.middlename}}</span></li>
+				</ul>
+
+
+
+			</div>
+
+			<div class="col-lg-12 border-bottom">
+				
+				<strong>Contact Info</strong>
+
+				<ul class="list-unstyled">
+					<li >Email <span class="float-right">{{userinfo.email}}</span></li>
+					<li >Phone  <span class="float-right">{{userinfo.phone}}</span></li>
+				</ul>
+
+
+			</div>
+
+
+			<div class="col-lg-12">
+				
+				<strong>Membership Info</strong>
+
+
+
+				<ul class="list-unstyled">
+					<li >Status <span class="float-right">Active</span></li>
+					<li >Points Earn <span class="float-right">{{(!userinfo.pzwpoints)? 'none':userinfo.pzwpoints}}</span></li>
+				</ul>
+
+
+			</div>
+
+
+
+
+		</div>
+
+
+		
+	</div>
 
 </mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-</mat-dialog-actions>

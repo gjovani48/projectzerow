@@ -21,6 +21,10 @@ export class ProductService {
 		return this.http.get<any>(this.url + "/product");
 	}
 
+	getArchProducts(): Observable<Product[]> {
+		return this.http.get<any>(this.url + "/product/arc");
+	}
+
 	// Get Product by ID
 	getProduct(id): Observable<Product> {
 		return this.http.get<any>(

@@ -1,9 +1,8 @@
 
-
-	<div class="col-lg-12 mt-5">
+<div class="col-lg-12 mt-5 info-color-dark">
 		<div class="row">
 			<div class="col-lg-12 mt-3 border-bottom">
-				<h5>Inventory</h5>
+				<h4 class="h4-responsive white-text">Inventory</h4>
 			</div>
 
 			<hr>
@@ -15,7 +14,7 @@
 						<div class="row">
 
 							<div class="col-lg-6">
-								<ul style="font-size: .7rem;" class="list-unstyled">
+								<ul style="font-size: .7rem;" class="list-unstyled white-text">
 									<li>Categories: <span class="float-right">{{categories.length}}</span></li>
 									<li>Products: <span class="float-right">{{products.length}}</span></li>
 									<li>Redeemables: <span class="float-right">26</span></li>
@@ -24,7 +23,7 @@
 
 							<div class="col-lg-6">
 
-								<ul style="font-size: .7rem;" class="list-unstyled">
+								<ul style="font-size: .7rem;" class="list-unstyled white-text">
 									<li>Items: <span class="float-right">{{quantity_list.reduce(totalQty,0)}}</span></li>
 									<li>Assets: <span class="float-right">₱ {{price_list.reduce(totalPrice,0) | number:'1.2-3'}}</span></li>
 								</ul>

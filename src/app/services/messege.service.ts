@@ -12,14 +12,18 @@ export class MessegeService {
 
 	constructor(private http: HttpClient) { }
 
-	private url:string = "https://protected-escarpment-77600.herokuapp.com"
-    //private url:string = "http://localhost:80"
+	//private url:string = "https://protected-escarpment-77600.herokuapp.com"
+    private url:string = "http://localhost:80"
   	private headers = new HttpHeaders().set('Content-Type', 'application/json')
 
 
 	// Get All Posts
 	getMessages(): Observable<Message[]> {
 		return this.http.get<any>(this.url + "/message");
+	}
+
+	getArcMessages(): Observable<Message[]> {
+		return this.http.get<any>(this.url + "/message/arc");
 	}
 
 	// Get Post by ID
@@ -49,6 +53,14 @@ export class MessegeService {
 	addMessage(message): Observable<any> {
 		return this.http.post<any>(
 			this.url + "/message",
+			message,
+			{ headers: this.headers }
+		)
+	}
+
+	sendMail(message): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/message/sendemail",
 			message,
 			{ headers: this.headers }
 		)

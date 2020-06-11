@@ -1,18 +1,29 @@
-<main class="py-5"> 
-	<a mdbBtn type="button" size="sm" color="primary" outline="true"
-mdbWavesEffect routerLink="create">
-		<mdb-icon fas icon="pen-nib"></mdb-icon> create new
-	</a> 
 
-	
-
-	<div class="container-fluid mt-3 p-0">
+<div class="container-fluid mt-3 p-0">
 
 	<div class="col-lg-12 text-center">
        <div class="row">
-       	 <mat-form-field>
-          <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
-        </mat-form-field>
+			
+			<div class="col-lg-4">
+
+       			<a mdbBtn type="button" class="btn btn-default btn-circle mt-4 float-left" mdbTooltip="Create new article" 
+				placement="top" routerLink="create">
+					<mdb-icon fas icon="pen-nib"></mdb-icon>
+				</a> 
+
+       		</div> 
+
+       		<div class="col-lg-4">
+       			
+       		</div>       	 
+
+       		<div class="col-lg-4">
+       			<mat-form-field style="width:100%;">
+		          <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+		        </mat-form-field>
+       		</div>
+
+
        </div>
     </div>
 
@@ -21,7 +32,7 @@ mdbWavesEffect routerLink="create">
 		<mat-accordion>
 		  
 		  <mat-expansion-panel *ngFor="let row of obs | async">
-		    <mat-expansion-panel-header>
+		    <mat-expansion-panel-header style="font-size: .7rem;">
 		      <mat-panel-title>
 		        {{row.title}}
 		      </mat-panel-title>
@@ -32,8 +43,12 @@ mdbWavesEffect routerLink="create">
 		      </mat-panel-description>
 		    </mat-expansion-panel-header>
 
+		    <span class="float-right">
+		    	<button class="btn btn-default btn-circle"><mdb-icon fas icon="pen-nib"></mdb-icon></button>
+		    	<button class="btn btn-danger btn-circle" (click)="archivePost(row)"><mdb-icon fas icon="pen-nib"></mdb-icon></button>
+		    </span>
 
-		    <div class="container"  [innerHTML]="row.body"></div>
+		    <div style="font-size: .7rem;" class="p-body" [innerHTML]="row.body"></div>
 		    
 		  </mat-expansion-panel>
 		
@@ -43,7 +58,4 @@ mdbWavesEffect routerLink="create">
 		
 	</div>
 
-	</div>
-
-
-</main>
+</div>

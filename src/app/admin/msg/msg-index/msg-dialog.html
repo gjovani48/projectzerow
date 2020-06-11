@@ -1,0 +1,88 @@
+<h1 mat-dialog-title>Message</h1>
+
+	<div *ngIf="reply_active==false" mat-dialog-content>
+  
+
+		<div style="width: 400px; height: 600px;" class="border-top container-fluid">
+			
+			<p style="font-size: .7rem;">
+				<br><strong>From: {{msg.name}}</strong><br><br>
+
+				{{msg.message}}
+
+
+				<br><br>
+				<strong>On: <span>{{msg.date_created | date:'mediumTime'}}</span></strong><br>
+				<span class="text-muted">{{msg.email}}</span>
+
+			</p>
+
+
+
+		</div>
+
+
+
+	</div>
+
+
+	<div *ngIf="reply_active==true" mat-dialog-content>
+  
+
+		<div style="width: 400px; height: 600px;" class="border-top container-fluid">
+			
+			<form class="example-form">
+
+
+			  <mat-form-field class="full-width mt-2">
+			    <mat-label></mat-label>
+			    <input style="font-size: .7rem;" matInput placeholder="Ex. Pizza" [(ngModel)]="msg.email" name="email" value="{{msg.email}}">
+			  </mat-form-field>
+
+
+				<mat-form-field class="full-width mt-2">
+				  <mat-label>Subject</mat-label>
+				  <select style="font-size: .7rem;" matNativeControl required>
+
+				    <option value="" disabled>Choose option</option>
+				    <option value="1" selected>Feedback</option>
+				    <option value="2">Report a bug</option>
+				    <option value="3">Feature request</option>
+				    <option value="4">Feature request</option>
+				 
+				  </select>
+				</mat-form-field>
+
+
+
+			  <mat-form-field class="full-width mt-2">
+			    <mat-label>Message</mat-label>
+			    <textarea style="font-size: .7rem;" matInput [(ngModel)]="message_text" name="message_text" placeholder=""></textarea>
+			  </mat-form-field>
+
+
+			</form>
+
+			<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar><br>
+			<span *ngIf="loading">Sending...</span>
+
+
+		</div>
+
+
+
+	</div>
+
+<div class="border-top" mat-dialog-actions align="end">
+
+  <button mdbTooltip="delete" placement="top" class="btn btn-sm btn-info btn-circle" (click)="archiveMessage()"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+
+  <button *ngIf="reply_active==false" mdbTooltip="reply via email" placement="top" class="btn btn-sm btn-info btn-circle" (click)="reply_active=true"><mdb-icon fas icon="reply"></mdb-icon></button>
+
+  <button *ngIf="reply_active==true" mdbTooltip="return to message" placement="top" class="btn btn-sm btn-warning btn-circle" (click)="reply_active=false"><mdb-icon fas icon="undo-alt"></mdb-icon></button>
+
+
+  <button  *ngIf="reply_active==true" mdbTooltip="send email" placement="top" (click)="sendMail()" class="btn btn-sm btn-warning btn-circle float-right">
+  	<mdb-icon fas icon="paper-plane"></mdb-icon></button>
+
+</div>

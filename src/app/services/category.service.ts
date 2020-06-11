@@ -21,7 +21,7 @@ export class CategoryService {
 		return this.http.get<any>(this.url + "/category");
 	}
 
-	getCategoriesArchive(): Observable<Category[]> {
+	getCategoriesArc(): Observable<Category[]> {
 		return this.http.get<any>(this.url + "/category/arc");
 	}
 

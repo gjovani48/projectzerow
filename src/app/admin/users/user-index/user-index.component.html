@@ -15,7 +15,7 @@
                 
                   <div class="col-lg-6">
                             <ul style="font-size: .8rem;" class="list-unstyled">
-                              <li><strong>Number of customers:</strong> <span class="float-right font-weight-bold">{{users.length}}</span></li>
+                              <li><strong>Number of customers:</strong> <span class="float-right font-weight-bold">{{(!users)? 'none':users.length}}</span></li>
                             </ul>
                           </div>  
 
@@ -30,7 +30,22 @@
           
           <div class="row">
 
-                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                  
+                  <button mdbTooltip="Mark multiple" (click)="isMarked=false" [class.disabled]="isMarked==false" placement="top" type="button" class="btn btn-default btn-circle">
+                        <mdb-icon fas icon="check-double"></mdb-icon>
+                      </button>
+
+                  <button *ngIf="isMarked==false" mdbTooltip="Arhcive Selected" (click)="archiveMany()"  placement="top" type="button" class="btn btn-default btn-circle">
+                        <mdb-icon fas icon="trash-alt"></mdb-icon>
+                      </button>
+
+
+                  <button mdbTooltip="Mark multiple" *ngIf="isMarked==false" (click)="isMarked=true"  class="animated slideInLeft" [class.slideOutLeft]="isMarked==false" placement="top" type="button" class="btn btn-primary btn-circle">
+                        <mdb-icon fas icon="angle-left"></mdb-icon>
+                      </button>
+
+                </div>
                 <div class="col-lg-4"></div>
               
                <div class="col-lg-4 p-1">
@@ -52,6 +67,24 @@
     	<div class="col-lg-12">
 
     		<table style="width:100%;" mat-table [dataSource]="dataSource" matSort class="">
+
+                <ng-container matColumnDef="select">
+                  <th  [class.d-none]="isMarked==true" class="animated fadeIn" mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                  </th>
+                  <td  [class.d-none]="isMarked==true" class="animated fadeIn" mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
 
                 <ng-container matColumnDef="No.">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>No.</th>
@@ -100,12 +133,12 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header><mdb-icon fas icon="toolbox"></mdb-icon>&nbsp;&nbsp; Action </th>
 
                   <td mat-cell class="text-centered" *matCellDef="let element"> 
-
+<!-- 
                     <button type="button" class="btn btn-default btn-circle" mdbTooltip="Send Email Notice" (click)="openEmailDialog(element)" placement="top">
                       <mdb-icon fas icon="envelope"></mdb-icon>
-                    </button>
+                    </button> -->
 
-                    <button type="button" class="btn btn-default btn-circle"  mdbTooltip="View Information" (click)="openInformationDialog(element)" placement="top">
+                    <button type="button" class="btn btn-unique btn-circle"  mdbTooltip="View Information" (click)="openInformationDialog(element)" placement="top">
                       <mdb-icon fas icon="search"></mdb-icon>
                     </button>
 

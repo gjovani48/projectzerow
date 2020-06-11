@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild,ChangeDetectorRef} from '@angular/core';
+import {Component, OnInit, Inject,ViewChild,ElementRef,ChangeDetectorRef} from '@angular/core';
 import { Observable } from 'rxjs';
 import {UserService, UserDetails} from '../../../services/user.service';
 import {ProductService} from '../../../services/product.service'
@@ -90,6 +90,7 @@ export class PosIndexComponent implements OnInit {
   productsFilterAll: any = { name: ''};
 
 
+  @ViewChild('prod-content',{static: true}) prod_content: any;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   obs: Observable<any>;
@@ -116,12 +117,12 @@ export class PosIndexComponent implements OnInit {
   	this.products=[];
 
     this.productService.getProducts().subscribe((response) => {
+      this.loadingAll = false;
       this.products = response;
       this.dataSource = new MatTableDataSource<PosProduct>(this.products);
       this.changeDetectorRef.detectChanges();
       this.dataSource.paginator = this.paginator;
       this.obs = this.dataSource.connect();
-      this.loadingAll = false;
     })
   }
 
@@ -129,6 +130,7 @@ export class PosIndexComponent implements OnInit {
  getCategories(){
 
     this.categoryService.getCategories().subscribe((response) => {
+
       this.categories = response;
       this.dataSource = new MatTableDataSource(response);
 
@@ -136,6 +138,7 @@ export class PosIndexComponent implements OnInit {
 
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+
     })
 
   }
@@ -350,10 +353,6 @@ export class PosIndexComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
 
   
-
-
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
     dialogConfig.height = '100%';
     dialogConfig.width = '300px';
     dialogConfig.position = {
@@ -368,9 +367,9 @@ export class PosIndexComponent implements OnInit {
     const dialogRef = this.dialog.open(UserModal,dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
       this.selectedUser = result;
       this.dpname = this.selectedUser.firstname+' '+this.selectedUser.lastname;
+
     });
 
 
@@ -382,11 +381,21 @@ export class PosIndexComponent implements OnInit {
   }
 
 
+  cancellTransaction(){
+
+    if(confirm("Are you sure you want tor cancel the current transaction?")==true){
+      this.removeCustomer();
+      this.item = [];
+      this.redeemed_item = [];
+    }
+
+
+  }
+
+
   openRedeem(){
 
-    setTimeout(()=>{
-      
-      this.inredeem = true;
+   this.inredeem = true;
 
     this.loading = true;
     this.categoryProducts = [];
@@ -400,10 +409,6 @@ export class PosIndexComponent implements OnInit {
       err=>{
         console.log(err);
       })
-
-
-    },2000)
-    
     
 
   }
@@ -424,6 +429,7 @@ export class PosIndexComponent implements OnInit {
 
     dialogConfig.data = {
         sales_info: sales,
+        client: this.selectedUser,
         transaction_code: code
     };
 

@@ -1,90 +1,157 @@
-<mat-tab-group >
+<div style="height: 600px;">
 
-    <mat-tab label="First">
+  <mat-tab-group >
 
-          <ng-template mat-tab-label>
-              <mdb-icon fas icon="tag"></mdb-icon>
-              <span class="ml-2">{{product.name}}</span>
-          </ng-template>
+      <mat-tab label="First">
 
-        <div class="col-lg-12 mt-3">
+            <ng-template mat-tab-label>
+                <mdb-icon fas icon="tag"></mdb-icon>
+                <span class="ml-2">{{product.name}}</span>
+            </ng-template>
 
-          <div class="row">
-            
-            <div class="col-lg-12 border-bottom mb-3 text-centered">
+          
+          <input [(ngModel)]="checkboxFlag" type="checkbox"/> <strong>Edit</strong>
 
-              <img style="margin: auto; height: 200px; width: 200px;" src="assets/images/{{product.image}}" alt="thumbnail" class="mb-3 ml-5">
+          <div *ngIf="!checkboxFlag" class="col-lg-12 mt-3">
 
-            </div>
+            <div class="row">
+              
+              <div class="col-lg-12 border-bottom mb-3 text-centered">
 
-
-            <div style="font-size: .7rem;" class="col-lg-12 border-bottom">
-
-                <ul class="list-unstyled">
-                  <li><strong>Price:</strong>  <span class="float-right">{{product.price}}</span></li>
-                  <li><strong>Quantity:</strong>  <span class="float-right" [class.text-danger]="product.quantity<50">{{product.quantity}}</span></li>
-                </ul>
-
-            </div>
-
-            <div class="col-lg-12 mt-3">
-
-                <p  style="font-size: .7rem;">Description: <br><br> {{product.description}}</p>
-
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-
-    </mat-tab>
-
-    <mat-tab label="Add stock">
-        
-        <div class="col-lg-12 mt-3">
-
-          <div class="row">
-
-            <div class="col-lg-12 border-bottom mb-3 text-centered">
-
-              <img style="height: 200px; width: 200px;" src="assets/images/{{product.image}}" alt="thumbnail" class="ml-5 mb-3">
-
-            </div>
-
-            <div style="font-size: .7rem;" class="col-lg-12 border-bottom">
-
-                <ul class="list-unstyled">
-                  <li><strong>Price:</strong>  <span class="float-right">{{product.price}}</span></li>
-                  <li><strong>Quantity:</strong>  <span class="float-right" [class.text-danger]="product.quantity<50">{{product.quantity}}</span></li>
-                </ul>
+                <img style="margin: auto; height: 200px; width: 200px;" src="assets/images/{{product.image}}" alt="thumbnail" class="mb-3 ml-5">
 
               </div>
 
-               <div class="mb-3 col-lg-12 mt-3">
 
-                  <mat-form-field style="width:100%" appearance="fill">
-                      <mat-label>Quantity</mat-label>
-                      <span matPrefix><i class="fas fa-plus-square"></i></span>
-                      <span matPrefix>&nbsp;</span>
-                      <input matInput type="number" [(ngModel)]="added_stock" class="example-right-align">
-                      <mat-hint align="end">Set quantity to be added</mat-hint>
-                  </mat-form-field>
+              <div style="font-size: .7rem;" class="col-lg-12 border-bottom">
 
-                  <button (click)="updateStock()" class="btn btn-success btn-sm">Add</button>
+                  <ul class="list-unstyled">
+                    <li><strong>Price:</strong>  <span class="float-right">{{product.price}}</span></li>
+                    <li><strong>Quantity:</strong>  <span class="float-right" [class.text-danger]="product.quantity<50">{{product.quantity}}</span></li>
+                  </ul>
 
-                </div>
-          
+              </div>
+
+              <div class="col-lg-12 mt-3">
+
+                  <p  style="font-size: .7rem;">Description: <br><br> {{product.description}}</p>
+
+
+              </div>
+
+            </div>
+
+
           </div>
 
-        </div>
+          <div *ngIf="checkboxFlag" class="col-lg-12 mt-3">
 
-    </mat-tab>
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <p *ngIf="loading" style="font-size: .7rem">Updating...</p>
 
-</mat-tab-group>
-  
+            <div class="row">
+              
+              <div class="col-lg-12 border-bottom mb-3 text-centered">
+
+                <img style="margin: auto; height: 200px; width: 200px;" src="assets/images/{{product.image}}" alt="thumbnail" class="mb-3 ml-5">
+
+              </div>
+
+
+              <div style="font-size: .7rem;" class="col-lg-12 border-bottom">
+
+                  <ul class="list-unstyled">
+                    <li class="mb-2"><strong>Price:</strong>  
+                      <input class="form-control form-control-sm float-right" type="number" [(ngModel)]="product.price" value="{{product.price}}" name="price">
+                    </li>
+                    <li class="mb-2">
+                      <strong>Quantity:</strong>  
+                      <input class="form-control form-control-sm float-right" type="number" [(ngModel)]="product.quantity" value="{{product.quantity}}" name="quantity">
+                    </li>
+                  </ul>
+
+              </div>
+
+              <div class="col-lg-12 mt-4">
+
+                  <p  style="font-size: .7rem;">Description: <br><br> 
+
+                    <textarea class="form-control form-control-sm" [(ngModel)]="product.description" value="{{product.description}}" name="description">
+                      
+                    </textarea>
+
+                  </p>
+
+                  <br>
+
+                  
+
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+      </mat-tab>
+
+      <mat-tab label="Add stock">
+          
+          <div class="col-lg-12 mt-3">
+
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <p *ngIf="loading" style="font-size: .7rem">Updating...</p>
+
+            <div class="row">
+
+              <div class="col-lg-12 border-bottom mb-3 text-centered">
+
+                <img style="height: 200px; width: 200px;" src="assets/images/{{product.image}}" alt="thumbnail" class="ml-5 mb-3">
+
+              </div>
+
+              <div style="font-size: .7rem;" class="col-lg-12 border-bottom">
+
+                  <ul class="list-unstyled">
+                    <li><strong>Price:</strong>  <span class="float-right">{{product.price}}</span></li>
+                    <li><strong>Quantity:</strong>  <span class="float-right" [class.text-danger]="product.quantity<50">{{product.quantity}}</span></li>
+                  </ul>
+
+                </div>
+
+                 <div class="mb-3 col-lg-12 mt-3">
+
+                    <mat-form-field style="width:100%" appearance="fill">
+                        <mat-label>Quantity</mat-label>
+                        <span matPrefix><i class="fas fa-plus-square"></i></span>
+                        <span matPrefix>&nbsp;</span>
+                        <input matInput type="number" [(ngModel)]="added_stock" class="example-right-align">
+                        <mat-hint align="end">Set quantity to be added</mat-hint>
+                    </mat-form-field>
+
+                    <button (click)="updateStock()" class="btn btn-success btn-sm">Add</button>
+
+                  </div>
+            
+            </div>
+
+          </div>
+
+      </mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+<mat-dialog-actions *ngIf="checkboxFlag" align="end">
+
+  <button class="btn btn-sm btn-success" (click)="updateProduct()">
+                    update
+                  </button>
+
+</mat-dialog-actions>
 
 
 

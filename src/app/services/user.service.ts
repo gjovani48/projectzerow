@@ -144,6 +144,10 @@ export class UserService {
 		return this.http.get<User[]>(this.url + "/user");
 	}
 
+  getArcUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.url + "/user/arc");
+  }
+
 	// Get User by ID
 	getUser(id): Observable<any> {
 		return this.http.get<User>(
@@ -176,6 +180,14 @@ export class UserService {
     )
     return request
 	}
+
+  archiveUser(user): Observable<any> {
+    return this.http.post<any>(
+      this.url + "/user/archive",
+      user,
+      { headers: this.headers }
+    )
+  }
 
 	// Add Fingerprint ID
 	addFingerprint(user): Observable<any> {

@@ -1,0 +1,84 @@
+<h4>Category Information</h4>
+
+<input [(ngModel)]="checkboxFlag" type="checkbox"/> <strong class="pl-1">Edit</strong>
+
+          <div *ngIf="!checkboxFlag" class="col-lg-12 mt-3">
+
+            <div class="row">
+              
+              <div class="col-lg-12 border-bottom mb-3 text-centered">
+
+                <img style="margin: auto; height: 200px; width: 200px;" src="assets/img/category/{{category.image}}" alt="thumbnail" class="mb-3 ml-5">
+
+              </div>
+
+
+              <div style="font-size: .7rem;" class="col-lg-12 border-bottom">
+
+                  <ul class="list-unstyled">
+                    <li><strong>Name:</strong>  <span class="float-right">{{category.name}}</span></li>
+                  </ul>
+
+              </div>
+
+              <div class="col-lg-12 mt-3">
+
+                  <p  style="font-size: .7rem;">Description: <br><br> {{category.description}}</p>
+
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <div *ngIf="checkboxFlag" class="col-lg-12 mt-3">
+
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <p *ngIf="loading" style="font-size: .7rem">Updating...</p>
+
+            <div class="row">
+              
+              <div class="col-lg-12 border-bottom mb-3 text-centered">
+
+                <img style="margin: auto; height: 200px; width: 200px;" src="assets/img/category/{{category.image}}" alt="thumbnail" class="mb-3 ml-5">
+
+              </div>
+
+
+              <div style="font-size: .7rem;" class="col-lg-12 pb-3 border-bottom">
+
+                  <ul class="list-unstyled">
+                    <li class="mb-2"><strong>Name:</strong>  
+                      <input class="form-control form-control-sm float-right" type="text" [(ngModel)]="category.name" value="{{category.name}}" name="name_">
+                    </li>
+                  </ul>
+
+              </div>
+
+              <div class="col-lg-12 mt-4">
+
+                  <p  style="font-size: .7rem;">Description: <br><br> 
+
+                    <textarea class="form-control form-control-sm" [(ngModel)]="category.description" value="{{category.description}}" name="description">
+                      
+                    </textarea>
+
+                  </p>
+
+                  <br>
+
+                  
+
+
+              </div>
+
+              <button class="btn btn-sm btn-success" (click)="updateCategory()">
+                update
+              </button>
+
+            </div>
+
+
+          </div>

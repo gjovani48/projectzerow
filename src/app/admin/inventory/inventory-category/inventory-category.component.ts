@@ -4,9 +4,14 @@ import {ProductService} from '../../../services/product.service'
 import {CategoryService} from '../../../services/category.service'
 import {Router} from '@angular/router';
 
+import {Category} from '../../../models/category';
+
 // import {ProductDialog} from './product-dialog';
 import { NgxImgZoomService } from 'ngx-img-zoom';
 
+import {SelectionModel} from '@angular/cdk/collections';
+
+import {CategoryDialog} from './category-dialog';
 
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -32,10 +37,15 @@ export class InventoryCategoryComponent implements OnInit {
               private categoryService: CategoryService,public dialog: MatDialog) { }
 
    categories = [];
-   public dataSource;
+   public isMarked:Boolean=true;
+   
+   public dataSource = new MatTableDataSource<Category>();
+
+   public selection = new SelectionModel<Category>(true, []);
+
    public loading = true;
 
-  displayedColumns: string[] = ['No.','image','name','blnk','action'];
+  displayedColumns: string[] = ['select','No.','image','name','blnk','action'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -73,6 +83,28 @@ export class InventoryCategoryComponent implements OnInit {
 
   }
 
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Category): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id}`;
+  }
+
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
@@ -104,6 +136,31 @@ export class InventoryCategoryComponent implements OnInit {
    openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
+    });
+  }
+
+   openCategoryDialog(category) {
+
+    const dialogConfig = new MatDialogConfig();
+
+
+    dialogConfig.height = '100%';
+    dialogConfig.width = '400px';
+    dialogConfig.position = {
+      'top': '0',
+      'right': '0'
+    };
+
+
+    dialogConfig.data = {
+        id: 1,
+        category_info: category
+    };
+
+    const dialogRef = this.dialog.open(CategoryDialog,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 

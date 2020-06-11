@@ -28,6 +28,14 @@ router.post('/archive', urlEncoded, (req,res) => {
     })
 })
 
+router.post('/archive/many', urlEncoded, (req,res) => {
+
+    Sale.updateMany({_id:{$in:req.body}}, { $set: { is_archive: true } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json({status:true})
+    })
+})
+
 
 router.get('/monthly', (req,res) => {
     Sale.aggregate([

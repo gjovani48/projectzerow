@@ -22,6 +22,9 @@ import {UserIndexComponent} from './admin/users/user-index/user-index.component'
 import { SalesComponent } from './admin/point-of-sale/sales/sales.component';
 import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
 
+import { AcrhiveIndexComponent } from './admin/archive/acrhive-index/acrhive-index.component';
+
+import { ViewProductComponent } from './product/view-product/view-product.component';
 
 const routes: Routes = [
 	{
@@ -43,7 +46,7 @@ const routes: Routes = [
   },
   {
 		path: 'products/:id',
-    component: ProductlistComponent,
+    component: ViewProductComponent,
   },
   {
     path:'profile',
@@ -113,6 +116,11 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: UserIndexComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/archives',
+    component: AcrhiveIndexComponent,
     canActivate: [AuthGuardService]
   },
   {

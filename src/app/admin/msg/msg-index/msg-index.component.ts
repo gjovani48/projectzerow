@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 import {MatTableDataSource,MatPaginator} from '@angular/material';
 import {PageEvent} from "@angular/material";
 
+import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
+import {MessageDialog} from './msg-dialog';
 
  export interface Messeges {
     _id: any
@@ -30,10 +32,12 @@ export class MsgIndexComponent implements OnInit {
 
 
 
-  constructor(private router: Router,private userServices: UserService,private messagesServices: MessegeService,private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(public dialog: MatDialog,private router: Router,private userServices: UserService,private messagesServices: MessegeService,private changeDetectorRef: ChangeDetectorRef) { }
 
   public msg : Messeges[];
   isAdmin : boolean;
+
+  loading:Boolean = true;
 
   //Paginator
   public length
@@ -67,6 +71,8 @@ export class MsgIndexComponent implements OnInit {
 
   getMessages(){
 
+    this.loading = true;
+
   	this.messagesServices.getMessages().subscribe((res)=>{
 
   	  this.msg = res;
@@ -74,6 +80,10 @@ export class MsgIndexComponent implements OnInit {
       this.changeDetectorRef.detectChanges();
       this.dataSource.paginator = this.paginator;
       this.obs = this.dataSource.connect();
+
+
+      this.loading = false;
+
 
   	})
 
@@ -83,8 +93,28 @@ export class MsgIndexComponent implements OnInit {
 
   	this.messagesServices.openMessage(message).subscribe((res)=>{
 
-  		console.log(res);
-  		alert(res);
+        const dialogConfig = new MatDialogConfig();
+
+
+        dialogConfig.position = {
+          'top': "30px;"
+        }
+
+        dialogConfig.height = "400px;"
+        dialogConfig.width = "800px;"
+
+        dialogConfig.data = {
+            mgs_data:message
+        };
+
+        const dialogRef = this.dialog.open(MessageDialog,dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+          this.getMessages();
+        });
+  		
+  		  
+      	// this.getMessages();
 
   	})
 

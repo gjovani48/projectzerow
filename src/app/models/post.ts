@@ -6,4 +6,5 @@ export class Post {
     body: String
     image: String
     media_url: String
+    date_posted: Date
 }

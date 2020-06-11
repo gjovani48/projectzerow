@@ -8,5 +8,6 @@ export class User {
     fingerprint_id: String
     password: String
     pzwpoints: Number
+    is_verified: Boolean
     create_at: Date
 }

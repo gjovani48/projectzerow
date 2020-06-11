@@ -5,13 +5,13 @@
 
       <a routerLink="/admin/post">
         <mdb-icon fas icon="arrow-left"></mdb-icon>
-      </a> 
+      </a>
 
-      <div class="col-lg-12 ">
-
-            <div class="row">
-              
-                  <div class="col-lg-12 ">
+      <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <ng-template matStepLabel>Fillup Post Information</ng-template>
+          
+            <div class="col-lg-12 ">
                         <div class="row ">
 
                             <div class="col-lg-6">
@@ -78,29 +78,24 @@
 
                   </div>
 
-                  <div class="col-lg-12">
-                      
-                        <ckeditor [(ngModel)]="post_article.body"></ckeditor>
-                        <!-- {{post_article.author}}
-                        {{post_article.title}}
-                        {{post_article.image}}
-                        {{post_article.media_url}}
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <ng-template matStepLabel>Add Contents</ng-template>
+          
+          <ckeditor [(ngModel)]="post_article.body"></ckeditor>
 
-      
- -->
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
 
-
-
-                        <button mdbBtn type="button" color="default" outline="true" (click)="createpost()" mdbWavesEffect>Publish</button>
-
-                  </div>
-
-            </div>
-
-      </div>
-
-
-
+           <button mdbBtn type="button" color="default" outline="true" (click)="createpost()" mdbWavesEffect>Publish</button>
+          
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
 
   </div>
     

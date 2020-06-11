@@ -22,6 +22,10 @@ export class PostService {
 		return this.http.get<any>(this.url + "/post");
 	}
 
+	getArchPosts(): Observable<Post[]> {
+		return this.http.get<any>(this.url + "/post/arc");
+	}
+
 	// Get Post by ID
 	getPost(id): Observable<Post> {
 		return this.http.get<any>(
@@ -33,6 +37,14 @@ export class PostService {
 	addPost(post): Observable<any> {
 		return this.http.post<any>(
 			this.url + "/post",
+			post,
+			{ headers: this.headers }
+		)
+	}
+
+	archivePost(post): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/post/archive",
 			post,
 			{ headers: this.headers }
 		)

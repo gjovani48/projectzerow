@@ -34,7 +34,7 @@
     mode="side" 
     opened="true">
 
-    <mat-toolbar style="height:50px; background-color:#1c2331;" class="header">
+    <mat-toolbar style="height:50px; background-color:#212121;" class="header">
       <div>
         <a href="#home" class="logo text-light" style="font-size: 15px; font-weight: bold;">Project <i class="fas fa-recycle animated rotateOut slower infinite"></i> <span class="headerlogo" style="font-size: 20px; font-weight: bold;"> Zero</span></a>
       </div>
@@ -46,13 +46,13 @@
       <mdb-icon fas class="fa-2x" icon="user-circle"></mdb-icon>
     </div>
 
-    <div style="border-bottom: 1px solid white; border-style: dotted" class="col text-center text-light mb-3 pb-2 border-left-0 border-top-0 border-right-0">
+    <div style="border-bottom: 1px solid white;" class="position-static col text-center text-light mb-3 pb-2 border-left-0 border-top-0 border-right-0">
       <strong>Admin User</strong>
     </div>
 
-    <div style="background-color:#263238;">
+    <div style="background-color:#212121;">
        
-      <ul style="background-color:#263238; font-size: .8rem" *ngIf="isExpanded" class="list-group animated fadeIn">
+      <ul style="background-color:#212121; font-size: .7rem" *ngIf="isExpanded" class="list-group animated fadeIn">
         <li class="mb-3">
           <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/home" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
@@ -67,7 +67,7 @@
               <mat-icon class="mr-3"> email</mat-icon> Messages
             </span>
 
-            {{unreadMsg.length}}
+            {{(unreadMsg.length<1)? '':unreadMsg.length}}
 
           </a>
         </li>
@@ -81,25 +81,9 @@
         </li>
 
         <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/products" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/inventory" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
-              <mat-icon class="mr-3">style</mat-icon> Products
-            </span>
-          </a>
-        </li>
-
-        <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/redeemables" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
-            <span class="input-group">
-              <mat-icon class="mr-3">pages</mat-icon> Redeemables
-            </span>
-          </a>
-        </li>
-
-        <li class="mb-3">
-          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="/admin/category" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
-            <span class="input-group">
-              <mat-icon class="mr-3"> category</mat-icon> Categories
+                <mat-icon class="mr-3">store</mat-icon> Inventory
             </span>
           </a>
         </li>
@@ -117,6 +101,14 @@
           <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/post" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
             <span class="input-group">
               <mat-icon class="mr-3">featured_play_list</mat-icon> Post
+            </span>
+          </a>
+        </li>
+
+        <li class="mb-3">
+          <a class="d-flex justify-content-between align-items-center white-text nav-link" routerLink="admin/archives" routerLinkActive="activeRoute text-light rounded-0 elegant-color-dark">
+            <span class="input-group">
+              <mat-icon class="mr-3">restore_page</mat-icon> Archives
             </span>
           </a>
         </li>
@@ -157,7 +149,7 @@
       <div class="white container-fluid">
         <router-outlet *ngIf="isAdmin">
 
-      </router-outlet>
+        </router-outlet>
       </div>
     </div>
   </div>

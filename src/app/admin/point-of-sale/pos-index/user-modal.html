@@ -6,43 +6,44 @@
 
     <h3>{{msg}}</h3>
 
-    <mat-form-field>
+    <mat-form-field style="width:100%;">
         <mat-label>Search Customer</mat-label>
         <input matInput type="text" [(ngModel)]="productsFilter.firstname" placeholder="Search">
         <mat-icon matSuffix>search</mat-icon>
    </mat-form-field>
 
-    <ul class="names">
+    <ul  style="font-size: .9rem;" class="names">
       <li *ngFor="let row of users | filterBy: productsFilter"  (click)="selectUser(row)">
 
         <span *ngIf="!row.isAdmin">{{row.firstname}} {{row.lastname}}</span>
         
       </li>
     </ul>
-
-
-    <div *ngIf="selected_user" class="container border">
-      
-      <ul class="names">
-          <li>
-            Name: {{selected_user.firstname}} {{selected_user.lastname}}
-          </li>
-          <li>
-            Phone: {{selected_user.phone}}
-          </li> 
-           <li>
-            PZW Points: {{selected_user.pzwpoints}}
-          </li> 
-  
-      </ul>
-
-    </div>
     
   </mat-dialog-content>
 
 
+  <div style="height: 150px">
+
+     <div *ngIf="selected_user" class="container border rounded p-3">
+
+        <p style="font-size: .8rem;">Selected:  </p>
+        <ul style="font-size: .7rem;" class="list-unstyled list-group list-group-flush">
+            <li>
+              Name: {{selected_user.firstname}} {{selected_user.lastname}}
+            </li>
+             <li>
+              PZW Points: {{selected_user.pzwpoints}}
+            </li> 
+    
+        </ul>
+
+    </div>
+
+  </div>
+
   <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>ok</button>
+    <button mat-button [mat-dialog-close]="true" class="btn btn-success" (click)="submit()" cdkFocusInitial>ok</button>
   </mat-dialog-actions>
 
 

@@ -1,0 +1,148 @@
+      
+  <div class="col-lg-12 mt-5">
+    <div class="row">
+      
+      <div class="col-lg-12 mt-3 border-bottom">
+        <h5>Post Archive</h5>
+      </div>
+       
+     </div>
+
+  </div>
+
+      <div class="col-lg-12">
+          
+          <div class="row">
+
+                <div class="col-lg-4">
+                  
+                  <button mdbTooltip="Mark multiple" (click)="isMarked=false" [class.disabled]="isMarked==false" placement="top" type="button" class="btn btn-default btn-circle">
+                        <mdb-icon fas icon="check-double"></mdb-icon>
+                      </button>
+
+                  <button *ngIf="isMarked==false" mdbTooltip="Arhcive Selected" (click)="archiveMany()"  placement="top" type="button" class="btn btn-default btn-circle">
+                        <mdb-icon fas icon="trash-alt"></mdb-icon>
+                      </button>
+
+
+                  <button mdbTooltip="Mark multiple" *ngIf="isMarked==false" (click)="isMarked=true"  class="animated slideInLeft" [class.slideOutLeft]="isMarked==false" placement="top" type="button" class="btn btn-primary btn-circle">
+                        <mdb-icon fas icon="angle-left"></mdb-icon>
+                      </button>
+
+                </div>
+                <div class="col-lg-4"></div>
+              
+               <div class="col-lg-4 p-1">
+            <!-- //table view -->
+                      <mat-form-field style="width:100%">
+                        <mat-label>Search</mat-label>
+                        <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+                        <mat-icon matSuffix>search</mat-icon>
+                      </mat-form-field>
+
+                </div>
+
+
+          </div>
+
+
+      </div>
+
+    	<div class="col-lg-12">
+
+    		<table style="width:100%;" mat-table [dataSource]="dataSource" matSort class="">
+
+
+                <ng-container matColumnDef="select">
+                  <th  [class.d-none]="isMarked==true" class="animated fadeIn" mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                  </th>
+                  <td  [class.d-none]="isMarked==true" class="animated fadeIn" mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)"
+                                  [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                  </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="No.">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>&nbsp;&nbsp;&nbsp;&nbsp;No.</th>
+                  <td mat-cell *matCellDef="let element: index as i">
+                    &nbsp;&nbsp;&nbsp;&nbsp;{{i+1}}
+                  </td>
+                </ng-container>    
+
+        
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> <mdb-icon fas icon="user-alt" class="mr-1"></mdb-icon> Name </th>
+                  <td mat-cell *matCellDef="let element">
+
+                  	{{element.name}}
+
+                  </td>
+                </ng-container>
+
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="email">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header><mdb-icon fas icon="boxes" class="mr-1"></mdb-icon> Email </th>
+                  <td mat-cell class="price" *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="date_created">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header><mdb-icon fas icon="money-bill" class="mr-1"></mdb-icon> Date Created </th>
+                  <td mat-cell *matCellDef="let element"> {{element.date_created | date:'short'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <mdb-icon fas icon="tools" class="mr-1"></mdb-icon> Action </th>
+
+                  <td mat-cell *matCellDef="let element">
+                    
+
+                      <button (click)="archiveSale(element)"  mdbTooltip="Delete Permanently" placement="top" type="button" class="btn btn-danger btn-circle">
+                        <mdb-icon fas icon="trash"></mdb-icon>
+                      </button>
+
+                      <button (click)="archiveSale(element)"  mdbTooltip="Restore" placement="top" type="button" class="btn btn-success btn-circle">
+                        <mdb-icon fas icon="trash-restore"></mdb-icon>
+                      </button>
+
+                    </td>
+
+                     
+
+
+                </ng-container>
+
+                
+              
+              
+                <tr class="" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr  mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+
+          </table>
+
+          
+
+
+          
+            <mat-paginator [length]="length"
+                            [pageSize]="pageSize"
+                            [pageSizeOptions]="pageSizeOptions"
+                            (page)="pageEvent = $event"
+                            showFirstLastButtons>
+            </mat-paginator>
+
+    	</div>
+

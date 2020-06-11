@@ -16,6 +16,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource,MatPaginator} from '@angular/material';
 import {PageEvent} from '@angular/material/paginator';
 
+import {SelectionModel} from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-inventory-redeemable',
@@ -29,10 +30,12 @@ export class InventoryRedeemableComponent implements OnInit {
   category = new FormControl();
   categoryList = [];
 
+  public isMarked:Boolean=true;
+
   public gridView = false;
   public listView = true;
 
-  displayedColumns: string[] = ['No.','image','name', 'required points','quantity','action'];
+  displayedColumns: string[] = ['select','No.','image','name', 'required points','quantity','action'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -58,7 +61,10 @@ export class InventoryRedeemableComponent implements OnInit {
   public priceB: Number = 0;
   tempProducts = [];
 
-  public dataSource;
+  
+ public dataSource = new MatTableDataSource<Product>();
+
+ public selection = new SelectionModel<Product>(true, []);
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator,{static: true}) paginator: MatPaginator;
@@ -93,6 +99,27 @@ export class InventoryRedeemableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
        this.loading = false;
     })
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Product): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id}`;
   }
 
 

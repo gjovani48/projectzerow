@@ -19,11 +19,11 @@
 			  <mat-expansion-panel *ngFor="let row of sales">
 
 			    <mat-expansion-panel-header>
-			      <mat-panel-title>
+			      <mat-panel-title style="font-size: .7rem;">
 			        {{row.user_id.firstname}} {{row.user_id.lastname}}
 			      </mat-panel-title>
 			      <mat-panel-description ng-class="float-right">
-			      	<div class="col-lg-12 float-right text-right">
+			      	<div style="font-size: .7rem;" class="col-lg-12 float-right text-right">
 			        	Recorded on: {{row.sale_date | date:'mediumTime'}}
 			        </div>
 			      </mat-panel-description>
@@ -78,7 +78,7 @@
         <span class="ml-2">Redeem Series</span>
     </ng-template>
 
-    <div style="height:500px;" class="overflow-auto">
+    <div style="font-size: .7rem;" style="height:500px;" class="overflow-auto">
 
     	<mat-progress-bar *ngIf="loadingRed" mode="indeterminate"></mat-progress-bar>
 
@@ -86,7 +86,7 @@
 
 			  <mat-expansion-panel *ngFor="let row of redeem">
 
-			    <mat-expansion-panel-header>
+			    <mat-expansion-panel-header style="font-size: .7rem;">
 			      <mat-panel-title>
 			        {{row.user_id.firstname}} {{row.user_id.lastname}}
 			      </mat-panel-title>
@@ -97,7 +97,7 @@
 			      </mat-panel-description>
 			    </mat-expansion-panel-header>
 
-			    <div class="col-lg-12">
+			    <div style="font-size: .7rem;" class="col-lg-12">
 			    	
 			    	<div class="row">
 

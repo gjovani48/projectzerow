@@ -13,6 +13,7 @@ import {Sale} from '../../../models/sale';
 
     sales:Sale;
     tr_code;
+    client;
 
     constructor(private ngxImgZoom: NgxImgZoomService,
         private dialogRef: MatDialogRef<PosSalesDialog>,
@@ -20,6 +21,7 @@ import {Sale} from '../../../models/sale';
         @Inject(MAT_DIALOG_DATA) data) {
 
         this.sales = data.sales_info;
+        this.client = data.client;
         this.tr_code = data.transaction_code;
     }
 

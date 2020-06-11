@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient ,HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Sale } from '../models/sale'
+import { Cart } from '../models/cart'
 
 export interface montlysale{
 	_id: any
@@ -24,6 +25,14 @@ export class SaleService {
 	// Get All Sales
 	getSales(): Observable<Sale[]> {
 		return this.http.get<any>(this.url + "/sale");
+	}
+
+	getCartSales(): Observable<Cart[]> {
+		return this.http.get<any>(this.url + "/cart");
+	}
+
+	getArcSales(): Observable<Sale[]> {
+		return this.http.get<any>(this.url + "/sale/arc");
 	}
 
 	getLatestSale(): Observable<Sale[]> {
@@ -59,6 +68,23 @@ export class SaleService {
 			{ headers: this.headers }
 		)
 	}
+
+	archiveSale(sale): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/sale/archive",
+			sale,
+			{ headers: this.headers }
+		)
+	}
+
+	archiveMulSale(_ids): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/sale/archive/many",
+			_ids,
+			{ headers: this.headers }
+		)
+	}
+	
 
 	// Update Sale
 	updateSale(sale): Observable<any> {

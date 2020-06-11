@@ -67,4 +67,13 @@ export class ArticleListComponent implements OnInit {
   }
 
 
+  archivePost(post){
+    this.postServices.archivePost(post).subscribe((res)=>{
+
+      this.getArticles();
+
+    })
+  }
+
+
 }
