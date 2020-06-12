@@ -1,1 +1,172 @@
-<p>view-product works!</p>
+<div class="container-fluid py-5 mt-5">
+	
+	<div class="col-lg-12 col-12 col-sm-12">
+		
+		<div class="row">
+			
+			<div class="border col-lg-12 col-12 col-sm-12">
+				
+				<div class="row">
+					
+					<div id="product-image-container" class="col-lg-4 col-4 col-sm-4 white p-2">
+
+
+						<img id="product-image" src="assets/images/{{pruductsDetail.image}}" alt="Card image cap">
+
+
+					</div>
+
+					<div class="col-lg-8 col-8 col-sm-8 white p-2">
+
+
+						<p id="product-deatail">	
+							<span style="font-size: .7rem;" class="badge badge-info">Project:Zerow Store</span><span style="font-size: .7rem;" class="ml-1 badge badge-success">{{pruductsDetail.category_id.name}}</span><br>
+							<span class="h4-responsive"><strong>{{pruductsDetail.name}}</strong></span><br>
+							<strong class="text-success mt-1 mb-1">₱ {{pruductsDetail.price}}</strong><br>
+							<strong style="font-size: .6rem;">Availability:  {{pruductsDetail.quantity}}</strong><br>
+						</p>
+
+						<p id="product-deatail-desc">
+							{{pruductsDetail.description}}
+						</p>
+
+					</div>
+
+
+
+
+
+				</div>
+
+
+			</div>
+
+			<div class="col-lg-12 col-12 col-sm-12 mt-2">
+
+				<div class="row">
+
+				    <div class="col-lg-3">
+
+				    	<div class="col-lg-12 p-0 dusty-grass-gradient text-center">
+							<p>Product Category</p>
+						</div>
+
+						<div class="row">
+							
+							<div id="category-image-container" class="col-lg-12 col-12 col-sm-12">
+								
+								<img id="category-image" src="assets/img/category/{{catDetail.image}}" alt="Card image cap">
+
+							</div>
+
+							<div class="col-lg-12 col-12 col-sm-12 white p-2 text-center">
+
+
+								<p id="category-deatail">	
+									<span class="h6-responsive"><strong>{{catDetail.name}}</strong></span><br>
+								</p>
+
+								<p id="category-deatail-desc">
+									{{catDetail.description}}
+								</p>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+
+
+					<div class="col-lg-6">
+
+						<div class="col-lg-12 p-0 dusty-grass-gradient text-center">
+							<p>Related Products</p>
+						</div>
+		                  
+		                  <div style="height: 600px;" class="row  overflow-auto">
+		                      
+		                    <div *ngFor="let row of products" class="col-lg-4 col-4 col-sm-4 mb-2">
+		                            
+		                            <mdb-card id="card_container"  mdbTooltip="{{row.name}} -- Availability: {{row.quantity}}" placement="top">
+
+		                              <div style="height: 12px;" class="container-fluid border-top pl-2">
+		                                
+		                                <p class="bg-dark font-weight-light" style="font-size: .6rem; width: 40px;">
+		                                    <strong class="text-light"><span class="fontweight-bold">₱</span>: {{row.price}}</strong>
+		                                  </p>
+
+
+
+		                              </div>
+
+
+		                              <div id="card_image" class="view rgba-white-slight waves-light p-3" mdbWavesEffect>
+		                                <!-- Card img -->
+		                              
+		                                <img class="card-img-top"  id="card_image_image" src="assets/images/{{row.image}}" alt="Card image cap">
+
+		                                <a>
+		                                  <div class="mask">
+		                                     <button type="button" id="details-btn" (click)="viewProduct(row)" class="btn warning-color text-white btn-sm py-0">
+		                                  <i class="fas fa-info-circle pr-2"></i>Details</button>
+		                                  </div>
+		                                </a>
+		                              </div>
+		                              <!--Card content-->
+		                              <div style="height: 40px;" class="container-fluid border-top pl-2 text-center pt-1">
+		                                
+		                                <p style="font-size: .6rem">
+		                                    <strong>{{row.name}}</strong>
+		                                  </p>
+
+		                               
+
+		                              </div>
+
+		                            </mdb-card>
+
+
+		                          </div>
+
+
+
+		                  </div>
+
+		             </div>
+
+
+					<div id="categories" class="col-lg-3 col-3 col-sm-3 ">
+						
+						<div class="col-lg-12 p-0 dusty-grass-gradient text-center">
+							<p>Categories</p>
+						</div>
+
+				        <div style="height: 400px;">
+				          <ul style="font-size: .8rem;" class="list-group">
+				            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let row of cats">
+				              {{row._id.name}} 
+				              <mdb-badge pill="true" primary="true"> {{row.count}}</mdb-badge>
+				            </li>
+				          </ul>
+				        </div>
+				        
+				     </div>
+
+		             
+		        </div>
+
+		    </div>
+
+
+		</div>
+
+
+	</div>
+
+
+
+
+
+</div>

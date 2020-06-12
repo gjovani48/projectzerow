@@ -240,36 +240,30 @@ router.put('/:id/pzwpoints_deduct', urlEncoded, (req,res) => {
 })
 
 // Update User by ID
+
 router.put('/:id', urlEncoded, (req,res) => {
 
-    var userData = new User({
 
-        firstname: req.body.firstname,
-        middlename: req.body.middlename,
-        lastname: req.body.lastname,
-        phone:  req.body.phone,
-        email: req.body.email,
-        password: req.body.password,
-
-    })
-
-    bcrypt.hash(req.body.password, 10,(err, hash) => {
-
-          userData.password = hash
-
-          User.updateOne({_id: req.params.id},userData).then((user) =>{
-
-             res.json(user);
+   bcrypt.hash(req.body.password, 10,(err, hash) => {
 
 
-            //res.json({status: user.email + ' created successfully'})
-          })
-          .catch(err => {
-            res.send('error: '+ err)
+          User.updateOne({_id: req.params.id}, {
+                firstname: req.body.firstname,
+                middlename: req.body.middlename,
+                lastname: req.body.lastname,
+                phone:  req.body.phone,
+                email: req.body.email,
+                password: hash,
+          },(err,result) => {
+              if(err) res.json({msg:"Invalid Request"})
+              res.json([{msg:result}])
           })
 
    })
 
+
+
+    
 })
 
 

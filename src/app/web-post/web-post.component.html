@@ -1,0 +1,109 @@
+
+<div class="container-fluid py-5 mt-5">
+
+	<div class="col-lg-12">
+		
+		<div class="row">
+			
+			<div class="col-lg-8">
+
+				<div class="row">
+
+					<div class="col-lg-6">
+						
+					</div>
+					<div class="col-lg-6">
+						<mat-form-field style="width:100%;">
+				          <input matInput type="text" placeholder="Search" (keyup)="applyFilter($event.target.value)">
+				          <mat-icon matSuffix>search</mat-icon>
+				        </mat-form-field>
+					</div>
+					
+					<div *ngFor="let row of obs | async" class="col-lg-12 mb-2 p-2">
+						
+						<div class="row">
+							
+							<div id="post-img-container" class="col-lg-4">
+								
+								<img id="post-img" src="{{row.image}}">
+
+							</div>
+
+							
+							
+
+							<div class="col-lg-8 pt-2">
+								<p style="font-size: .7rem;"> 
+
+									<span style="font-size: .8rem;" class="h5-responsive text-info"><strong>{{row.title}}</strong></span><br>
+									<span>
+										<img style="height: 30px; width: 30px;" class="mx-auto rounded-circle" src="https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_960_720.png">
+										By: {{row.author}}
+									</span><br>
+								
+									<br>
+
+									<span>
+										{{(row.brief_description.length > 250)? row.brief_description.substr(0,250)+'...': row.brief_description}}
+									</span>
+
+								</p>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+			</div>
+
+
+
+
+			<div class="col-lg-4 pt-3">
+
+				<h4 class="h4-responsive">List Of References</h4>
+
+				<ul class="list-group list-group-flush">
+					
+					<li class="list-group-item">
+						<a href="https://www.sciencedaily.com/news/earth_climate/environmental_science/">Environmental Science News</a>
+					</li>
+					<li class="list-group-item">
+						<a href="www.nbcnews.com">NBC News</a>
+					</li>
+					<li class="list-group-item">
+						<a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjMq4_prfzpAhXOFIgKHRx3D0sQFjAGegQIBhAB&url=https%3A%2F%2Fphys.org%2Fearth-news%2Fenvironment%2F&usg=AOvVaw0RB1Ajch2B3p9QzBbvvsF9">Phys.org</a>
+					</li>
+					<li class="list-group-item">
+						<a href="www.enn.com">Environmental News Network</a>
+					</li>
+					<li class="list-group-item">
+						<a href="www.nytimes.com">NYTimes</a>
+					</li>
+
+				</ul>
+
+				
+
+				<ul class="list-unstyled mt-3 text-center">
+					<li class="mb-2"><img class="logs-img" src="https://www.sciencedaily.com/images/sd-logo.png"></li>
+					<li class="mb-2"><img class="logs-img" src="https://seeklogo.com/images/N/nbc-news-logo-EDDBA8ADC9-seeklogo.com.png"></li>
+					<li class="mb-2"><img class="logs-img" src="https://www.queensu.ca/physics/gva/images/PhysOrg.png"></li>
+					<li class="mb-2"><img class="logs-img" src="https://d3pcsg2wjq9izr.cloudfront.net/files/43026/images/ENNLogo-400.jpg"></li>
+					<li class="mb-2"><img class="logs-img" src="https://d3k74ww17vqc8e.cloudfront.net/app/uploads/2017/04/24230358/new-york-times-logo.jpg"></li>
+				</ul>
+
+				
+			</div>
+
+
+
+		</div>
+
+	</div>
+	
+</div>

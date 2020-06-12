@@ -26,6 +26,8 @@ import { AcrhiveIndexComponent } from './admin/archive/acrhive-index/acrhive-ind
 
 import { ViewProductComponent } from './product/view-product/view-product.component';
 
+import { WebPostComponent } from './web-post/web-post.component';
+
 const routes: Routes = [
 	{
 		path: "",
@@ -39,6 +41,10 @@ const routes: Routes = [
   {
 		path: 'products',
     component: ProductComponent,
+  },
+  {
+    path: 'post',
+    component: WebPostComponent,
   },
   {
 		path: 'category',

@@ -18,10 +18,15 @@ export class ViewProductComponent implements OnInit {
 
   products = [];
 
-  pruducttDetail;
+  cats = [];
+
+  catDetail:any;
+
+  public pruductsDetail:Product;
 
   ngOnInit() {
   	 this.getProductDetail();
+  	 this.getCategoriesCount();
   }
 
 
@@ -34,9 +39,11 @@ export class ViewProductComponent implements OnInit {
 
     this.productService.getProduct(this.productId).subscribe((res)=>{
 
-    	this.pruducttDetail = res;
+    	this.pruductsDetail = res;
 
-    	console.log(this.pruducttDetail);
+    	this.catDetail = res.category_id;
+
+    	console.log(this.pruductsDetail);
 
 
     	this.getProductList(res.category_id._id);
@@ -59,6 +66,21 @@ export class ViewProductComponent implements OnInit {
       err=>{
         console.log(err);
       })
+  }
+
+  getCategoriesCount(){
+    
+    this.categoryService.getCategoryCount().subscribe((response) => {
+      console.log(response)
+      this.cats = response;
+    })
+  }
+
+  viewProduct(product){
+
+    this.pruductsDetail = product;
+
+    console.log(product);
   }
 
 }

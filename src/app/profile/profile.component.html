@@ -1,5 +1,256 @@
-<p>profile works!</p>
+<div style="height: 150px;" class="col-lg-12 py-5 mt-5 text-center dusty-grass-gradient p-0">
+  	
+  		<h3><strong class="mr-1">Earned Points:</strong> {{details.pzwpoints}} <i class="fas fa-coins"></i></h3>
+  		<h5>{{details.firstname}} {{details.lastname}}</h5>
 
-<h1>
-  {{details.firstname}}
-</h1>
+  </div>
+
+<div class="container mt-2">
+
+  <mat-tab-group mat-align-tabs="left">
+
+  	<mat-tab label="Second">
+	  	<ng-template mat-tab-label>
+	        <i class="fas fa-user-circle"></i>
+	        <span class="ml-2">Profile</span>
+	    </ng-template>
+
+
+	    <div class="container-fluid">
+	    	
+	    	<div class="col-lg-12">
+	    		
+	    		<div class="row">
+	    			
+	    			<div class="col-lg-12 text-center heavy-rain-gradient mb-2 pt-2">
+	    				
+	    				<img class="color-block mb-3 mx-auto rounded-circle z-depth-1-half" src="https://tribune.net.ph/wp-content/uploads/2018/08/SAP-Bong-Go-HiRes-Picture-300x300.jpg">
+
+	    			</div>
+
+
+
+	    			<div style="margin: auto;" class="col-lg-8">
+	    				
+
+	    				<div class="row">
+	    					
+
+	    					<div class="col-lg-12 border-top  mb-2 pt-2">
+
+	    						<ul class="list-unstyled">
+	    							
+	    							<li>
+			    						Firstname:
+			    						<span class="float-right">{{details.firstname}}</span>
+			    					</li>
+
+			    					<li>
+			    						Middlename: 
+			    						<span class="float-right">{{details.middlename}}</span>
+			    					</li>
+
+			    					<li>
+			    						Lastnamename:
+			    						<span class="float-right">{{details.lastname}}</span>
+			    					</li>
+
+	    						</ul>
+			    				
+			    			</div>
+
+			    			<div class="col-lg-12 border-top  mb-2">
+
+
+			    				<ul class="list-unstyled">
+			    					
+			    					<li>
+			    						Phone: 
+			    						<span class="float-right">{{details.phone}}</span>
+			    					</li>
+			    					<li>
+			    						Email:
+			    						<span class="float-right">{{details.email}}</span>
+			    					</li>
+			    					<li>
+			    						Password:
+			    						<span class="float-right">**********</span>
+			    					</li>
+
+			    				</ul>
+
+			    				
+			    			</div>
+
+
+	    				</div>
+
+	    			</div>
+
+
+
+	    		</div>
+
+
+	    	</div>
+
+
+	    </div>
+
+	 </mat-tab>
+  	
+  	<mat-tab label="First">
+
+  	<ng-template mat-tab-label>
+        <i class="fas fa-barcode"></i>
+        <span class="ml-2">Transaction History</span>
+    </ng-template>
+
+    	<div *ngIf="!sales">
+    		
+    		<h3>Nothin to show.</h3>
+
+    	</div>
+
+    	<div  *ngIf="sales" style="height:500px;" class="overflow-auto">
+
+    		<mat-progress-bar *ngIf="loadingHis" mode="indeterminate"></mat-progress-bar>
+
+
+			<mat-accordion>
+
+			  <mat-expansion-panel *ngFor="let row of sales">
+
+			    <mat-expansion-panel-header>
+			      <mat-panel-title style="font-size: .7rem;">
+			        {{row.user_id.firstname}} {{row.user_id.lastname}}
+			      </mat-panel-title>
+			      <mat-panel-description ng-class="float-right">
+			      	<div style="font-size: .7rem;" class="col-lg-12 float-right text-right">
+			        	Recorded on: {{row.sale_date | date:'mediumTime'}}
+			        </div>
+			      </mat-panel-description>
+			    </mat-expansion-panel-header>
+
+			    <div style="font-size: .7rem;" class="col-lg-12">
+			    	
+			    	<div class="row">
+
+			    		<div class="col-lg-6">
+
+			    			<h5>Transaction Information:</h5> <hr>
+
+			    			<ul class="list-unstyled">
+			    				<li>Cost: <span class="float-right">{{row.total}}</span></li>
+			    				<li>Amount: Due: <span class="float-right">{{row.amount_due}}</span></li>
+			    				<li>Change: <span class="float-right">{{row.change}}</span></li>
+			    				<li>Recorded on: <span class="float-right">{{row.sale_date | date:'mediumTime'}}</span></li>
+			    			</ul>
+
+			    			
+			    		</div>
+			    		
+			    		<div class="col-lg-6">
+
+			    			<h5>Items</h5> <hr>
+			    			
+			    			<ul class="list-unstyled">
+						    	<li *ngFor="let item of row.item">{{item.name}} <span class="float-right">{{item.quantity}}</span></li>
+						    </ul>
+
+
+			    		</div>
+
+
+			    	</div>
+
+			    </div>
+
+			  </mat-expansion-panel>
+			  
+			</mat-accordion>
+
+		</div>
+
+
+  </mat-tab>
+
+  <mat-tab label="Second">
+  	<ng-template mat-tab-label>
+        <i class="fas fa-gifts"></i>
+        <span class="ml-2">Redeem Series</span>
+    </ng-template>
+
+    <div *ngIf="redeem.length<1">
+    		
+    		<h3>Nothin to show.</h3>
+
+    </div>
+
+    <div *ngIf="redeem" style="font-size: .7rem;" style="height:500px;" class="overflow-auto">
+
+    	<mat-progress-bar *ngIf="loadingRed" mode="indeterminate"></mat-progress-bar>
+
+			<mat-accordion>
+
+			  <mat-expansion-panel *ngFor="let row of redeem">
+
+			    <mat-expansion-panel-header style="font-size: .7rem;">
+			      <mat-panel-title>
+			        {{row.user_id.firstname}} {{row.user_id.lastname}}
+			      </mat-panel-title>
+			      <mat-panel-description>
+			        <div class="col-lg-12 float-right text-right">
+			        	Recorded on: {{row.redeem_date | date:'mediumTime'}}
+			        </div>
+			      </mat-panel-description>
+			    </mat-expansion-panel-header>
+
+			    <div style="font-size: .7rem;" class="col-lg-12">
+			    	
+			    	<div class="row">
+
+			    		<div class="col-lg-6">
+
+			    			<h5>Redeem Information:</h5> <hr>
+
+			    			<ul class="list-unstyled">
+			    				<li>Cost: <span class="float-right">{{row.total}}</span></li>
+			    				<li>Remaining Points: <span class="float-right">{{row.remaining_points | number:'1.1-3'}}</span></li>
+			    				<li>Recorded on: <span class="float-right">{{row.redeem_date | date:'mediumTime'}}</span></li>
+			    			</ul>
+
+			    			
+			    		</div>
+			    		
+			    		<div class="col-lg-6">
+
+			    			<h5>Items</h5> <hr>
+			    			
+			    			<ul class="list-unstyled">
+						    	<li *ngFor="let item of row.item">{{item.name}} {{item.quantity}}</li>
+						    </ul>
+
+
+			    		</div>
+
+
+			    	</div>
+
+			    </div>
+
+			  </mat-expansion-panel>
+			  
+			</mat-accordion>
+
+		</div>
+
+
+  </mat-tab>
+  
+</mat-tab-group>
+
+
+
+
+</div>

@@ -80,6 +80,7 @@ import { AcrhiveIndexComponent } from './admin/archive/acrhive-index/acrhive-ind
 import { TmchnSalesComponent } from './admin/point-of-sale/tmchn-sales/tmchn-sales.component';
 import { AccountConfigComponent } from './admin/account-config/account-config.component';
 import { ViewProductComponent } from './product/view-product/view-product.component';
+import { WebPostComponent } from './web-post/web-post.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { ViewProductComponent } from './product/view-product/view-product.compon
     TmchnSalesComponent,
     AccountConfigComponent,
     ViewProductComponent,
+    WebPostComponent,
   ],
   entryComponents: [ProductDialog,UserModal,ProductDialogCreate,
                       CategorytDialogCreate,UserInformationDialog,EmailDialog,

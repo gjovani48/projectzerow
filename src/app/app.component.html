@@ -3,12 +3,13 @@
 
   <a href="#home" class="logo" style="font-size: 20px; font-weight: bold;">Project <i class="fas fa-recycle animated rotateOut slower infinite"></i> <span class="headerlogo" style="font-size: 20px; font-weight: bold;"> Zero</span></a>
   <ul>
-  <li class="animated wow zoomInDown" data-wow-delay="0.2s"><a routerLink="/home" routerLinkActive="linkActive">Home</a></li>
+  <li class="animated wow zoomInDown" data-wow-delay="0.2s"><a routerLink="/home">Home</a></li>
+  <li class="animated wow zoomInDown" data-wow-delay="0.2s"><a routerLink="/post">Post</a></li>
     <li class="animated wow zoomInDown" data-wow-delay="0.4s"><a href="#about" onclick="toggle()">About</a></li>
     <li class="animated wow zoomInDown" data-wow-delay="0.6s"><a href="#services" onclick="toggle()">Features</a></li>
     <li class="animated wow zoomInDown" data-wow-delay="0.8s"><a href="#numbers" onclick="toggle()">Numbers</a></li>
     <li class="animated wow zoomInDown" data-wow-delay="1s"><a href="#timeline" onclick="toggle()">Timeline</a></li>
-    <li class="animated wow zoomInDown" data-wow-delay="1.2s"><a  a routerLink="/products" routerLinkActive="linkActive">Products</a></li>
+    <li class="animated wow zoomInDown" data-wow-delay="1.2s"><a  a routerLink="/products">Products</a></li>
     <li class="animated wow zoomInDown" data-wow-delay="1.4s"><a href="#team" onclick="toggle()">Team</a></li>
     <!-- <li><a href="#contact" onclick="toggle()"> {{details.firstname}}</a></li>  -->
     <li *ngIf="!userService.isLoggedIn()" class="animated wow zoomInDown" data-wow-delay="1.6s" >
