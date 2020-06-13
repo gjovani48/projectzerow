@@ -49,9 +49,19 @@ export class ProductService {
 		)
 	}
 
+
+
 	archiveProduct(product): Observable<any> {
 		return this.http.post<any>(
 			this.url + "/product/archive",
+			product,
+			{ headers: this.headers }
+		)
+	}
+
+	unarchiveProduct(product): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/product/unarchive",
 			product,
 			{ headers: this.headers }
 		)

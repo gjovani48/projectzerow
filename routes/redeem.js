@@ -27,6 +27,13 @@ router.post('/archive', urlEncoded, (req,res) => {
     })
 })
 
+router.post('/unarchive', urlEncoded, (req,res) => {
+    Redeem.updateOne({_id:req.body._id}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 
 // Get Redeem by ID
 router.get('/:id', (req,res) => {

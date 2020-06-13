@@ -77,6 +77,14 @@ export class SaleService {
 		)
 	}
 
+	unarchiveSale(sale): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/sale/unarchive",
+			sale,
+			{ headers: this.headers }
+		)
+	}
+
 	archiveMulSale(_ids): Observable<any> {
 		return this.http.post<any>(
 			this.url + "/sale/archive/many",

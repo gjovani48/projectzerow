@@ -189,6 +189,14 @@ export class UserService {
     )
   }
 
+  unarchiveUser(user): Observable<any> {
+    return this.http.post<any>(
+      this.url + "/user/unarchive",
+      user,
+      { headers: this.headers }
+    )
+  }
+
 	// Add Fingerprint ID
 	addFingerprint(user): Observable<any> {
 		return this.http.put<any>(

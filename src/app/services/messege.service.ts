@@ -41,6 +41,14 @@ export class MessegeService {
 		)
 	}
 
+	unarchiveMessage(message): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/message/unarchive",
+			message,
+			{ headers: this.headers }
+		)
+	}
+
 	openMessage(message): Observable<any> {
 		return this.http.post<any>(
 			this.url + "/message/open",

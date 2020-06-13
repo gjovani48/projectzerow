@@ -50,6 +50,14 @@ export class PostService {
 		)
 	}
 
+	unarchivePost(post): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/post/unarchive",
+			post,
+			{ headers: this.headers }
+		)
+	}
+
 	// Update Post
 	updatePost(post): Observable<any> {
 		return this.http.put<any>(

@@ -69,10 +69,10 @@ export class CategoryAcrhiveComponent implements OnInit {
     })
   }
 
-  archive(element){
+  unarchive(element){
 
-    this.categoryService.archiveCategory(element).subscribe((response)=>{
-      this.openSnackBar("category move to archive",'dismis');
+    this.categoryService.unarchiveCategory(element).subscribe((response)=>{
+      this.openSnackBar("category restore",'dismis');
       this.getCategories();
     })
 

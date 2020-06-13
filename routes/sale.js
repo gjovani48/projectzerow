@@ -28,6 +28,13 @@ router.post('/archive', urlEncoded, (req,res) => {
     })
 })
 
+router.post('/unarchive', urlEncoded, (req,res) => {
+    Sale.updateOne({_id:req.body._id}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
 router.post('/archive/many', urlEncoded, (req,res) => {
 
     Sale.updateMany({_id:{$in:req.body}}, { $set: { is_archive: true } },(err) => {

@@ -1343,6 +1343,14 @@ router.post('/archive', urlEncoded, (req,res) => {
 })
 
 
+router.post('/unarchive', urlEncoded, (req,res) => {
+    Product.updateOne({_id:req.body._id}, { $set: { is_archive: false } },(err) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:"Product Updated"}])
+    })
+})
+
+
 
 // Delete Product
 router.delete('/:id', (req, res) => {

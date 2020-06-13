@@ -61,6 +61,14 @@ export class CategoryService {
 		)
 	}
 
+	unarchiveCategory(category): Observable<any> {
+		return this.http.post<any>(
+			this.url + "/category/unarchive",
+			category,
+			{ headers: this.headers }
+		)
+	}
+
 	// Update Category
 	updateCategory(category): Observable<any> {
 		return this.http.put<any>(
