@@ -72,6 +72,10 @@
                                       <mdb-icon fas icon="angle-left"></mdb-icon>
                                     </button>
 
+                                <button mdbTooltip="Refresh"  (click)="getSales()"  class="animated slideInLeft" placement="top" type="button" class="btn btn-primary btn-circle">
+                                      <mdb-icon fas icon="sync"></mdb-icon>
+                                    </button>
+
                               </div>
                               <div class="col-lg-4"></div>
                             
@@ -212,7 +216,7 @@
 
         <ng-template mat-tab-label>
               <mdb-icon fab icon="buffer"></mdb-icon>
-              <span class="ml-2">Bending Machine</span>
+              <span class="ml-2">Water Bending Machine</span>
           </ng-template>
 
         <app-tmchn-sales></app-tmchn-sales>

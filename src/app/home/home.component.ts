@@ -7,6 +7,9 @@ import { NgxSpinnerService } from "ngx-spinner";
 
 import { Message } from '../models/message'
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,6 +21,7 @@ export class HomeComponent implements OnInit {
 
   categories = [];
 
+  sending:Boolean = false;
 
   public subs_name = "";
   public subs_email = "";
@@ -25,7 +29,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService,private categoryService: CategoryService,
+  constructor(private _snackBar: MatSnackBar,private userService: UserService,private categoryService: CategoryService,
     private router: Router,private SpinnerService: NgxSpinnerService,
     private messageServices: MessegeService) { }
 
@@ -69,6 +73,8 @@ export class HomeComponent implements OnInit {
 
   sendMessage(){
 
+    this.sending = true;
+
     var msg = new Message();
 
     msg.name = this.subs_name;
@@ -77,11 +83,18 @@ export class HomeComponent implements OnInit {
 
     this.messageServices.addMessage(msg).subscribe((res)=>{
 
-      console.log(res);
-      alert(res.status);
+      this.sending = false;
+
+      this. openSnackBar("Message Sent", "Dismis");
 
     })
 
   }
+
+   openSnackBar(message: string, action: string) {
+      this._snackBar.open(message, action, {
+        duration: 2000,
+      });
+    }
 
 }

@@ -407,6 +407,10 @@
         </div>
         <div class="row100">
           <div class="inputBx100">
+
+            <mat-progress-bar *ngIf="sending" mode="indeterminate"></mat-progress-bar><br>
+            <span *ngIf="sending">Sending...</span>
+
             <input (click)="sendMessage()" type="submit" name="" value="Send">
           </div>
         </div>

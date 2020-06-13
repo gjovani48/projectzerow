@@ -135,9 +135,9 @@
         <u><mdb-icon fas icon="user-minus"></mdb-icon> Signout</u>
       </span>
 
-      <span *ngIf="userService.isLoggedIn()" style="font-size: .6rem;" type="button" class="border-0 mr-3 float-right white">
+      <a routerLink="admin/config" *ngIf="userService.isLoggedIn()" style="font-size: .6rem;" class="border-0 mr-3 text-dark float-right white">
         <u><mdb-icon fas icon="tools"></mdb-icon> Configuration</u>
-      </span>
+      </a>
 
     </div>
   </mat-toolbar>

@@ -28,6 +28,8 @@ import { ViewProductComponent } from './product/view-product/view-product.compon
 
 import { WebPostComponent } from './web-post/web-post.component';
 
+import { AccountConfigComponent } from './admin/account-config/account-config.component';
+
 const routes: Routes = [
 	{
 		path: "",
@@ -122,6 +124,11 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: UserIndexComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin/config',
+    component: AccountConfigComponent,
     canActivate: [AuthGuardService]
   },
   {
