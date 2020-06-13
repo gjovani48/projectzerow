@@ -4,16 +4,54 @@
 
  		<div class="row">
 
- 			<div *ngIf="userDetail" class="col-lg-12 heavy-rain-gradient">
+ 			<div *ngIf="userDetail" class="col-lg-12">
  				
+ 				<div class="card">
 
- 				<p>{{userDetail.firstname}}</p>
+ 					<div class="card-header">
+ 						
+ 						<h5 class="h5-responsive">
+ 							Account Configuration
+ 						</h5>
 
- 				<input type="email" [(ngModel)]="userDetail.email" name="email">
- 				<input type="password" [(ngModel)]="newpass" name="pass">
+ 					</div>
+ 					
+ 					<div class="card-body">
+
+ 						<div class="col-lg-12 form-group">
+ 							
+ 							<div class="md-form input-group mb-3">
+							  <div class="input-group-prepend">
+							    <span class="input-group-text md-addon" id="material-addon1">Email</span>
+							  </div>
+							  <input class="form-control" type="email" [(ngModel)]="userDetail.email" name="email">
+							</div>
+
+ 						</div>
+
+ 						<div class="col-lg-12 form-group">
+ 							
+ 							<div class="md-form input-group mb-3">
+							  <div class="input-group-prepend">
+							    <span class="input-group-text md-addon" id="material-addon1">Password</span>
+							  </div>
+							  <input class="form-control" type="password" [(ngModel)]="newpass"  name="pass">
+							</div>
+
+ 						</div>
+
+ 						<div class="col-lg-12 form-group">
+ 							
+ 							<button (click)="updateConfig()" class="btn btn-sm btn-success float-right">save</button>
+
+ 						</div>
+
+ 						
 
 
- 				<button (click)="updateConfig()">save</button>
+ 					</div>
+
+ 				</div>
 
  			</div>
 

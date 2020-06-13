@@ -156,12 +156,18 @@ login(){
   }
 
   logout(){
-    this.userService.logout();
-    this.displayName = ""
-    this.mgsLogoutModal.show();
-    this.router.navigate(['/home']);
-    this.SpinnerService.hide();
-    this.isAdmin = false;
+    
+
+     if(confirm("Are you sure you want to logout?")==true){
+
+        this.userService.logout();
+        this.displayName = ""
+        this.mgsLogoutModal.show();
+        this.router.navigate(['/home']);
+        this.SpinnerService.hide();
+        this.isAdmin = false;
+
+    }
   }
 
   register(){

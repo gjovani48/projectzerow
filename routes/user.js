@@ -4,6 +4,8 @@ const nodemailer = require('nodemailer')
 const router = new express.Router()
 
 const User = require('../model/user')
+const Sale = require('../model/sale')
+const Cart = require('../model/cart')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
@@ -221,13 +223,110 @@ router.put('/:id/fingerprintid', urlEncoded, (req,res) => {
 
 
 // Add PZW Points
+
+    
+
 router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
-    User.updateOne({_id: req.params.id}, {
-      $inc:{pzwpoints: req.body.pzwpoints}
-    },(err) => {
-        if(err) res.json({msg:"Invalid Request"})
-        res.json({status:true})
+
+    var date_now = new Date();
+    var points = [];
+    var saledate;
+    var total_points_ds_month;
+
+    var w_points = [];
+    var w_saledate;
+    var w_total_points_ds_month;
+    
+
+    Cart.find({user_id:req.params.id},(err,res)=>{
+
+       let temp_w_points = [];
+
+       res.forEach((row)=>{
+
+          if(row.created_date.getMonth() == date_now.getMonth()){
+
+              w_points.push(parseFloat(row.total)*0.05);
+
+           }
+
+
+       })
+
+       w_total_points_ds_month = w_points.reduce((a, b) => a + b, 0);
+
+       
+
+
     })
+
+
+    
+
+    Sale.find({user_id:req.params.id}).sort({sale_date: -1}).populate(['user_id', 'product_id']).exec((err, sale) => {
+        if(err) throw err
+
+         
+        
+         sale.forEach((row)=>{
+
+           if(row.sale_date.getMonth() == date_now.getMonth()){
+
+              points.push(parseFloat(row.total)*0.05);
+
+           }
+
+           saledate = row.sale_date;
+
+         })
+
+
+
+         total_points_ds_month = points.reduce((a, b) => a + b, 0);
+
+         console.log(w_total_points_ds_month)
+         console.log(total_points_ds_month)
+
+         console.log(total_points_ds_month+w_total_points_ds_month)
+
+         var final_total = total_points_ds_month+w_total_points_ds_month;
+
+         console.log("Final "+final_total);
+
+        if(final_total>=200){
+
+
+           User.updateOne({_id: req.params.id}, {
+              $inc:{pzwpoints: 0}
+            },(err) => {
+                if(err) res.json({msg:"Invalid Request"})
+                res.json({status:true,msg:'reach the maximum points this month'})
+            })
+            
+
+         }
+         else{
+
+            User.updateOne({_id: req.params.id}, {
+              $inc:{pzwpoints: (req.body.pzwpoints>200)? 200:req.body.pzwpoints}
+            },(err) => {
+                if(err) res.json({msg:"Invalid Request"})
+                res.json({status:true})
+            })
+
+
+         }
+
+         
+
+    })
+
+
+
+
+    
+
+    
 })
 
 router.put('/:id/pzwpoints_deduct', urlEncoded, (req,res) => {

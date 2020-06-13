@@ -34,7 +34,7 @@
                             <div class="col-lg-6">
 
                               <ul style="font-size: .7rem;" class="list-unstyled white-text">
-                                <li>Anonimous Sale: <span class="float-right">{{this.anonymousSale.length}}</span></li>
+                                <li>Anonymous Sale: <span class="float-right">{{this.anonymousSale.length}}</span></li>
                                 <li>Customer Sale: <span class="float-right">{{Math.abs(this.sales.length - this.anonymousSale.length)}}</span></li>
                  
                               </ul>
@@ -133,7 +133,7 @@
                                 <th mat-header-cell *matHeaderCellDef mat-sort-header> <mdb-icon fas icon="user-alt" class="mr-1"></mdb-icon> Customer </th>
                                 <td mat-cell *matCellDef="let element">
 
-                                  {{(element.user_id==null)? 'Anonimous':element.user_id.firstname+' '+element.user_id.lastname}}
+                                  {{(element.user_id==null)? 'Anonymous':element.user_id.firstname+' '+element.user_id.lastname}}
 
                                 </td>
                               </ng-container>
@@ -216,7 +216,7 @@
 
         <ng-template mat-tab-label>
               <mdb-icon fab icon="buffer"></mdb-icon>
-              <span class="ml-2">Water Bending Machine</span>
+              <span class="ml-2">Tubig Machine</span>
           </ng-template>
 
         <app-tmchn-sales></app-tmchn-sales>

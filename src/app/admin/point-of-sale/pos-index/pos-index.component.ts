@@ -256,55 +256,59 @@ export class PosIndexComponent implements OnInit {
 
   createSale(){
 
-      var tr_code;
+      if(confirm("Continue to complete transaction?")==true){
 
-	  	var sales_data = new Sale();
-	  	sales_data.user_id = this.selectedUser._id;
-	  	sales_data.item = this.item;
-	  	sales_data.total = this.totalCost;
-	  	sales_data.amount_due = this.amount_due;
-	  	sales_data.change = this.change;
+        var tr_code;
 
-	  	var pzwpoints = {
-	  		pzwpoints: parseFloat(sales_data.total.toString())*.05
-	  	}
+  	  	var sales_data = new Sale();
+  	  	sales_data.user_id = this.selectedUser._id;
+  	  	sales_data.item = this.item;
+  	  	sales_data.total = this.totalCost;
+  	  	sales_data.amount_due = this.amount_due;
+  	  	sales_data.change = this.change;
 
-
-	  	this.saleServices.addSale(sales_data).subscribe((res)=>{
-
-        console.log(res)
-
-        tr_code = res.transaction_code;
-	  		
-
-	  		if(res.status==true && this.selectedUser._id!=""){
-
-	  			this.userService.addPZWPoints(sales_data.user_id,pzwpoints).subscribe((res)=>{
+  	  	var pzwpoints = {
+  	  		pzwpoints: parseFloat(sales_data.total.toString())*.05
+  	  	}
 
 
-	  				if(res.status==true){
-	  					alert('poins added to the user| transaction success'+" "+res.transaction_code);
-	  				}
+  	  	this.saleServices.addSale(sales_data).subscribe((res)=>{
 
-	  			})
+          console.log(res)
 
-          this.openPosSalesDialog(sales_data,res.transaction_code);
+          tr_code = res.transaction_code;
+  	  		
 
-	  		}
-	  		else if(res.status==true && this.selectedUser._id==""){
-	  			alert('transaction success'+res.transaction_code);
-          this.openPosSalesDialog(sales_data,res.transaction_code);
-	  		}
+  	  		if(res.status==true && this.selectedUser._id!=""){
 
-	  	})
+  	  			this.userService.addPZWPoints(sales_data.user_id,pzwpoints).subscribe((res)=>{
 
 
-      
+  	  				if(res.status==true){
+  	  					alert('poins added to the user| transaction success'+" "+res.transaction_code);
+  	  				}
+
+  	  			})
+
+            this.openPosSalesDialog(sales_data,res.transaction_code);
+
+  	  		}
+  	  		else if(res.status==true && this.selectedUser._id==""){
+  	  			alert('transaction success'+res.transaction_code);
+            this.openPosSalesDialog(sales_data,res.transaction_code);
+  	  		}
+
+  	  	})
+
+
+      }
 
 
   }
 
   createRedeem(){
+
+    if(confirm("Continue to complete redeem?")==true){
 
       var redeem_data = new Redeem();
       redeem_data.user_id = this.selectedUser._id;
@@ -334,6 +338,8 @@ export class PosIndexComponent implements OnInit {
         }
 
       })
+
+    }
 
 
   }

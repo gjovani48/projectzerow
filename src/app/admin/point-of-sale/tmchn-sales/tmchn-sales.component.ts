@@ -56,7 +56,7 @@ public selection = new SelectionModel<Cart>(true, []);
 
 
 
- displayedColumns: string[] = ['select','No.','id','user_id','product','total','created_date','action'];
+ displayedColumns: string[] = ['select','No.','user_id','product','total','created_date','action'];
 
  length = 100;
  pageSize = 10;
