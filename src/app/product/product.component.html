@@ -12,7 +12,13 @@
   <div class="col-lg-12">
     <div class="row">
 
+
+
       <div id="categories" class="col-lg-3">
+        
+        <div class="col-lg-12 p-0 dusty-grass-gradient text-center">
+              <p>Categories</p>
+            </div>
 
         <div style="height: 400px;">
           <ul style="font-size: .8rem;" class="list-group">
@@ -96,7 +102,7 @@
                       
                     <div *ngFor="let row of obs | async" class="col-lg-4 col-4 col-sm-4 mb-2">
                             
-                            <mdb-card id="card_container"  mdbTooltip="{{row.name}} -- Availability: {{row.quantity}}" placement="top">
+                            <mdb-card (click)="viewProduct(row)" id="card_container"  mdbTooltip="{{row.name}} -- Availability: {{row.quantity}}" placement="top">
 
                               <div style="height: 12px;" class="container-fluid border-top pl-2">
                                 
@@ -118,14 +124,16 @@
                                   <div class="mask">
                                      <button type="button" id="details-btn" (click)="viewProduct(row)" class="btn warning-color text-white btn-sm py-0">
                                   <i class="fas fa-info-circle pr-2"></i>Details</button>
+
+
                                   </div>
                                 </a>
                               </div>
                               <!--Card content-->
                               <div style="height: 40px;" class="container-fluid border-top pl-2 text-center pt-1">
                                 
-                                <p style="font-size: .6rem">
-                                    <strong>{{row.name}}</strong>
+                                <p id="p-name">
+                                    <strong>{{(row.name.length>15)? row.name.substr(0,15)+'..' : row.name}}</strong>
                                   </p>
 
                                
@@ -160,6 +168,10 @@
       </div>
 
       <div class="col-lg-3">
+
+        <div class="col-lg-12 p-0 dusty-grass-gradient text-center">
+              <p>Products You May Like</p>
+            </div>
 
         <div class="row">
           

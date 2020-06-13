@@ -117,9 +117,9 @@
 		                              <!--Card content-->
 		                              <div style="height: 40px;" class="container-fluid border-top pl-2 text-center pt-1">
 		                                
-		                                <p style="font-size: .6rem">
-		                                    <strong>{{row.name}}</strong>
-		                                  </p>
+		                                <p id="p-name">
+		                                    <strong>{{(row.name.length>15)? row.name.substr(0,15)+'..' : row.name}}</strong>
+		                                </p>
 
 		                               
 

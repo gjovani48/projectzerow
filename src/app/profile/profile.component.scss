@@ -1,0 +1,20 @@
+#banner{
+	height:150px;
+}
+
+@media (max-width: 480px) {
+
+.points-text{
+	font-size: 1rem;
+}
+
+.name-text{
+	font-size: .7rem;
+}
+
+#banner{
+	height:110px;
+}
+
+
+}

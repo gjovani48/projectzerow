@@ -110,7 +110,7 @@ router.post('/', urlEncoded,(req,res) => {
           User.create(userData).then((user) =>{
 
             var mailOptions = {
-              from: 'Project:ZeroW',
+              from: 'Project ZeroW',
               to: user.email,
               subject: 'Account Verification',
               text: 'Your account verification code is '+user.registration_code

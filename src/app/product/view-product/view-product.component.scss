@@ -1,3 +1,6 @@
+#p-name{
+    font-size: .6rem;
+}
 #product-image-container{
 
 	height: 300px;
@@ -104,6 +107,10 @@
 
 
 @media (max-width: 480px){
+
+#p-name{
+    font-size: .5rem;
+  }
 
 
 #product-image-container{
