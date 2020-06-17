@@ -33,14 +33,17 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 
     archiveMessage(){
 
-      this.messageServices.archiveMessage(this.msg).subscribe((res)=>{
+      if(confirm("Are you sure you want to archive this message?")==true){
 
-        this.dialogRef.close('Pizza!');
+        this.messageServices.archiveMessage(this.msg).subscribe((res)=>{
 
-        this. openSnackBar("Message deleted", "Dismis");
+          this.dialogRef.close('Pizza!');
 
-      })
+          this. openSnackBar("Message deleted", "Dismis");
 
+        })
+
+      }
 
     }
 

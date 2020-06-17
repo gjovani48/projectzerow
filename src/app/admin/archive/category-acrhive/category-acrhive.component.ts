@@ -71,10 +71,12 @@ export class CategoryAcrhiveComponent implements OnInit {
 
   unarchive(element){
 
-    this.categoryService.unarchiveCategory(element).subscribe((response)=>{
-      this.openSnackBar("category restore",'dismis');
-      this.getCategories();
-    })
+    if(confirm("Are you sure you want to restore this record?")==true){
+      this.categoryService.unarchiveCategory(element).subscribe((response)=>{
+        this.openSnackBar("category restore",'dismis');
+        this.getCategories();
+      })
+    }
 
   }
 

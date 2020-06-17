@@ -1,7 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
 
 
+h5 {
+  font-family: 'Righteous', cursive;
+  text-transform: uppercase;
+  font-size: 50px;
+  letter-spacing: 0.25em;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  text-shadow: -1px 1px 0 black, -2px 2px 0 black, -3px 3px 0 black, -4px 4px 0 black, -5px 5px 0 black, 7px 8px 0 rgba(0, 0, 0, 0.1);
+  margin: 0 0 10px 0;
+}
 .exploreBtn{
   text-align: center;
   align-items: center;
@@ -30,9 +42,9 @@
  
 }
 .floater{
-	position: absolute;
-	top: 250px;
-	left: 80px;
+  position: absolute;
+  top: 250px;
+  left: 80px;
   z-index: 2;
   
 }
@@ -698,54 +710,54 @@ p
 
 .cart
 {
-	position: relative;
-	display: inline-block;
-	padding: 15px 30px;
-	border: 1px solid #111;
-	text-transform: uppercase;
-	color: #111;
-	font-weight: 600;
-	letter-spacing: 4px;
-	text-decoration: none;
-	font-size: 20px;
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  border: 1px solid #111;
+  text-transform: uppercase;
+  color: #111;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-decoration: none;
+  font-size: 20px;
 }
 .cart:before
 {
-	content: '';
-	position: absolute;
-	top: 6px;
+  content: '';
+  position: absolute;
+  top: 6px;
     left: -2px;
     width: calc(100% + 4px);
-	height: calc(100% - 12px);
-	background: #fff;
-	transform: scaleY(1);
-	transition: 0.2s ease-in-out;
-	transition-delay: 0.2s;
+  height: calc(100% - 12px);
+  background: #fff;
+  transform: scaleY(1);
+  transition: 0.2s ease-in-out;
+  transition-delay: 0.2s;
 }
 .cart:hover:before
 {
-	transform: scaleY(0);
+  transform: scaleY(0);
 }
 .cart:after
 {
-	content: '';
-	position: absolute;
-	left: 6px;
+  content: '';
+  position: absolute;
+  left: 6px;
     top: -2px;
     height: calc(100% + 4px);
-	width: calc(100% - 12px);
-	background: #fff;
-	transition: 0.2s ease-in-out;
-	transform: scaleX(1);
+  width: calc(100% - 12px);
+  background: #fff;
+  transition: 0.2s ease-in-out;
+  transform: scaleX(1);
 }
 .cart:hover:after
 {
-	transform: scaleX(0);
+  transform: scaleX(0);
 }
 .cart span
 {
-	position: relative;
-	z-index: 3;
+  position: relative;
+  z-index: 3;
 }
 
 .intro1{
@@ -938,13 +950,13 @@ img{
   /*position: absolute;*/
   overflow: hidden;
   width: 100%;
-  margin: 0 auto;		
+  margin: 0 auto;   
 
-  position: relative;				
+  position: relative;       
 }
 
 #content-slider .inset {
-  width: 500%;			
+  width: 500%;      
   line-height: 0;
 
   -webkit-animation: 30s slidy infinite;
@@ -963,7 +975,7 @@ img{
 #content-slider h1.main-title {
   text-align: center;
   font-weight: 700;
-  font-size: 2rem;			
+  font-size: 2rem;      
   line-height: 3rem;
   text-transform: uppercase;
   margin: 5px 0 0px 0;
@@ -1037,7 +1049,7 @@ img{
 /* -------> Article IMg Slider */
 #content-slider .slider h1 { font-size: 1.5rem; }
 
-#content-slider .slider p {	font-size: 1.2rem; }
+#content-slider .slider p { font-size: 1.2rem; }
 
 #content-slider .slider a { font-size: 1rem; }
 
@@ -1092,9 +1104,9 @@ img{
 #content-slider figure img {
   width: 100%;
   position: relative;
-}	
+} 
 
-/* -------> Max contrloS img preview */	
+/* -------> Max contrloS img preview */ 
 #content-slider span.th {
   width: 25%;
   margin: 35% 0% 0 0%;
@@ -1111,7 +1123,7 @@ img{
 #b-3 { left: 50%; }
 #b-4 { left: 75%; }
 
-#content-slider input[type='radio'] {			
+#content-slider input[type='radio'] {     
   width: 10px;
   height: 10px;
   display: none;
@@ -1119,10 +1131,10 @@ img{
   display: none;
 }
 
-#control{					
+#control{         
   position: absolute;
   left: 3%;
-  z-index: 5;			
+  z-index: 5;     
   top: 55%;
   width: 95%;
 }
@@ -1158,7 +1170,7 @@ img{
   background: rgba(0, 0, 0, 0.71);
 }
 
-#content-slider input[type='radio'] {			
+#content-slider input[type='radio'] {     
   width: 10px;
   height: 10px;
   display: none;
@@ -1166,10 +1178,10 @@ img{
   display: none;
 }
 
-#content-slider #control{					
+#content-slider #control{         
   position: absolute;
   left: 3%;
-  z-index: 15;			
+  z-index: 15;      
   top: 0%;
   width: 95%;
   /*margin-top: 10%;*/
@@ -1181,8 +1193,8 @@ img{
 }
 
 
-/* -------> Controls */	
-#main>label:hover { width: 9px; height: 9px; background: #FFF; border: 1px solid #00ABFA; }	
+/* -------> Controls */ 
+#main>label:hover { width: 9px; height: 9px; background: #FFF; border: 1px solid #00ABFA; } 
 
 input#a-1:checked ~ .slider .inset { margin-left: 0%;   }
 input#a-2:checked ~ .slider .inset { margin-left:-100%; }
@@ -1210,7 +1222,7 @@ input#a-4:checked ~ #control>label:nth-child(3) {
   top: 50%;
   margin-top: -25px;
   display: inline-block;
-  position: relative;			
+  position: relative;     
   cursor: pointer;
 }
 
@@ -1235,24 +1247,24 @@ input#a-4:checked ~ #control>label:nth-child(3):after {
 input#a-1:checked ~ #control>label:nth-child(2),  
 input#a-2:checked ~ #control>label:nth-child(3), 
 input#a-3:checked ~ #control>label:nth-child(4), 
-input#a-4:checked ~ #control>label:nth-child(1) {		
+input#a-4:checked ~ #control>label:nth-child(1) {   
   float: right;
-  right: 0.3%;						
+  right: 0.3%;            
 }
 
 input#a-1:checked ~ #control>label:nth-child(2):after,  
 input#a-2:checked ~ #control>label:nth-child(3):after, 
 input#a-3:checked ~ #control>label:nth-child(4):after, 
-input#a-4:checked ~ #control>label:nth-child(1):after {						
-  content: "\f105";						
+input#a-4:checked ~ #control>label:nth-child(1):after {           
+  content: "\f105";           
 }
 
 input#a-1:checked ~ #control>label:nth-child(4),
 input#a-2:checked ~ #control>label:nth-child(1),
 input#a-3:checked ~ #control>label:nth-child(2),
-input#a-4:checked ~ #control>label:nth-child(3) {	
+input#a-4:checked ~ #control>label:nth-child(3) { 
   float: left;
-  left: 0.3%;			
+  left: 0.3%;     
 }
 
 input#a-1:checked ~ #control>label:nth-child(4):after,
@@ -1279,7 +1291,7 @@ span#b-5:focus ~ .slider .inset { margin-left:-400%; }
   -moz-animation: none;
   -ms-animation: none;
   -o-animation: none;
-  animation: none;		   
+  animation: none;       
 }
 #content-slider input:hover ~ .slider>.inset, 
 #content-slider label:hover ~ .slider>.inset {
@@ -1302,7 +1314,7 @@ span#b-5:focus ~ .slider .inset { margin-left:-400%; }
   -moz-animation: none;
   -ms-animation: none;
   -o-animation: none;
-  animation: none;		   
+  animation: none;       
 }
 #content-slider span:hover ~ .slider>.inset {
   -webkit-animation-play-state: paused;

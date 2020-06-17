@@ -113,4 +113,14 @@ getProfile(){
 
 	}
 
+  unarchive(element){
+   
+   if(confirm("Are you sure you want to restore this record?")==true){
+      this.productService.unarchiveProduct(element).subscribe((response)=>{
+        this.getProducts();
+      })
+    }
+
+  }
+
 }

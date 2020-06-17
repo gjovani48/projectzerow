@@ -90,6 +90,24 @@ export class SalesAcrhiveComponent implements OnInit {
 
  }
 
+  unarchiveSale(sale){
+
+   if(confirm("Are you sure you want to restore this record?")==true){
+
+     this.saleServices.unarchiveSale(sale).subscribe((res)=>{
+
+       this.openSnackBar("Sale restore",'dismis');
+
+       this.getSales();
+
+     })
+
+     
+   }
+
+
+ }
+
  archiveMany(){
 
    var _ids = [];

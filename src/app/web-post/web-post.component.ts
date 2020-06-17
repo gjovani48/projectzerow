@@ -8,6 +8,9 @@ import {MatTableDataSource,MatPaginator} from '@angular/material';
 import {PageEvent} from "@angular/material";
 
 
+import {PostDialog} from './post-dialog';
+import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
+
  export interface PostItem {
     _id: any
     author: String
@@ -27,7 +30,7 @@ export class WebPostComponent implements OnInit {
 
   public post:PostItem[];
 
-  constructor(private postServices: PostService,private changeDetectorRef: ChangeDetectorRef, private router: Router) { }
+  constructor(public dialog: MatDialog,private postServices: PostService,private changeDetectorRef: ChangeDetectorRef, private router: Router) { }
 
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -58,6 +61,29 @@ export class WebPostComponent implements OnInit {
 
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+
+   openPostDialog(post) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.width = "1200px"
+    dialogConfig.height = "600px"
+
+    dialogConfig.position = {
+      'top': "30px;",
+    }
+
+    dialogConfig.data = {
+        post_data: post
+    };
+
+    const dialogRef = this.dialog.open(PostDialog,dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 

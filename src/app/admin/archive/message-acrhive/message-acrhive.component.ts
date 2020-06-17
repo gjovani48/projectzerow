@@ -70,6 +70,21 @@ export class MessageAcrhiveComponent implements OnInit {
  }
 
 
+ unarchiveMessage(msg){
+
+      if(confirm("Are you sure you want to archive this message?")==true){
+
+        this.messageServices.unarchiveMessage(msg).subscribe((res)=>{
+
+          this.getMessages();
+
+        })
+
+      }
+
+    }
+
+
    isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { UserService, UserDetails} from '../../services/user.service';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-account-config',
@@ -14,7 +17,7 @@ export class AccountConfigComponent implements OnInit {
   userDetail: UserDetails;
   newpass = ''; 
 
-  constructor(private userServices: UserService, private router: Router) { }
+  constructor(private _snackBar: MatSnackBar,private userServices: UserService, private router: Router) { }
 
   ngOnInit() {
 
@@ -44,17 +47,49 @@ export class AccountConfigComponent implements OnInit {
 
   updateConfig(){
 
-  	this.userDetail.password = (this.newpass=='')? this.userDetail.password: this.newpass;
+  	if(confirm("Are you sure you want to change your login credentials?")==true){
 
-  	this.userServices.updateUser(this.userDetail).subscribe((res)=>{
+      this.userDetail.password = (this.newpass=='')? this.userDetail.password: this.newpass;
 
-
-  		console.log(res);
-
-
-  	})
+      this.userServices.updateUser(this.userDetail).subscribe((res)=>{
 
 
+        this.openSnackBar("Your Login credentials is now updated",'dismis');
+        this.getProfile();
+
+
+      })
+
+
+    }
+
+
+  }
+
+   updateUserInfo(){
+
+    if(confirm("Are you sure you want to update your information?")==true){
+
+      this.userDetail.password = (this.newpass=='')? this.userDetail.password: this.newpass;
+
+      this.userServices.updateUserInfo(this.userDetail).subscribe((res)=>{
+
+        this.openSnackBar("Your information is now updated",'dismis');
+        this.getProfile();
+
+
+      })
+
+
+    }
+
+
+  }
+
+   openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

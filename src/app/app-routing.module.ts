@@ -30,6 +30,8 @@ import { WebPostComponent } from './web-post/web-post.component';
 
 import { AccountConfigComponent } from './admin/account-config/account-config.component';
 
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
 const routes: Routes = [
 	{
 		path: "",
@@ -137,8 +139,8 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   {
 		path: "**",

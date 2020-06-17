@@ -19,7 +19,7 @@
 				        </mat-form-field>
 					</div>
 					
-					<div *ngFor="let row of obs | async" class="col-lg-12 mb-2 p-2">
+					<div *ngFor="let row of obs | async" class="col-lg-12 mb-2 p-2" (click)=" openPostDialog(row)">
 						
 						<div class="row">
 							

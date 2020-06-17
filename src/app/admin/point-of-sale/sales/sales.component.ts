@@ -81,6 +81,9 @@ export class SalesComponent implements OnInit {
 
  getSales(){
 
+  this.totalSale = [];
+  this.anonymousSale = [];
+
   this.loading = true;
 
  	this.saleServices.getSales().subscribe((res)=>{
@@ -192,15 +195,20 @@ export class SalesComponent implements OnInit {
 
 
 
-   archiveSale(sale){
+  archiveSale(sale){
 
-   this.saleServices.archiveSale(sale).subscribe((res)=>{
+   if(confirm("Are you sure you want to archive this record?")==true){
 
-     this.openSnackBar("Sale move to archive",'dismis');
+     this.saleServices.archiveSale(sale).subscribe((res)=>{
 
-     this.getSales();
+       this.openSnackBar("Sale move to archive",'dismis');
 
-   })
+       this.getSales();
+
+     })
+
+     
+   }
 
 
  }
@@ -224,17 +232,26 @@ export class SalesComponent implements OnInit {
     
     this.saleServices.getMonthlySales().subscribe((res)=>{
 
+      let date = new Date();
+
       res.sort((a, b) => a._id.month - b._id.month  )
 
       console.log(res)
 
-      res.forEach((row,i)=>{
+      // res.forEach((row,i)=>{
 
-          this.mSale.push(row.totalAmount);
-          this.chartLabels.push(this.temp_chartLabels[i]);
-          // this.chartLabels.push(row._id.month)
+      //     this.mSale.push(row.totalAmount);
+      //     this.chartLabels.push(this.temp_chartLabels[i]);
+      //     // this.chartLabels.push(row._id.month)
 
-      })
+      // })
+
+      for(var i=0; i<res.length+date.getMonth(); i++){
+
+         this.mSale.unshift((res[i]==undefined)? 0:res[i].totalAmount);
+         this.chartLabels.push(this.temp_chartLabels[i]);
+
+      }
 
       this.chartDatasets = this.mSale;
 

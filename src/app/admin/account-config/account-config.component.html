@@ -5,53 +5,219 @@
  		<div class="row">
 
  			<div *ngIf="userDetail" class="col-lg-12">
+
+
+ 				<mat-accordion>
+
+ 				<mat-expansion-panel>
+				    <mat-expansion-panel-header>
+				      <mat-panel-title>
+				        <span style="font-size: .8rem;">User Information</span>
+				      </mat-panel-title>
+				      <mat-panel-description>
+				        <span style="font-size: .7rem;" class="float-right "></span>
+				      </mat-panel-description>
+				    </mat-expansion-panel-header>
+
+				    <div class="col-lg-12">
+				    	
+				    	<div class="container">
+				    		
+				    		<p style="font-size: .7rem;" class="text-dark">
+				    			<br>
+				    			Firstname: <span class="float-right text-info">{{userDetail.firstname}}</span>
+				    			<br>
+				    			Middlename: <span class="float-right text-info">{{userDetail.middlename}}</span>
+				    			<br>
+				    			Lastname: <span class="float-right text-info">{{userDetail.lastname}}</span>
+
+				    		</p>
+
+				    		<hr>
+
+				    		<p style="font-size: .7rem;" class="text-dark">
+				    			Phone: <span class="float-right text-info">{{userDetail.phone}}</span>
+				    			<br>
+				    			Email: <span class="float-right text-info">{{userDetail.email}}</span>
+				    		</p>
+				    			
+
+
+
+				    	</div>
+
+				    </div>
+
+				    
+				 </mat-expansion-panel>
+
+
+				 <mat-expansion-panel>
+								    <mat-expansion-panel-header>
+								      <mat-panel-title>
+								        <span style="font-size: .8rem;">Edit Information</span>
+								      </mat-panel-title>
+								      <mat-panel-description >
+								        
+								      </mat-panel-description>
+								    </mat-expansion-panel-header>
+
+										<div style="font-size: .7rem" class="col-lg-12">
+
+						 					<div class="row">
+
+							 					<form class="col-lg-12" #resetInfoForm="ngForm">
+
+							 						<div style="width: 100%;" class="col-lg-12 form-group">
+							 							
+							 							  <div class="mb-2">
+														    <span class="" id="material-addon1">Firstname</span>
+														  </div>
+
+														  <input style="width:100%; font-size: .7rem;" class="form-control" type="text"  #firstname="ngModel" [(ngModel)]="userDetail.firstname" name="firstname" [class.invalid]="firstname.invalid && firstname.touched" maxlength="30" required>
+
+
+														<span style="font-size: .7rem;" *ngIf="firstname.invalid && firstname.touched" class="text-danger">Invalid</span>
+
+							 						</div>
+
+							 						<div style="width: 100%;" class="col-lg-12 form-group">
+							 							
+							 							  <div class="mb-2">
+														    <span class="" id="material-addon1">Middlename</span>
+														  </div>
+
+														  <input style="width:100%; font-size: .7rem;" class="form-control" type="text"  #middlename="ngModel" [(ngModel)]="userDetail.middlename" name="middlename" [class.invalid]="middlename.invalid && middlename.touched" maxlength="30" required>
+
+
+														<span style="font-size: .7rem;" *ngIf="middlename.invalid && middlename.touched" class="text-danger">Invalid</span>
+
+							 						</div>
+
+							 						<div style="width: 100%;" class="col-lg-12 form-group">
+							 							
+							 							  <div class="mb-2">
+														    <span class="" id="material-addon1">Lastname</span>
+														  </div>
+
+														  <input style="width:100%; font-size: .7rem;" class="form-control" type="text"  #lastname="ngModel" [(ngModel)]="userDetail.lastname" name="lastname" [class.invalid]="lastname.invalid && lastname.touched" maxlength="30" required>
+
+
+														<span style="font-size: .7rem;" *ngIf="lastname.invalid && lastname.touched" class="text-danger">Invalid</span>
+
+							 						</div>
+
+							 						<div style="width: 100%;" class="col-lg-12 form-group">
+							 							
+							 							  <div class="mb-2">
+														    <span class="" id="material-addon1">Phone</span>
+														  </div>
+
+														  <input style="width:100%; font-size: .7rem;" class="form-control" type="tel"  #phone="ngModel" [(ngModel)]="userDetail.phone" name="phone" [class.invalid]="phone.invalid && phone.touched" maxlength="13" required>
+
+
+														<span style="font-size: .7rem;" *ngIf="phone.invalid && phone.touched" class="text-danger">Invalid</span>
+
+							 						</div>
+							 						
+
+							 						<div class="col-lg-12 form-group">
+							 							
+							 							<button type="button" (click)=" updateUserInfo()" class="btn btn-sm btn-success float-right">save</button>
+
+							 						</div>
+
+							 					</form>
+
+						 					</div>
+
+							 						
+
+
+							 		</div>
+
+								  </mat-expansion-panel>
+
+
+
+
+
+				  <mat-expansion-panel>
+				    <mat-expansion-panel-header>
+				      <mat-panel-title>
+				        <span style="font-size: .8rem;">Configure Login Credentials</span>
+				      </mat-panel-title>
+				      <mat-panel-description >
+				        <span style="font-size: .7rem;" class="float-right ">Email/Password</span>
+				      </mat-panel-description>
+				    </mat-expansion-panel-header>
+
+						<div style="font-size: .7rem" class="col-lg-12">
+
+		 					<div class="row">
+
+			 					<form class="col-lg-12" #resetForm="ngForm">
+
+			 						<div style="width: 100%;" class="col-lg-12 form-group">
+			 							
+			 							  <div class="mb-2">
+										    <span class="" id="material-addon1">Email</span>
+										  </div>
+
+										  <input style="width:100%; font-size: .7rem;" class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]*" #email="ngModel" [(ngModel)]="userDetail.email" name="email" [class.invalid]="email.invalid && email.touched" maxlength="30" required>
+
+
+										<span style="font-size: .7rem;" *ngIf="email.invalid && email.touched" class="text-danger">Invalid Email</span>
+
+			 						</div>
+
+			 						<div style="width: 100%;" class="col-lg-12 form-group">
+			 							
+			 							<div class="mb-2">
+										    <span class="" id="material-addon1">Password</span>
+										  </div>
+
+										  <input style="width:100%; font-size: .7rem;" class="form-control" type="password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password" #newuserpassword="ngModel" [(ngModel)]="newpass"  name="pass" [class.invalid]="newuserpassword.invalid && newuserpassword.touched" maxlength="20" required>
+
+										<span style="font-size: .7rem;" *ngIf="newuserpassword.invalid && newuserpassword.touched" class="text-danger">Must contain at least one number and one uppercase and lowercase letter, and at least 8 to 20 characters</span>
+
+			 						</div>
+
+			 						<div style="width: 100%;" class="col-lg-12 form-group">
+			 							
+			 							<div class="mb-2">
+										    <span class="" id="material-addon1">Verify Password</span>
+										  </div>
+
+										  <input style="width:100%; font-size: .7rem;" class="form-control" type="password" #verifypassword="ngModel" [(ngModel)]="verifyregpassword"  name="verifyregpassword" class="form-control text-light" [class.invalid]="verifypassword.invalid && verifypassword.touched" maxlength="20" required>
+
+
+										<span style="font-size: .7rem;" *ngIf="newpass != verifyregpassword && verifypassword.touched" class="text-danger">Passwords do not match</span>
+
+			 						</div>
+
+			 						<div class="col-lg-12 form-group">
+			 							
+			 							<button type="button" (click)="updateConfig()" [class.disabled]="newpass != verifyregpassword" class="btn btn-sm btn-success float-right">save</button>
+
+			 						</div>
+
+			 					</form>
+
+		 					</div>
+
+			 						
+
+
+			 		</div>
+
+				  </mat-expansion-panel>
+
+
+				  
+				</mat-accordion>
+
  				
- 				<div class="card">
-
- 					<div class="card-header">
- 						
- 						<h5 class="h5-responsive">
- 							Account Configuration
- 						</h5>
-
- 					</div>
- 					
- 					<div class="card-body">
-
- 						<div class="col-lg-12 form-group">
- 							
- 							<div class="md-form input-group mb-3">
-							  <div class="input-group-prepend">
-							    <span class="input-group-text md-addon" id="material-addon1">Email</span>
-							  </div>
-							  <input class="form-control" type="email" [(ngModel)]="userDetail.email" name="email">
-							</div>
-
- 						</div>
-
- 						<div class="col-lg-12 form-group">
- 							
- 							<div class="md-form input-group mb-3">
-							  <div class="input-group-prepend">
-							    <span class="input-group-text md-addon" id="material-addon1">Password</span>
-							  </div>
-							  <input class="form-control" type="password" [(ngModel)]="newpass"  name="pass">
-							</div>
-
- 						</div>
-
- 						<div class="col-lg-12 form-group">
- 							
- 							<button (click)="updateConfig()" class="btn btn-sm btn-success float-right">save</button>
-
- 						</div>
-
- 						
-
-
- 					</div>
-
- 				</div>
 
  			</div>
 

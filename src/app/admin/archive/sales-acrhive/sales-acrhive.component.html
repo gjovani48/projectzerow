@@ -122,11 +122,11 @@
                   <td mat-cell *matCellDef="let element">
                     
 
-                      <button (click)="archiveSale(element)"  mdbTooltip="Delete Permanently" placement="top" type="button" class="btn btn-danger btn-circle">
+                      <button  mdbTooltip="Delete Permanently" placement="top" type="button" class="btn btn-danger btn-circle">
                         <mdb-icon fas icon="trash"></mdb-icon>
                       </button>
 
-                      <button (click)="archiveSale(element)"  mdbTooltip="Restore" placement="top" type="button" class="btn btn-success btn-circle">
+                      <button (click)="unarchiveSale(element)"  mdbTooltip="Restore" placement="top" type="button" class="btn btn-success btn-circle">
                         <mdb-icon fas icon="trash-restore"></mdb-icon>
                       </button>
 

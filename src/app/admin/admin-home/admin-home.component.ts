@@ -87,6 +87,10 @@ export class AdminHomeComponent implements OnInit {
   public chartLabels = [];
 
   getMonthlySales(){
+
+    let date = new Date();
+
+  
     
     this.saleServices.getMonthlySales().subscribe((res)=>{
 
@@ -94,13 +98,24 @@ export class AdminHomeComponent implements OnInit {
 
       console.log(res)
 
-      res.forEach((row,i)=>{
+      // res.forEach((row,i)=>{
 
-          this.mSale.push(row.totalAmount);
-          this.chartLabels.push(this.temp_chartLabels[i]);
-          // this.chartLabels.push(row._id.month)
+      //     this.mSale.push(row.totalAmount);
+      //     this.chartLabels.push(this.temp_chartLabels[i]);
+      //     // this.chartLabels.push(row._id.month)
 
-      })
+      // })
+
+      for(var i=0; i<res.length+date.getMonth(); i++){
+
+         this.mSale.unshift((res[i]==undefined)? 0:res[i].totalAmount);
+         this.chartLabels.push(this.temp_chartLabels[i]);
+
+      }
+
+      
+
+      console.log(this.mSale)
 
       this.chartDatasets = this.mSale;
 

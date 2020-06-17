@@ -68,6 +68,7 @@ import {HistoryDialog} from './admin/users/user-index/history-dialog';
 
 import {SalesDialog} from './admin/point-of-sale/sales/sales-dialog';
 import {PosSalesDialog} from './admin/point-of-sale/pos-index/pos-sales-dialog';
+import {PostDialog} from './web-post/post-dialog';
 import { MsgIndexComponent } from './admin/msg/msg-index/msg-index.component';
 import {MessageDialog} from './admin/msg/msg-index/msg-dialog';
 import { SalesAcrhiveComponent } from './admin/archive/sales-acrhive/sales-acrhive.component';
@@ -81,6 +82,7 @@ import { TmchnSalesComponent } from './admin/point-of-sale/tmchn-sales/tmchn-sal
 import { AccountConfigComponent } from './admin/account-config/account-config.component';
 import { ViewProductComponent } from './product/view-product/view-product.component';
 import { WebPostComponent } from './web-post/web-post.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,7 @@ import { WebPostComponent } from './web-post/web-post.component';
     CategorytDialogCreate,
     UserModal,
     SalesDialog,
+    PostDialog,
     UserInformationDialog,
     InventoryCategoryComponent,
     CategoryCreateComponent,
@@ -128,9 +131,10 @@ import { WebPostComponent } from './web-post/web-post.component';
     AccountConfigComponent,
     ViewProductComponent,
     WebPostComponent,
+    ForgotPasswordComponent,
   ],
   entryComponents: [ProductDialog,UserModal,ProductDialogCreate,
-                      CategorytDialogCreate,UserInformationDialog,EmailDialog,
+                      CategorytDialogCreate,UserInformationDialog,EmailDialog,PostDialog,
                     HistoryDialog,SalesDialog,PosSalesDialog,MessageDialog,CategoryDialog],
   imports: [
     HttpClientModule,

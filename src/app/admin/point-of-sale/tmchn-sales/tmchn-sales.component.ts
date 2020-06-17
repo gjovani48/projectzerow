@@ -74,7 +74,10 @@ public selection = new SelectionModel<Cart>(true, []);
 
  getSales(){
 
-   this.loading = true;
+  this.totalSale = [];
+  this.anonymousSale = [];
+
+  this.loading = true;
 
  	this.saleServices.getCartSales().subscribe((res)=>{
 

@@ -231,6 +231,13 @@ login(){
     })
   }
 
+
+  openPassrecovery(){
+
+    window.open('http://localhost:4200/forgot-password')
+
+  }
+
 }
 
 

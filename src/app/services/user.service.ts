@@ -224,6 +224,15 @@ export class UserService {
     )
   }
 
+
+  forgotPassword(data): Observable<any> {
+    return this.http.post<any>(
+      this.url + "/user/recover",
+      data,
+      { headers: this.headers }
+    )
+  }
+
 	// Update User
 	updateUser(user): Observable<any> {
 		return this.http.put<any>(
@@ -232,6 +241,14 @@ export class UserService {
 			{ headers: this.headers }
 		)
 	}
+
+  updateUserInfo(user): Observable<any> {
+    return this.http.put<any>(
+      this.url + "/user/" + user._id+'/info',
+      user,
+      { headers: this.headers }
+    )
+  }
 
 
 	// Delete User

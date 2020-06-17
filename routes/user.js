@@ -9,6 +9,8 @@ const Cart = require('../model/cart')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
+var fs = require('fs');
+
 const bodyParser = require('body-parser')
 const urlEncoded = bodyParser.json()
 
@@ -36,6 +38,8 @@ router.get('/arc', (req,res) => {
         res.json(data)
     })
 })
+
+
 
 router.post('/archive', urlEncoded, (req,res) => {
     User.updateOne({_id:req.body._id}, { $set: { is_archive: true } },(err) => {
@@ -258,6 +262,10 @@ router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
            }
 
 
+           console.log("Tubig machine point list");
+           console.log(w_points)
+
+
        })
 
        w_total_points_ds_month = w_points.reduce((a, b) => a + b, 0);
@@ -283,6 +291,9 @@ router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
 
            }
 
+           console.log("Store point list");
+           console.log(points)
+
            saledate = row.sale_date;
 
          })
@@ -303,13 +314,22 @@ router.put('/:id/pzwpoints', urlEncoded, (req,res) => {
         if(final_total>=200){
 
 
-           User.updateOne({_id: req.params.id}, {
-              $inc:{pzwpoints: 0}
-            },(err) => {
+          User.findOne({_id: req.params.id},(err,data)=>{
+
+            if(err) throw err
+
+             User.updateOne({_id: req.params.id}, {
+              $inc:{pzwpoints: (data.pzwpoints<200)? ((req.body.pzwpoints>200)? 200-data.pzwpoints:req.body.pzwpoints):0}
+             },(err) => {
                 if(err) res.json({msg:"Invalid Request"})
+
                 res.json({status:true,msg:'reach the maximum points this month'})
+                
             })
             
+
+
+          })
 
          }
          else{
@@ -372,6 +392,22 @@ router.put('/:id', urlEncoded, (req,res) => {
     
 })
 
+router.put('/:id/info', urlEncoded, (req,res) => {
+
+
+    User.updateOne({_id: req.params.id}, {
+                firstname: req.body.firstname,
+                middlename: req.body.middlename,
+                lastname: req.body.lastname,
+                phone:  req.body.phone
+    },(err,result) => {
+        if(err) res.json({msg:"Invalid Request"})
+        res.json([{msg:result}])
+    })
+
+    
+})
+
 
 router.post('/archiveall', urlEncoded, (req,res) => {
     User.updateMany({}, { $set: { is_archive: false } },(err) => {
@@ -385,6 +421,44 @@ router.post('/archive', urlEncoded, (req,res) => {
         if(err) res.json({msg:"Invalid Request"})
         res.json([{msg:"Product Updated"}])
     })
+})
+
+router.post('/recover', urlEncoded, (req,res) => {
+
+     console.log(req.body.email)
+
+      User.findOne({
+          email: req.body.email
+      }).then(user=>{
+          if(user){
+              console.log(user)
+
+              fs.readFile('form.html', {encoding: 'utf-8'}, function (err, html) {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      var mailOptions = {
+                        from: 'Project ZeroW',
+                        to: user.email,
+                        subject: 'Account Recovery',
+                        html: html
+                      }
+
+                      transporter.sendMail(mailOptions,(err,data)=>{
+                        if (err) throw err
+                        res.json({status:true})
+                      })
+                    }
+                  });
+
+          }
+          else{
+              res.send({status:false})
+          }
+      })
+      .catch(err =>{
+          res.send('error : '+ err)
+      })
 })
 
 // Delete User

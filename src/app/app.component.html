@@ -188,9 +188,9 @@
 
         <div class="row">
           <div class="col-xl-6 border-right mt-3">
-            <p>You can also sign in with:</p>
-            <button id="fbLoginBtn" type="button" mdbBtn color="primary" class="waves-light btn-sm btn-block" mdbWavesEffect><i class="fab fa-facebook-f left"></i>Facebook</button>
-            <button id="googleLoginBtn" type="button" mdbBtn gradient="peach" class="waves-light btn-sm btn-block mt-3" mdbWavesEffect><i class="fab fa-google left"></i>Google</button>
+            <p> Join the Fight <i class="fas fa-globe-asia animated zoomIn"></i> </p>
+            <button id="fbLoginBtn" type="button" mdbBtn color="primary" class="waves-light btn-sm btn-block" mdbWavesEffect><a href="https://www.facebook.com/Project-ZeroW-107476950871394/"   class="fab fa-facebook-f" style="color: white;" ></a> Facebook</button>
+            <button id="googleLoginBtn" type="button" mdbBtn gradient="peach" class="waves-light btn-sm btn-block mt-3" mdbWavesEffect> <a href="https://twitter.com/PZerow"  class="fab fa-twitter" style="color: white;"></a> Twitter</button>
           </div>
 
           <div class="col-xl-6">
@@ -211,7 +211,7 @@
 
               <button id="loginBtn" class="btn btn-block btn-sm btn-success text-light" type="submit" [disabled]="loginForm.invalid">Login</button>
               <div class="row mt-2">
-                <div class="col-xl-6"><a type="button" class="text-primary">Forgot Password?</a></div>
+                <div class="col-xl-6"><a type="button" (click)="openPassrecovery();" class="text-primary">Forgot Password?</a></div>
                 <div class="col-xl-6"><a type="button" (click)="loginModal.hide(); registerModal.show()" class="float-right text-primary">Create Account</a></div>
               </div>
             </form>
@@ -315,7 +315,7 @@
 
   <div class="row col-sm-12 displaystyle-rightborder displaystyle-success">
         <strong>
-          <mdb-icon fas icon="check-circle"></mdb-icon> Your account is successfully created!
+          <mdb-icon fas icon="check-circle"></mdb-icon> <p style="font-size: .6rem; color:green;">Your account is successfully created!<br> We've send your account registration code to your email</p>
         </strong>
     </div>
     <!--/.Content-->

@@ -92,4 +92,17 @@ export class PostAcrhiveComponent implements OnInit {
     });
   }
 
+
+  unarchivePost(post){
+
+    if(confirm("Are you sure you want to restore this post?")==true){
+      this.postServices.unarchivePost(post).subscribe((res)=>{
+
+        this.getPost();
+
+      })
+    }
+  }
+
+
 }

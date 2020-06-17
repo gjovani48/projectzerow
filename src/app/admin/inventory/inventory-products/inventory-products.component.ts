@@ -263,11 +263,13 @@ export class InventoryProductsComponent implements OnInit {
   }
 
   archive(element){
-
-    this.productService.archiveProduct(element).subscribe((response)=>{
-      this.openSnackBar("Product move to archive",'dismis');
-      this.getProducts();
-    })
+   
+   if(confirm("Are you sure you want to archive this record?")==true){
+      this.productService.archiveProduct(element).subscribe((response)=>{
+        this.openSnackBar("Product move to archive",'dismis');
+        this.getProducts();
+      })
+    }
 
   }
 

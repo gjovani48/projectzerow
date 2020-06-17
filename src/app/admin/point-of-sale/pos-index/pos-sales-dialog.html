@@ -100,11 +100,11 @@
 
 <mat-dialog-actions align="end">
 
-    <button *ngIf="sales.user_id" mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>
+    <button  class="d-none" *ngIf="sales.user_id" mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>
     	<mdb-icon fas icon="envelope-square"></mdb-icon> Send as email
     </button>
     
-    <button mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>
+    <button class="d-none" mat-button [mat-dialog-close]="true" (click)="submit()" cdkFocusInitial>
     	<mdb-icon fas icon="print"></mdb-icon> Print
     </button>
 

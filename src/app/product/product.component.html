@@ -175,11 +175,11 @@
 
         <div class="row">
           
-          <div *ngFor="let p_mini of productsMini | slice:80:90; let i=index" class="ml-1 mb-2 col-lg-12 col-12 col-sm-12">
+          <div *ngFor="let p_mini of productsMini | slice:80:90; let i=index" class="ml-1 mb-2 col-lg-12 col-12 col-sm-12" >
             
             <div id="products_mini" class="border p-0">
 
-              <div class="col-lg-12 col-12 col-sm-12">
+              <div class="col-lg-12 col-12 col-sm-12" (click)="viewProduct(p_mini)">
                 
                 <div class="row">
                   

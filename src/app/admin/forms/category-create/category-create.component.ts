@@ -73,7 +73,7 @@ export class CategoryCreateComponent implements OnInit {
 
 	}
 
-	url;
+url;
 
 onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
@@ -85,7 +85,7 @@ onSelectFile(event) {
         this.url = reader.result;
       }
     }
-  }
+}
 
 addCategory(){
     this.uploader.uploadAll();
