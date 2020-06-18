@@ -26,7 +26,7 @@ var transporter  = nodemailer.createTransport({
 
 // Get All Userss
 router.get('/', (req,res) => {
-    User.find({is_archive:false},(err,data)=>{
+    User.find({is_verified:true},(err,data)=>{
         if(err) throw err
         res.json(data)
     })

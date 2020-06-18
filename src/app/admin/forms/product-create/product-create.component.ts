@@ -91,15 +91,16 @@ export class ProductCreateComponent implements OnInit {
 
   addProduct(){
 
-    this.loading = true;
+    // this.loading = true;
 
-    this.uploader.uploadAll();
-    this.productService.addProduct(this.productForm.value).subscribe((response)=>{
-      console.log(this.productForm.value)
-      this.loading = false;
-      this.openSnackBar(response.msg,'dismis');
-      console.log(this.productForm.value)
-    })
+    // this.uploader.uploadAll();
+    // this.productService.addProduct(this.productForm.value).subscribe((response)=>{
+    //   console.log(this.productForm.value)
+    //   this.loading = false;
+    //   this.openSnackBar(response.msg,'dismis');
+    //   console.log(this.productForm.value)
+    // })
+    alert("Write permisson is not allowed");
   }
 
 

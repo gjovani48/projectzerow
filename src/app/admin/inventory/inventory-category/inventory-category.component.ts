@@ -76,14 +76,16 @@ export class InventoryCategoryComponent implements OnInit {
 
   archive(element){
 
-    if(confirm("Are you sure you want to archive this record?")==true){
+    // if(confirm("Are you sure you want to archive this record?")==true){
 
-        this.categoryService.archiveCategory(element).subscribe((response)=>{
-          this.openSnackBar("category move to archive",'dismis');
-          this.getCategories();
-        })
+    //     this.categoryService.archiveCategory(element).subscribe((response)=>{
+    //       this.openSnackBar("category move to archive",'dismis');
+    //       this.getCategories();
+    //     })
 
-    }
+    // }
+
+    alert("Write permisson is not allowed");
 
   }
 

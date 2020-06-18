@@ -197,18 +197,20 @@ export class SalesComponent implements OnInit {
 
   archiveSale(sale){
 
-   if(confirm("Are you sure you want to archive this record?")==true){
+   // if(confirm("Are you sure you want to archive this record?")==true){
 
-     this.saleServices.archiveSale(sale).subscribe((res)=>{
+   //   this.saleServices.archiveSale(sale).subscribe((res)=>{
 
-       this.openSnackBar("Sale move to archive",'dismis');
+   //     this.openSnackBar("Sale move to archive",'dismis');
 
-       this.getSales();
+   //     this.getSales();
 
-     })
+   //   })
 
      
-   }
+   // }
+
+   alert("Write permisson is not allowed");
 
 
  }

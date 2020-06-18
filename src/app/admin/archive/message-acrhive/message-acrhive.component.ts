@@ -72,15 +72,17 @@ export class MessageAcrhiveComponent implements OnInit {
 
  unarchiveMessage(msg){
 
-      if(confirm("Are you sure you want to archive this message?")==true){
+      // if(confirm("Are you sure you want to archive this message?")==true){
 
-        this.messageServices.unarchiveMessage(msg).subscribe((res)=>{
+      //   this.messageServices.unarchiveMessage(msg).subscribe((res)=>{
 
-          this.getMessages();
+      //     this.getMessages();
 
-        })
+      //   })
 
-      }
+      // }
+
+      alert("Write permisson is not allowed");
 
     }
 

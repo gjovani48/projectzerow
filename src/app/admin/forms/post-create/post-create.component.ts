@@ -55,11 +55,13 @@ export class PostCreateComponent implements OnInit {
 
   createpost(){
 
-      this.postServices.addPost(this.post_article).subscribe((res)=>{
+      // this.postServices.addPost(this.post_article).subscribe((res)=>{
 
-        this.openSnackBar(res.msg,'dismis');
+      //   this.openSnackBar(res.msg,'dismis');
 
-      })
+      // })
+
+      alert("Write permisson is not allowed");
 
 
   }

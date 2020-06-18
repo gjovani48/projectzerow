@@ -256,90 +256,93 @@ export class PosIndexComponent implements OnInit {
 
   createSale(){
 
-      if(confirm("Continue to complete transaction?")==true){
+      // if(confirm("Continue to complete transaction?")==true){
 
-        var tr_code;
+      //   var tr_code;
 
-  	  	var sales_data = new Sale();
-  	  	sales_data.user_id = this.selectedUser._id;
-  	  	sales_data.item = this.item;
-  	  	sales_data.total = this.totalCost;
-  	  	sales_data.amount_due = this.amount_due;
-  	  	sales_data.change = this.change;
+  	  	// var sales_data = new Sale();
+  	  	// sales_data.user_id = this.selectedUser._id;
+  	  	// sales_data.item = this.item;
+  	  	// sales_data.total = this.totalCost;
+  	  	// sales_data.amount_due = this.amount_due;
+  	  	// sales_data.change = this.change;
 
-  	  	var pzwpoints = {
-  	  		pzwpoints: parseFloat(sales_data.total.toString())*.05
-  	  	}
+  	  	// var pzwpoints = {
+  	  	// 	pzwpoints: parseFloat(sales_data.total.toString())*.05
+  	  	// }
 
 
-  	  	this.saleServices.addSale(sales_data).subscribe((res)=>{
+  	  	// this.saleServices.addSale(sales_data).subscribe((res)=>{
 
-          console.log(res)
+      //     console.log(res)
 
-          tr_code = res.transaction_code;
+      //     tr_code = res.transaction_code;
   	  		
 
-  	  		if(res.status==true && this.selectedUser._id!=""){
+  	  	// 	if(res.status==true && this.selectedUser._id!=""){
 
-  	  			this.userService.addPZWPoints(sales_data.user_id,pzwpoints).subscribe((res)=>{
-
-
-  	  				if(res.status==true){
-  	  					alert('poins added to the user| transaction success'+" "+res.transaction_code);
-  	  				}
-
-  	  			})
-
-            this.openPosSalesDialog(sales_data,res.transaction_code);
-
-  	  		}
-  	  		else if(res.status==true && this.selectedUser._id==""){
-  	  			alert('transaction success'+res.transaction_code);
-            this.openPosSalesDialog(sales_data,res.transaction_code);
-  	  		}
-
-  	  	})
+  	  	// 		this.userService.addPZWPoints(sales_data.user_id,pzwpoints).subscribe((res)=>{
 
 
-      }
+  	  	// 			if(res.status==true){
+  	  	// 				alert('poins added to the user| transaction success'+" "+res.transaction_code);
+  	  	// 			}
 
+  	  	// 		})
+
+      //       this.openPosSalesDialog(sales_data,res.transaction_code);
+
+  	  	// 	}
+  	  	// 	else if(res.status==true && this.selectedUser._id==""){
+  	  	// 		alert('transaction success'+res.transaction_code);
+      //       this.openPosSalesDialog(sales_data,res.transaction_code);
+  	  	// 	}
+
+  	  	// })
+
+
+      // }
+
+      alert("Write permisson is not allowed");
 
   }
 
   createRedeem(){
 
-    if(confirm("Continue to complete redeem?")==true){
+    // if(confirm("Continue to complete redeem?")==true){
 
-      var redeem_data = new Redeem();
-      redeem_data.user_id = this.selectedUser._id;
-      redeem_data.item = this.redeemed_item;
-      redeem_data.total = this.totalCost_points;
-      redeem_data.remaining_points = parseFloat(this.selectedUser.pzwpoints.toString()) - parseFloat(redeem_data.total.toString());
+    //   var redeem_data = new Redeem();
+    //   redeem_data.user_id = this.selectedUser._id;
+    //   redeem_data.item = this.redeemed_item;
+    //   redeem_data.total = this.totalCost_points;
+    //   redeem_data.remaining_points = parseFloat(this.selectedUser.pzwpoints.toString()) - parseFloat(redeem_data.total.toString());
 
-      var pzwpoints = {
-        pzwpoints: this.totalCost_points
-      }
+    //   var pzwpoints = {
+    //     pzwpoints: this.totalCost_points
+    //   }
 
 
-      this.redeemServices.addRedeem(redeem_data).subscribe((res)=>{
+    //   this.redeemServices.addRedeem(redeem_data).subscribe((res)=>{
         
 
-        if(res.status==true){
+    //     if(res.status==true){
 
-          this.userService.deductPZWPoints(redeem_data.user_id,pzwpoints).subscribe((res)=>{
+    //       this.userService.deductPZWPoints(redeem_data.user_id,pzwpoints).subscribe((res)=>{
 
 
-            if(res.status==true){
-              alert('poins deducted to the user| transaction success');
-            }
+    //         if(res.status==true){
+    //           alert('poins deducted to the user| transaction success');
+    //         }
 
-          })
+    //       })
 
-        }
+    //     }
 
-      })
+    //   })
 
-    }
+    // }
+
+    alert("Write permisson is not allowed");
 
 
   }
