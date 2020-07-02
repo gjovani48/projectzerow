@@ -234,7 +234,7 @@ login(){
 
   openPassrecovery(){
 
-    window.open('https://protected-escarpment-77600.herokuapp.com/forgot-password')
+    window.open('http://localhost:4200/forgot-password')
 
   }
 

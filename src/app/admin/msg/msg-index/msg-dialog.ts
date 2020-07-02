@@ -33,19 +33,17 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 
     archiveMessage(){
 
-      // if(confirm("Are you sure you want to archive this message?")==true){
+      if(confirm("Are you sure you want to archive this message?")==true){
 
-      //   this.messageServices.archiveMessage(this.msg).subscribe((res)=>{
+        this.messageServices.archiveMessage(this.msg).subscribe((res)=>{
 
-      //     this.dialogRef.close('Pizza!');
+          this.dialogRef.close('Pizza!');
 
-      //     this. openSnackBar("Message deleted", "Dismis");
+          this. openSnackBar("Message deleted", "Dismis");
 
-      //   })
+        })
 
-      // }
-
-      alert("Write permisson is not allowed");
+      }
 
     }
 

@@ -69,15 +69,13 @@ export class ArticleListComponent implements OnInit {
 
   archivePost(post){
 
-    // if(confirm("Are you sure you want to archive this post?")==true){
-    //   this.postServices.archivePost(post).subscribe((res)=>{
+    if(confirm("Are you sure you want to archive this post?")==true){
+      this.postServices.archivePost(post).subscribe((res)=>{
 
-    //     this.getArticles();
+        this.getArticles();
 
-    //   })
-    // }
-
-    alert("Write permisson is not allowed");
+      })
+    }
   }
 
 

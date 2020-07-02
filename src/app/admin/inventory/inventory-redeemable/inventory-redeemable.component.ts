@@ -126,15 +126,13 @@ export class InventoryRedeemableComponent implements OnInit {
 
   archive(element){
 
-   // if(confirm("Are you sure you want to archive this record?")==true){
-   //    this.productService.archiveProduct(element).subscribe((response)=>{
-   //      this.openSnackBar("Product move to archive",'dismis');
-   //      console.log(response);
-   //      this.getProducts();
-   //    })
-   // }
-
-   alert("Write permisson is not allowed");
+   if(confirm("Are you sure you want to archive this record?")==true){
+      this.productService.archiveProduct(element).subscribe((response)=>{
+        this.openSnackBar("Product move to archive",'dismis');
+        console.log(response);
+        this.getProducts();
+      })
+   }
 
   }
 

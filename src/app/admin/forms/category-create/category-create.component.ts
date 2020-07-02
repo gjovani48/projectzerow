@@ -88,17 +88,14 @@ onSelectFile(event) {
 }
 
 addCategory(){
+    this.uploader.uploadAll();
+    this.categoryService.addCategory(this.categoryForm.value).subscribe((response)=>{
 
-    alert("Write permisson is not allowed");
-
-    // this.uploader.uploadAll();
-    // this.categoryService.addCategory(this.categoryForm.value).subscribe((response)=>{
-
-    //   console.log(this.categoryForm.value)
-    //   this.openSnackBar(response.msg,'dismis');
-    //   console.log(this.categoryForm.value)
+      console.log(this.categoryForm.value)
+      this.openSnackBar(response.msg,'dismis');
+      console.log(this.categoryForm.value)
       
-    // })
+    })
   }
 
  openSnackBar(message: string, action: string) {
