@@ -58,7 +58,7 @@ export class UserService {
 
   private token : string;
 
-// LOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGIN
+// LOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGINLOGIN logon
 
   private saveToken(token: string): void {
     localStorage.setItem('usertoken', token)
@@ -71,14 +71,6 @@ export class UserService {
     }
     return this.token;
   }
-
-
-  public logout(): void {
-    this.token = '';
-    window.localStorage.removeItem('usertoken')
-    this.router.navigateByUrl('/')
-  }
-
 
   public login(user: TokenPayload): Observable<any>{
 
@@ -101,6 +93,12 @@ export class UserService {
 
     //return base;
 
+  }
+
+  public logout(): void {
+    this.token = '';
+    window.localStorage.removeItem('usertoken')
+    this.router.navigateByUrl('/')
   }
 
   public profile(): Observable<any>{
